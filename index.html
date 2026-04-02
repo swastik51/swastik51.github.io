@@ -1,44 +1,206 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Swastik Portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-      text-align: center;
-    }
-    h1 {
-      margin-top: 100px;
-      font-size: 40px;
-    }
-    p {
-      font-size: 20px;
-      color: #94a3b8;
-    }
-    button {
-      padding: 10px 20px;
-      margin-top: 20px;
-      border: none;
-      background: #38bdf8;
-      color: black;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swastik Nayak | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #00f5ff;
+  --bg: #020617;
+  --card: rgba(255,255,255,0.05);
+  --text: #ffffff;
+  --subtext: #94a3b8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: var(--text);
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 8%;
+  position: fixed;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 120px 8%;
+  min-height: 100vh;
+}
+
+.hero-text h1 {
+  font-size: 55px;
+}
+
+.hero-text span {
+  color: var(--primary);
+}
+
+.hero-text p {
+  margin-top: 10px;
+  color: var(--subtext);
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  background: var(--primary);
+  color: black;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* IMAGE */
+.hero-img img {
+  width: 300px;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 30px var(--primary);
+  transition: 0.4s;
+}
+
+.hero-img img:hover {
+  transform: scale(1.05);
+}
+
+/* SECTION */
+section {
+  padding: 80px 8%;
+}
+
+.section-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+  border-left: 4px solid var(--primary);
+  padding-left: 10px;
+}
+
+/* SKILLS */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill {
+  background: var(--card);
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+/* PROJECTS */
+.project {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  width: 260px;
+}
+
+/* CONTACT */
+.contact a {
+  display: block;
+  margin-top: 10px;
+  color: var(--primary);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-img {
+    margin-top: 30px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <h1>Hi, I'm Swastik 🚀</h1>
-  <p>Future Full Stack Developer | AI & ML Enthusiast</p>
+<!-- NAV -->
+<nav>
+  <h2 style="color:#00f5ff;">Swastik</h2>
+</nav>
 
-  <button onclick="alert('Welcome to my website!')">
-    Click Me
-  </button>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>Hi, I'm <span>Swastik Nayak</span></h1>
+    <p>Future Full Stack Developer | AI & ML Enthusiast</p>
+    <button class="btn" onclick="scrollToSection()">Explore</button>
+  </div>
+
+  <div class="hero-img">
+    <img src="profile.jpg" alt="Profile Photo">
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title">About Me</div>
+  <p>
+    I am a B.Tech CSE (AI/ML) student passionate about technology and development.
+    I am learning full-stack development and exploring AI/ML to build impactful solutions.
+  </p>
+</section>
+
+<!-- SKILLS -->
+<section>
+  <div class="section-title">Skills</div>
+  <div class="skills">
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">Python</div>
+    <div class="skill">C/C++</div>
+    <div class="skill">AI/ML</div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section>
+  <div class="section-title">Projects</div>
+  <div class="project">
+    <h3>Portfolio Website</h3>
+    <p>Hosted using GitHub Pages with modern UI.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="section-title">Contact</div>
+  <a href="mailto:mrswastik372@gmail.com">mrswastik372@gmail.com</a>
+  <a href="https://www.linkedin.com/in/swastik-nayak-59161a391" target="_blank">LinkedIn</a>
+</section>
+
+<script>
+function scrollToSection() {
+  document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+}
+</script>
 
 </body>
 </html>
