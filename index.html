@@ -11,9 +11,8 @@
 :root {
   --primary: #00f5ff;
   --bg: #020617;
-  --card: rgba(255,255,255,0.05);
-  --text: #ffffff;
-  --subtext: #94a3b8;
+  --text: #fff;
+  --sub: #94a3b8;
 }
 
 * {
@@ -26,25 +25,33 @@
 body {
   background: radial-gradient(circle at top, #0f172a, #020617);
   color: var(--text);
+  overflow-x: hidden;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary);
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 /* NAV */
 nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 8%;
   position: fixed;
   width: 100%;
+  padding: 20px 8%;
   backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.4);
-  z-index: 1000;
 }
 
 /* HERO */
 .hero {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 120px 8%;
   min-height: 100vh;
 }
@@ -53,36 +60,28 @@ nav {
   font-size: 55px;
 }
 
-.hero-text span {
+.hero span {
   color: var(--primary);
 }
 
-.hero-text p {
-  margin-top: 10px;
-  color: var(--subtext);
-}
-
-.btn {
-  margin-top: 20px;
-  padding: 12px 20px;
-  border: none;
-  background: var(--primary);
-  color: black;
-  border-radius: 8px;
-  cursor: pointer;
+/* TYPING */
+.typing {
+  color: var(--primary);
+  font-weight: bold;
 }
 
 /* IMAGE */
 .hero-img img {
   width: 300px;
   border-radius: 50%;
-  border: 3px solid var(--primary);
-  box-shadow: 0 0 30px var(--primary);
-  transition: 0.4s;
+  box-shadow: 0 0 50px var(--primary);
+  animation: pulse 2s infinite;
 }
 
-.hero-img img:hover {
-  transform: scale(1.05);
+@keyframes pulse {
+  0% { box-shadow: 0 0 20px var(--primary); }
+  50% { box-shadow: 0 0 60px var(--primary); }
+  100% { box-shadow: 0 0 20px var(--primary); }
 }
 
 /* SECTION */
@@ -90,115 +89,136 @@ section {
   padding: 80px 8%;
 }
 
-.section-title {
-  font-size: 28px;
-  margin-bottom: 30px;
-  border-left: 4px solid var(--primary);
-  padding-left: 10px;
-}
-
 /* SKILLS */
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+.skill-bar {
+  margin: 15px 0;
 }
 
-.skill {
-  background: var(--card);
-  padding: 10px 15px;
-  border-radius: 6px;
-}
-
-/* PROJECTS */
-.project {
-  background: var(--card);
-  padding: 20px;
+.bar {
+  height: 10px;
+  background: #1e293b;
   border-radius: 10px;
-  width: 260px;
 }
 
-/* CONTACT */
-.contact a {
-  display: block;
-  margin-top: 10px;
-  color: var(--primary);
+.fill {
+  height: 10px;
+  background: var(--primary);
+  width: 0;
+  border-radius: 10px;
+}
+
+/* CERTIFICATE MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  top:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  width: 80%;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: var(--primary);
+  border: none;
+  cursor: pointer;
 }
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-img {
-    margin-top: 30px;
-  }
+  .hero { flex-direction: column; text-align:center; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav>
-  <h2 style="color:#00f5ff;">Swastik</h2>
-</nav>
+<div class="cursor"></div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-text">
     <h1>Hi, I'm <span>Swastik Nayak</span></h1>
-    <p>Future Full Stack Developer | AI & ML Enthusiast</p>
+    <p class="typing"></p>
     <button class="btn" onclick="scrollToSection()">Explore</button>
   </div>
 
   <div class="hero-img">
-    <img src="profile.jpg" alt="Profile Photo">
+    <img src="profile.jpg">
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-title">About Me</div>
-  <p>
-    I am a B.Tech CSE (AI/ML) student passionate about technology and development.
-    I am learning full-stack development and exploring AI/ML to build impactful solutions.
-  </p>
+  <h2>About Me</h2>
+  <p>B.Tech CSE AI/ML student building future tech.</p>
 </section>
 
 <!-- SKILLS -->
 <section>
-  <div class="section-title">Skills</div>
-  <div class="skills">
-    <div class="skill">HTML</div>
-    <div class="skill">CSS</div>
-    <div class="skill">JavaScript</div>
-    <div class="skill">Python</div>
-    <div class="skill">C/C++</div>
-    <div class="skill">AI/ML</div>
+  <h2>Skills</h2>
+
+  <div class="skill-bar">
+    HTML
+    <div class="bar"><div class="fill" style="width:90%"></div></div>
   </div>
+
+  <div class="skill-bar">
+    JavaScript
+    <div class="bar"><div class="fill" style="width:80%"></div></div>
+  </div>
+
 </section>
 
-<!-- PROJECT -->
+<!-- CERTIFICATE -->
 <section>
-  <div class="section-title">Projects</div>
-  <div class="project">
-    <h3>Portfolio Website</h3>
-    <p>Hosted using GitHub Pages with modern UI.</p>
-  </div>
+  <h2>Certification</h2>
+  <img src="certificate.jpg" width="300" onclick="openModal()">
 </section>
 
-<!-- CONTACT -->
-<section class="contact">
-  <div class="section-title">Contact</div>
-  <a href="mailto:mrswastik372@gmail.com">mrswastik372@gmail.com</a>
-  <a href="https://www.linkedin.com/in/swastik-nayak-59161a391" target="_blank">LinkedIn</a>
-</section>
+<div class="modal" id="modal">
+  <img src="certificate.jpg">
+</div>
 
 <script>
-function scrollToSection() {
-  document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+// TYPING EFFECT
+const text = "Full Stack Developer | AI & ML Enthusiast";
+let i=0;
+function typing(){
+  if(i<text.length){
+    document.querySelector(".typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing,50);
+  }
+}
+typing();
+
+// CURSOR
+const cursor = document.querySelector(".cursor");
+document.addEventListener("mousemove", e=>{
+  cursor.style.top = e.clientY+"px";
+  cursor.style.left = e.clientX+"px";
+});
+
+// MODAL
+function openModal(){
+  document.getElementById("modal").style.display="flex";
+}
+document.getElementById("modal").onclick=()=>{
+  document.getElementById("modal").style.display="none";
+}
+
+// SCROLL
+function scrollToSection(){
+  document.getElementById("about").scrollIntoView({behavior:"smooth"});
 }
 </script>
 
