@@ -9,11 +9,11 @@
 
 <style>
 :root {
-  --deep-green: #0f3d2e;
-  --dark-green: #081c15;
-  --light-green: #22c55e;
-  --beige: #f5f5dc;
-  --glass: rgba(255,255,255,0.05);
+  --bg: #FFDBBB;
+  --card: #CCBEB1;
+  --muted: #997E67;
+  --primary: #664930;
+  --white: #ffffff;
 }
 
 * {
@@ -25,38 +25,35 @@
 }
 
 body {
-  background: linear-gradient(180deg, var(--deep-green), var(--dark-green));
-  color: var(--beige);
-  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--primary);
 }
 
-/* NAVBAR */
+/* NAV */
 nav {
   position: fixed;
   width: 100%;
   padding: 18px 8%;
   display: flex;
   justify-content: space-between;
-  background: rgba(15,61,46,0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,219,187,0.95);
+  border-bottom: 1px solid var(--muted);
   z-index: 1000;
 }
 
 nav h2 {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 nav a {
   margin-left: 20px;
   text-decoration: none;
-  color: var(--beige);
+  color: var(--primary);
   font-size: 14px;
-  transition: 0.3s;
 }
 
 nav a:hover {
-  color: var(--light-green);
+  color: var(--muted);
 }
 
 /* HERO */
@@ -73,77 +70,64 @@ nav a:hover {
 }
 
 .hero-text p {
-  margin-top: 12px;
-  color: #c7f9cc;
+  margin-top: 10px;
+  color: var(--muted);
 }
 
-/* TYPING */
-.typing {
-  color: var(--light-green);
-  font-weight: 500;
-}
-
-/* PROFILE */
+/* IMAGE */
 .img-box img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--light-green);
-  box-shadow: 0 0 25px var(--light-green);
-  transition: 0.4s;
-}
-
-.img-box img:hover {
-  transform: scale(1.05);
+  border: 2px solid var(--primary);
 }
 
 /* SECTION */
 section {
-  padding: 80px 8%;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s ease;
-}
-
-section.show {
-  opacity: 1;
-  transform: translateY(0);
+  padding: 70px 8%;
+  border-top: 1px solid var(--muted);
 }
 
 h2 {
   margin-bottom: 20px;
-  color: var(--beige);
+  font-size: 20px;
 }
 
-/* CARDS */
+/* CARD */
 .card {
-  background: var(--glass);
+  background: var(--card);
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 10px;
   margin-bottom: 15px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.1);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  border-color: var(--light-green);
+  transform: translateY(-3px);
 }
 
 /* TEXT */
-p {
-  color: #d8f3dc;
+p, li {
+  color: var(--primary);
   line-height: 1.6;
+}
+
+/* LIST */
+ul {
+  margin-left: 20px;
 }
 
 /* CONTACT */
 .contact a {
   display: block;
   margin-top: 8px;
-  color: var(--light-green);
+  color: var(--primary);
   text-decoration: none;
+}
+
+.contact a:hover {
+  color: var(--muted);
 }
 
 /* MOBILE */
@@ -178,21 +162,21 @@ p {
 <div class="hero">
   <div class="hero-text">
     <h1>Swastik Nayak</h1>
-    <p class="typing"></p>
+    <p>Future Full Stack Developer | AI & ML Enthusiast</p>
   </div>
 
   <div class="img-box">
-    <img src="profile.jpg" alt="Swastik Nayak">
+    <img src="profile.jpg">
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-  <h2>About</h2>
+  <h2>About Me</h2>
   <p>
-    I am a B.Tech Computer Science Engineering (AI & ML) student at Sri Sri University,
-    focused on building scalable and impactful systems. I develop clean web applications
-    and explore AI/ML to solve real-world problems.
+    I am a B.Tech Computer Science Engineering (AI & ML) student passionate about building impactful digital solutions. 
+    I am currently learning full-stack web development and exploring artificial intelligence and machine learning. 
+    I enjoy creating projects that combine creativity with logic and aim to build applications that solve real-world problems.
   </p>
 </section>
 
@@ -201,23 +185,23 @@ p {
   <h2>Skills</h2>
 
   <div class="card">
-    <strong>Programming:</strong>
-    <p>C • Python • JavaScript</p>
+    <strong>Programming Languages</strong>
+    <p>C, Python (Learning), JavaScript (Learning)</p>
   </div>
 
   <div class="card">
-    <strong>Development:</strong>
-    <p>HTML • CSS • React (Learning) • Node.js</p>
+    <strong>Web Development</strong>
+    <p>HTML, CSS</p>
   </div>
 
   <div class="card">
-    <strong>AI/ML:</strong>
-    <p>Machine Learning Basics • Data Handling</p>
+    <strong>Core Interests</strong>
+    <p>Full Stack Development, AI & ML</p>
   </div>
 
   <div class="card">
-    <strong>Tools:</strong>
-    <p>Git • GitHub • VS Code</p>
+    <strong>Tools</strong>
+    <p>Git, GitHub, VS Code</p>
   </div>
 </section>
 
@@ -227,12 +211,12 @@ p {
 
   <div class="card">
     <h3>Portfolio Website</h3>
-    <p>Responsive and optimized personal portfolio.</p>
+    <p>Responsive personal portfolio built using HTML & CSS.</p>
   </div>
 
   <div class="card">
-    <h3>AI-Based Application</h3>
-    <p>Building scalable machine learning solution (in progress).</p>
+    <h3>AI-Based Project (Upcoming)</h3>
+    <p>Planning a real-world ML-based solution.</p>
   </div>
 </section>
 
@@ -251,34 +235,15 @@ p {
   <h2>Contact</h2>
 
   <a href="mailto:mrswastik372@gmail.com">Email</a>
+  <a href="#">Location: Odisha, India</a>
+
+  <h3 style="margin-top:15px;">Social Links</h3>
+
   <a href="https://swastik51.github.io">GitHub</a>
   <a href="https://www.linkedin.com/in/swastik-nayak-59161a391">LinkedIn</a>
+  <a href="https://www.instagram.com/swastikkkkk.___">Instagram</a>
+
 </section>
-
-<script>
-// TYPING EFFECT
-const text = "Aspiring Full Stack Developer | AI & ML Engineer";
-let i = 0;
-function typing(){
-  if(i < text.length){
-    document.querySelector(".typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing, 40);
-  }
-}
-typing();
-
-// SCROLL ANIMATION
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-  sections.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100){
-      sec.classList.add("show");
-    }
-  });
-});
-</script>
 
 </body>
 </html>
