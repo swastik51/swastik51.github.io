@@ -41,20 +41,13 @@ nav {
   z-index: 1000;
 }
 
-nav h2 {
-  color: var(--primary);
-}
+nav h2 { color: var(--primary); }
 
 nav a {
   margin-left: 20px;
   text-decoration: none;
   color: white;
   font-size: 14px;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  color: var(--primary);
 }
 
 /* HERO */
@@ -65,27 +58,11 @@ nav a:hover {
   padding: 140px 8% 80px;
 }
 
-.hero-text h1 {
-  font-size: 48px;
-}
+.hero-text h1 { font-size: 48px; }
+.hero span { color: var(--primary); }
+.hero p { color: var(--sub); margin-top: 10px; }
 
-.hero span {
-  color: var(--primary);
-}
-
-.hero p {
-  color: var(--sub);
-  margin-top: 10px;
-  animation: fadeIn 1.5s forwards;
-}
-
-/* IMAGE WITH RING */
-.hero-img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* PROFILE */
 .img-box {
   position: relative;
   width: 260px;
@@ -93,7 +70,6 @@ nav a:hover {
   border-radius: 50%;
 }
 
-/* ROTATING RING */
 .img-box::before {
   content: "";
   position: absolute;
@@ -104,7 +80,6 @@ nav a:hover {
   animation: rotate 4s linear infinite;
 }
 
-/* IMAGE */
 .img-box img {
   position: absolute;
   top: 50%;
@@ -136,40 +111,16 @@ h2 {
   padding-left: 10px;
 }
 
-/* SKILLS */
-.skill-bar {
-  margin: 15px 0;
-}
-
-.bar {
-  height: 10px;
-  background: #1e293b;
-  border-radius: 10px;
-}
-
-.fill {
-  height: 10px;
-  background: var(--primary);
-  border-radius: 10px;
-  width: 0;
-  animation: grow 2s forwards;
-}
-
-@keyframes grow {
-  to { width: var(--width); }
-}
-
-/* PROJECT */
-.project {
+/* CARDS */
+.card {
   background: var(--card);
   padding: 20px;
   border-radius: 10px;
-  transition: 0.3s;
+  margin-top: 10px;
 }
 
-.project:hover {
-  transform: translateY(-5px);
-}
+/* LIST */
+ul { margin-left: 20px; color: var(--sub); }
 
 /* CONTACT */
 .contact a {
@@ -178,22 +129,14 @@ h2 {
   margin-top: 10px;
 }
 
-/* ANIMATIONS */
-@keyframes fadeIn {
-  from {opacity:0;}
-  to {opacity:1;}
-}
-
+/* ANIMATION */
 @keyframes rotate {
   100% { transform: rotate(360deg); }
 }
 
 /* MOBILE */
 @media(max-width:900px){
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
+  .hero { flex-direction: column; text-align: center; }
 }
 </style>
 </head>
@@ -207,6 +150,7 @@ h2 {
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -214,14 +158,12 @@ h2 {
 <!-- HERO -->
 <div class="hero">
   <div class="hero-text">
-    <h1>Hi, I'm <span>Swastik Nayak</span></h1>
-    <p>Future Full Stack Developer | AI & ML Enthusiast</p>
+    <h1>Swastik <span>Nayak</span></h1>
+    <p>Aspiring Full Stack Developer | AI & ML Engineer</p>
   </div>
 
-  <div class="hero-img">
-    <div class="img-box">
-      <img src="profile.jpg" alt="Swastik Nayak">
-    </div>
+  <div class="img-box">
+    <img src="profile.jpg">
   </div>
 </div>
 
@@ -229,50 +171,72 @@ h2 {
 <section id="about">
   <h2>About Me</h2>
   <p>
-    I am Swastik Nayak, a B.Tech CSE (AI/ML) student passionate about technology and development.
-    I am currently learning full-stack web development and exploring AI and machine learning
-    to build impactful projects.
+    I am a B.Tech Computer Science Engineering (AI & ML) student at Sri Sri University 
+    with a strong focus on building scalable and impactful software solutions.
+    I specialize in developing clean, efficient web applications while exploring AI & ML 
+    to solve real-world problems.
   </p>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-  <h2>Skills</h2>
+  <h2>Core Skills</h2>
 
-  <div class="skill-bar">HTML
-    <div class="bar"><div class="fill" style="--width:90%"></div></div>
+  <div class="card">
+    <strong>Programming:</strong>
+    <p>C • Python • JavaScript</p>
   </div>
 
-  <div class="skill-bar">CSS
-    <div class="bar"><div class="fill" style="--width:85%"></div></div>
+  <div class="card">
+    <strong>Development:</strong>
+    <p>HTML • CSS • (Learning: React, Node.js)</p>
   </div>
 
-  <div class="skill-bar">JavaScript
-    <div class="bar"><div class="fill" style="--width:80%"></div></div>
+  <div class="card">
+    <strong>AI/ML:</strong>
+    <p>Basic ML Concepts • Data Handling</p>
   </div>
 
-  <div class="skill-bar">Python
-    <div class="bar"><div class="fill" style="--width:75%"></div></div>
-  </div>
-
-  <div class="skill-bar">C / C++
-    <div class="bar"><div class="fill" style="--width:70%"></div></div>
-  </div>
-
-  <div class="skill-bar">AI/ML
-    <div class="bar"><div class="fill" style="--width:65%"></div></div>
+  <div class="card">
+    <strong>Tools:</strong>
+    <p>Git • GitHub • VS Code</p>
   </div>
 
 </section>
 
-<!-- PROJECT -->
+<!-- PROJECTS -->
 <section id="projects">
   <h2>Projects</h2>
 
-  <div class="project">
-    <h3>Personal Portfolio Website</h3>
-    <p>This website showcases my skills, projects, and learning journey as a developer.</p>
+  <div class="card">
+    <h3>Portfolio Website</h3>
+    <p>Responsive, optimized portfolio showcasing skills and projects.</p>
   </div>
+
+  <div class="card">
+    <h3>AI-Based Application (In Progress)</h3>
+    <p>Building scalable ML-based system for real-world problems.</p>
+  </div>
+
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <h2>Education</h2>
+  <div class="card">
+    <p>B.Tech CSE (AI & ML)</p>
+    <p>Sri Sri University (2025 – Present)</p>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section>
+  <h2>Technical Strengths</h2>
+  <ul>
+    <li>Strong analytical thinking</li>
+    <li>Fast learner</li>
+    <li>Adaptability</li>
+  </ul>
 </section>
 
 <!-- CONTACT -->
@@ -280,10 +244,9 @@ h2 {
   <h2>Contact</h2>
 
   <a href="mailto:mrswastik372@gmail.com">Email: mrswastik372@gmail.com</a>
-
-  <a href="https://www.linkedin.com/in/swastik-nayak-59161a391" target="_blank">
-    LinkedIn Profile
-  </a>
+  <a href="#">Location: Odisha, India</a>
+  <a href="https://swastik51.github.io">GitHub</a>
+  <a href="https://www.linkedin.com/in/swastik-nayak-59161a391">LinkedIn</a>
 </section>
 
 <script>
