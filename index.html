@@ -73,13 +73,19 @@ nav a.active {
   overflow: hidden;
 }
 
-/* IMAGE */
+/* PROFILE IMAGE (UPDATED) */
 .img-box img {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
+  width: 200px;
+  height: 260px;
   object-fit: cover;
+  border-radius: 16px;
   border: 2px solid var(--primary);
+  transition: 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.img-box img:hover {
+  transform: scale(1.03);
 }
 
 /* SECTION */
@@ -102,6 +108,12 @@ section.show {
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 /* TAGS */
@@ -133,6 +145,11 @@ ul {
 .contact a {
   display: block;
   margin-top: 8px;
+  transition: 0.3s;
+}
+
+.contact a:hover {
+  transform: translateX(5px);
 }
 
 /* MOBILE */
@@ -140,6 +157,10 @@ ul {
   .hero {
     flex-direction: column;
     text-align: center;
+  }
+
+  .img-box {
+    margin-top: 25px;
   }
 }
 </style>
@@ -167,7 +188,7 @@ ul {
   </div>
 
   <div class="img-box">
-    <img src="profile.jpg">
+    <img src="profile.jpg" alt="Swastik Nayak">
   </div>
 </div>
 
@@ -301,7 +322,7 @@ ul {
 </section>
 
 <script>
-// TYPING
+// TYPING EFFECT
 const text = "Future Full Stack Developer | AI & ML Enthusiast";
 let i=0;
 function type(){
