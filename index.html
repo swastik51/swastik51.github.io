@@ -11,7 +11,8 @@
 :root {
   --primary: #00f5ff;
   --bg: #020617;
-  --text: #fff;
+  --card: rgba(255,255,255,0.05);
+  --text: #ffffff;
   --sub: #94a3b8;
 }
 
@@ -20,31 +21,40 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
   background: radial-gradient(circle at top, #0f172a, #020617);
   color: var(--text);
-  overflow-x: hidden;
-}
-
-/* CUSTOM CURSOR */
-.cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--primary);
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
 }
 
 /* NAV */
 nav {
   position: fixed;
   width: 100%;
-  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 8%;
   backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+nav h2 {
+  color: var(--primary);
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--primary);
 }
 
 /* HERO */
@@ -52,41 +62,78 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 120px 8%;
-  min-height: 100vh;
+  padding: 140px 8% 80px;
 }
 
 .hero-text h1 {
-  font-size: 55px;
+  font-size: 48px;
 }
 
 .hero span {
   color: var(--primary);
 }
 
-/* TYPING */
-.typing {
-  color: var(--primary);
-  font-weight: bold;
+.hero p {
+  color: var(--sub);
+  margin-top: 10px;
+  animation: fadeIn 1.5s forwards;
+}
+
+/* IMAGE WITH RING */
+.hero-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-box {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+}
+
+/* ROTATING RING */
+.img-box::before {
+  content: "";
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: conic-gradient(#00f5ff, transparent, #00f5ff);
+  animation: rotate 4s linear infinite;
 }
 
 /* IMAGE */
-.hero-img img {
-  width: 300px;
+.img-box img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  box-shadow: 0 0 50px var(--primary);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 20px var(--primary); }
-  50% { box-shadow: 0 0 60px var(--primary); }
-  100% { box-shadow: 0 0 20px var(--primary); }
+  object-fit: cover;
+  border: 3px solid #020617;
 }
 
 /* SECTION */
 section {
   padding: 80px 8%;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  margin-bottom: 20px;
+  border-left: 4px solid var(--primary);
+  padding-left: 10px;
 }
 
 /* SKILLS */
@@ -103,123 +150,153 @@ section {
 .fill {
   height: 10px;
   background: var(--primary);
-  width: 0;
   border-radius: 10px;
+  width: 0;
+  animation: grow 2s forwards;
 }
 
-/* CERTIFICATE MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  top:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.9);
-  justify-content: center;
-  align-items: center;
+@keyframes grow {
+  to { width: var(--width); }
 }
 
-.modal img {
-  width: 80%;
+/* PROJECT */
+.project {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 
-/* BUTTON */
-.btn {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: var(--primary);
-  border: none;
-  cursor: pointer;
+.project:hover {
+  transform: translateY(-5px);
 }
 
-/* RESPONSIVE */
+/* CONTACT */
+.contact a {
+  display: block;
+  color: var(--primary);
+  margin-top: 10px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+/* MOBILE */
 @media(max-width:900px){
-  .hero { flex-direction: column; text-align:center; }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
+<!-- NAV -->
+<nav>
+  <h2>Swastik</h2>
+  <div>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-text">
     <h1>Hi, I'm <span>Swastik Nayak</span></h1>
-    <p class="typing"></p>
-    <button class="btn" onclick="scrollToSection()">Explore</button>
+    <p>Future Full Stack Developer | AI & ML Enthusiast</p>
   </div>
 
   <div class="hero-img">
-    <img src="profile.jpg">
+    <div class="img-box">
+      <img src="profile.jpg" alt="Swastik Nayak">
+    </div>
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
   <h2>About Me</h2>
-  <p>B.Tech CSE AI/ML student building future tech.</p>
+  <p>
+    I am Swastik Nayak, a B.Tech CSE (AI/ML) student passionate about technology and development.
+    I am currently learning full-stack web development and exploring AI and machine learning
+    to build impactful projects.
+  </p>
 </section>
 
 <!-- SKILLS -->
-<section>
+<section id="skills">
   <h2>Skills</h2>
 
-  <div class="skill-bar">
-    HTML
-    <div class="bar"><div class="fill" style="width:90%"></div></div>
+  <div class="skill-bar">HTML
+    <div class="bar"><div class="fill" style="--width:90%"></div></div>
   </div>
 
-  <div class="skill-bar">
-    JavaScript
-    <div class="bar"><div class="fill" style="width:80%"></div></div>
+  <div class="skill-bar">CSS
+    <div class="bar"><div class="fill" style="--width:85%"></div></div>
+  </div>
+
+  <div class="skill-bar">JavaScript
+    <div class="bar"><div class="fill" style="--width:80%"></div></div>
+  </div>
+
+  <div class="skill-bar">Python
+    <div class="bar"><div class="fill" style="--width:75%"></div></div>
+  </div>
+
+  <div class="skill-bar">C / C++
+    <div class="bar"><div class="fill" style="--width:70%"></div></div>
+  </div>
+
+  <div class="skill-bar">AI/ML
+    <div class="bar"><div class="fill" style="--width:65%"></div></div>
   </div>
 
 </section>
 
-<!-- CERTIFICATE -->
-<section>
-  <h2>Certification</h2>
-  <img src="certificate.jpg" width="300" onclick="openModal()">
+<!-- PROJECT -->
+<section id="projects">
+  <h2>Projects</h2>
+
+  <div class="project">
+    <h3>Personal Portfolio Website</h3>
+    <p>This website showcases my skills, projects, and learning journey as a developer.</p>
+  </div>
 </section>
 
-<div class="modal" id="modal">
-  <img src="certificate.jpg">
-</div>
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+
+  <a href="mailto:mrswastik372@gmail.com">Email: mrswastik372@gmail.com</a>
+
+  <a href="https://www.linkedin.com/in/swastik-nayak-59161a391" target="_blank">
+    LinkedIn Profile
+  </a>
+</section>
 
 <script>
-// TYPING EFFECT
-const text = "Full Stack Developer | AI & ML Enthusiast";
-let i=0;
-function typing(){
-  if(i<text.length){
-    document.querySelector(".typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing,50);
-  }
-}
-typing();
+const sections = document.querySelectorAll("section");
 
-// CURSOR
-const cursor = document.querySelector(".cursor");
-document.addEventListener("mousemove", e=>{
-  cursor.style.top = e.clientY+"px";
-  cursor.style.left = e.clientX+"px";
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  });
 });
-
-// MODAL
-function openModal(){
-  document.getElementById("modal").style.display="flex";
-}
-document.getElementById("modal").onclick=()=>{
-  document.getElementById("modal").style.display="none";
-}
-
-// SCROLL
-function scrollToSection(){
-  document.getElementById("about").scrollIntoView({behavior:"smooth"});
-}
 </script>
 
 </body>
