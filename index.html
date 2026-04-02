@@ -13,7 +13,6 @@
   --card: #CCBEB1;
   --muted: #997E67;
   --primary: #664930;
-  --white: #ffffff;
 }
 
 * {
@@ -33,7 +32,7 @@ body {
 nav {
   position: fixed;
   width: 100%;
-  padding: 18px 8%;
+  padding: 16px 8%;
   display: flex;
   justify-content: space-between;
   background: rgba(255,219,187,0.95);
@@ -41,15 +40,15 @@ nav {
   z-index: 1000;
 }
 
-nav h2 {
-  font-weight: 600;
-}
-
 nav a {
   margin-left: 20px;
   text-decoration: none;
   color: var(--primary);
-  font-size: 14px;
+  transition: 0.3s;
+}
+
+nav a.active {
+  border-bottom: 2px solid var(--primary);
 }
 
 nav a:hover {
@@ -65,8 +64,7 @@ nav a:hover {
 }
 
 .hero-text h1 {
-  font-size: 42px;
-  font-weight: 600;
+  font-size: 40px;
 }
 
 .hero-text p {
@@ -74,60 +72,89 @@ nav a:hover {
   color: var(--muted);
 }
 
+/* TYPING */
+.typing {
+  border-right: 2px solid var(--primary);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 /* IMAGE */
 .img-box img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--primary);
+  transition: 0.4s;
+}
+
+.img-box img:hover {
+  transform: scale(1.06);
 }
 
 /* SECTION */
 section {
   padding: 70px 8%;
   border-top: 1px solid var(--muted);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
 }
 
-h2 {
-  margin-bottom: 20px;
-  font-size: 20px;
+section.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* CARD */
 .card {
   background: var(--card);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 15px;
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* SKILL TAGS */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--bg);
+  border: 1px solid var(--muted);
+  font-size: 12px;
 }
 
 /* TEXT */
 p, li {
-  color: var(--primary);
   line-height: 1.6;
 }
 
-/* LIST */
 ul {
-  margin-left: 20px;
+  margin-left: 18px;
 }
 
 /* CONTACT */
 .contact a {
   display: block;
   margin-top: 8px;
-  color: var(--primary);
-  text-decoration: none;
+  transition: 0.3s;
 }
 
 .contact a:hover {
-  color: var(--muted);
+  transform: translateX(5px);
 }
 
 /* MOBILE */
@@ -135,10 +162,6 @@ ul {
   .hero {
     flex-direction: column;
     text-align: center;
-  }
-
-  .img-box {
-    margin-top: 30px;
   }
 }
 </style>
@@ -162,7 +185,7 @@ ul {
 <div class="hero">
   <div class="hero-text">
     <h1>Swastik Nayak</h1>
-    <p>Future Full Stack Developer | AI & ML Enthusiast</p>
+    <p class="typing"></p>
   </div>
 
   <div class="img-box">
@@ -174,9 +197,7 @@ ul {
 <section id="about">
   <h2>About Me</h2>
   <p>
-    I am a B.Tech Computer Science Engineering (AI & ML) student passionate about building impactful digital solutions. 
-    I am currently learning full-stack web development and exploring artificial intelligence and machine learning. 
-    I enjoy creating projects that combine creativity with logic and aim to build applications that solve real-world problems.
+    I am a B.Tech Computer Science Engineering (AI & ML) student passionate about building impactful digital solutions...
   </p>
 </section>
 
@@ -186,64 +207,76 @@ ul {
 
   <div class="card">
     <strong>Programming Languages</strong>
-    <p>C, Python (Learning), JavaScript (Learning)</p>
+    <div class="tags">
+      <div class="tag">C</div>
+      <div class="tag">Python</div>
+      <div class="tag">JavaScript</div>
+    </div>
   </div>
 
   <div class="card">
     <strong>Web Development</strong>
-    <p>HTML, CSS</p>
+    <div class="tags">
+      <div class="tag">HTML</div>
+      <div class="tag">CSS</div>
+    </div>
   </div>
 
-  <div class="card">
-    <strong>Core Interests</strong>
-    <p>Full Stack Development, AI & ML</p>
-  </div>
-
-  <div class="card">
-    <strong>Tools</strong>
-    <p>Git, GitHub, VS Code</p>
-  </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECT -->
 <section id="projects">
   <h2>Projects</h2>
-
   <div class="card">
-    <h3>Portfolio Website</h3>
-    <p>Responsive personal portfolio built using HTML & CSS.</p>
-  </div>
-
-  <div class="card">
-    <h3>AI-Based Project (Upcoming)</h3>
-    <p>Planning a real-world ML-based solution.</p>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education">
-  <h2>Education</h2>
-
-  <div class="card">
-    <p>B.Tech CSE (AI & ML)</p>
-    <p>Sri Sri University (2025 – Present)</p>
+    Personal Portfolio Website
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact">
   <h2>Contact</h2>
-
   <a href="mailto:mrswastik372@gmail.com">Email</a>
-  <a href="#">Location: Odisha, India</a>
-
-  <h3 style="margin-top:15px;">Social Links</h3>
-
   <a href="https://swastik51.github.io">GitHub</a>
-  <a href="https://www.linkedin.com/in/swastik-nayak-59161a391">LinkedIn</a>
-  <a href="https://www.instagram.com/swastikkkkk.___">Instagram</a>
-
 </section>
+
+<script>
+// TYPING
+const text = "Future Full Stack Developer | AI & ML Enthusiast";
+let i=0;
+function type(){
+  if(i<text.length){
+    document.querySelector(".typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type,40);
+  }
+}
+type();
+
+// SCROLL REVEAL
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+// NAV ACTIVE
+const links = document.querySelectorAll("nav a");
+window.addEventListener("scroll",()=>{
+  let fromTop = window.scrollY + 100;
+  links.forEach(link=>{
+    let section = document.querySelector(link.getAttribute("href"));
+    if(section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop){
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
