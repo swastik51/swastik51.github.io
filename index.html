@@ -1,26 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Swastik Nayak | Computer Science Engineer, AI & ML Enthusiast and Developer">
-<title>Swastik Nayak — Digital Portfolio</title>
+<meta name="theme-color" content="#F5F0E8">
+<meta name="description" content="Swastik Nayak — Creative Developer, Computer Science Engineering student and AI & ML enthusiast.">
+
+<title>Swastik Nayak — Sakura Garden</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <style>
 :root {
-  --bg:#f7f1e9;
-  --paper:#fffaf3;
-  --cream:#eee3d4;
-  --brown:#4b3828;
-  --brown2:#74583e;
-  --muted:#9a8169;
-  --gold:#b18b61;
-  --line:rgba(75,56,40,.15);
-  --shadow:0 20px 60px rgba(75,56,40,.08);
+  --ivory:#F5F0E8;
+  --paper:#FBF8F2;
+  --pink:#E8B7C1;
+  --rose:#C98796;
+  --brown:#49352B;
+  --ink:#25211F;
+  --sage:#A6AA91;
+  --muted:#958477;
+  --line:rgba(73,53,43,.16);
+  --serif:'Playfair Display',serif;
+  --jp:'Noto Serif JP',serif;
+  --sans:'DM Sans',sans-serif;
 }
 
 * {
@@ -29,27 +39,93 @@
   box-sizing:border-box;
 }
 
-html { scroll-behavior:smooth; }
+html {
+  scroll-behavior:auto;
+  background:var(--ivory);
+}
 
 body {
-  background:var(--bg);
-  color:var(--brown);
-  font-family:'DM Sans',sans-serif;
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:var(--sans);
   overflow-x:hidden;
 }
 
-a { text-decoration:none; color:inherit; }
-button { font:inherit; }
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:100;
+  pointer-events:none;
+  opacity:.17;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+button {
+  font:inherit;
+}
+
+img {
+  display:block;
+  max-width:100%;
+}
 
 .container {
   width:86%;
-  max-width:1280px;
+  max-width:1320px;
   margin:auto;
 }
 
 ::selection {
-  background:var(--brown);
+  background:var(--rose);
   color:white;
+}
+
+/* PRELOADER */
+
+.loader {
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  background:var(--brown);
+  color:var(--ivory);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:22px;
+}
+
+.loader-title {
+  font-family:var(--serif);
+  font-size:40px;
+}
+
+.loader-title em {
+  color:var(--pink);
+}
+
+.loader-sub {
+  font-family:var(--jp);
+  letter-spacing:7px;
+  font-size:12px;
+}
+
+.loader-bar {
+  width:160px;
+  height:1px;
+  background:rgba(255,255,255,.2);
+}
+
+.loader-fill {
+  width:0;
+  height:100%;
+  background:var(--pink);
 }
 
 /* NAVIGATION */
@@ -57,52 +133,63 @@ button { font:inherit; }
 .navbar {
   position:fixed;
   top:0;
+  left:0;
   width:100%;
   z-index:1000;
-  background:rgba(247,241,233,.86);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
+  transition:.4s;
+  border-bottom:1px solid transparent;
 }
 
-.nav-content {
-  height:78px;
+.navbar.scrolled {
+  background:rgba(245,240,232,.88);
+  backdrop-filter:blur(18px);
+  border-color:var(--line);
+}
+
+.nav-inner {
+  height:82px;
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
 .brand {
-  font-family:'Playfair Display',serif;
-  font-size:27px;
-  font-weight:700;
+  font-family:var(--serif);
+  font-size:25px;
   letter-spacing:-1px;
 }
 
-.brand span { color:var(--gold); }
+.brand span {
+  color:var(--rose);
+}
 
-.nav-menu {
+.nav-links {
   display:flex;
+  gap:29px;
   align-items:center;
-  gap:32px;
 }
 
-.nav-menu a {
-  color:var(--brown2);
-  font-size:12px;
+.nav-links a {
+  color:var(--brown);
+  font-size:11px;
+  letter-spacing:1px;
   transition:.3s;
 }
 
-.nav-menu a:hover { color:var(--gold); }
+.nav-links a:hover,
+.nav-links a.active {
+  color:var(--rose);
+}
 
-.nav-contact {
+.nav-cta {
   border:1px solid var(--brown);
-  padding:11px 20px;
   border-radius:30px;
-  font-size:12px;
+  padding:11px 19px;
+  font-size:11px;
   transition:.3s;
 }
 
-.nav-contact:hover {
+.nav-cta:hover {
   background:var(--brown);
   color:white;
 }
@@ -111,104 +198,122 @@ button { font:inherit; }
   display:none;
   border:0;
   background:none;
+  color:var(--brown);
   font-size:25px;
   cursor:pointer;
-  color:var(--brown);
 }
 
 /* HERO */
 
 .hero {
-  min-height:100vh;
+  min-height:100svh;
+  position:relative;
+  overflow:hidden;
   display:flex;
   align-items:center;
-  padding:140px 0 90px;
-  position:relative;
+  padding:135px 0 85px;
+  background:
+    radial-gradient(ellipse at 75% 45%,rgba(232,183,193,.22),transparent 40%),
+    linear-gradient(120deg,#F5F0E8,#F8F2EA);
 }
 
 .hero-grid {
   display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:70px;
+  grid-template-columns:1fr 1fr;
   align-items:center;
+  position:relative;
+  z-index:3;
+  gap:30px;
 }
 
-.overline {
+.hero-copy {
+  position:relative;
+  z-index:4;
+}
+
+.eyebrow {
   display:flex;
   align-items:center;
   gap:12px;
   color:var(--muted);
-  font-size:11px;
   letter-spacing:3px;
-  text-transform:uppercase;
-  margin-bottom:30px;
+  font-size:10px;
+  margin-bottom:32px;
 }
 
-.status-dot {
-  height:8px;
-  width:8px;
-  border-radius:50%;
-  background:#82966f;
+.eyebrow-line {
+  width:35px;
+  height:1px;
+  background:var(--rose);
 }
 
 .hero h1 {
-  font-family:'Playfair Display',serif;
-  font-size:clamp(60px,7.7vw,105px);
-  line-height:.99;
+  font-family:var(--serif);
+  font-size:clamp(58px,8vw,108px);
   font-weight:500;
   letter-spacing:-4px;
+  line-height:1.02;
 }
 
 .hero h1 em {
-  color:var(--gold);
+  color:var(--rose);
   font-weight:500;
 }
 
-.hero-desc {
-  max-width:520px;
+.hero-jp {
+  font-family:var(--jp);
+  color:var(--rose);
+  font-size:14px;
+  letter-spacing:7px;
+  margin-top:20px;
+}
+
+.hero-description {
   color:var(--muted);
+  font-size:14px;
+  max-width:475px;
   line-height:2;
-  font-size:15px;
-  margin-top:30px;
+  margin-top:24px;
 }
 
-.role {
-  font-size:15px;
+.hero-role {
+  margin-top:23px;
+  font-size:13px;
   font-weight:600;
-  margin-top:22px;
 }
 
-.role span {
-  color:var(--gold);
-  border-right:2px solid var(--gold);
+.hero-role span {
+  color:var(--rose);
+  border-right:1px solid var(--rose);
   padding-right:4px;
 }
 
-.hero-buttons {
+.hero-actions {
   display:flex;
   flex-wrap:wrap;
   gap:13px;
-  margin-top:36px;
+  margin-top:35px;
 }
 
 .btn {
   display:inline-flex;
   align-items:center;
-  gap:10px;
-  padding:15px 25px;
+  gap:12px;
   border-radius:40px;
-  font-size:12px;
-  font-weight:600;
-  transition:.3s;
+  padding:15px 24px;
+  font-size:11px;
+  letter-spacing:.5px;
+  transition:.35s;
+  cursor:pointer;
 }
 
 .btn-dark {
   background:var(--brown);
-  color:white;
+  color:var(--ivory);
 }
 
 .btn-dark:hover {
-  background:var(--brown2);
+  background:var(--rose);
   transform:translateY(-4px);
 }
 
@@ -217,131 +322,259 @@ button { font:inherit; }
 }
 
 .btn-light:hover {
-  background:var(--cream);
+  background:var(--pink);
   transform:translateY(-4px);
 }
 
-/* HERO IMAGE */
+/* THREE JS GARDEN */
 
-.image-area {
+.garden {
   position:relative;
+  height:590px;
+  width:100%;
+}
+
+#sakura-canvas {
+  width:100%;
+  height:100%;
+  position:absolute;
+  inset:0;
+  z-index:2;
+  touch-action:pan-y;
+}
+
+.garden-caption {
+  position:absolute;
+  right:0;
+  bottom:30px;
+  z-index:3;
+  font-family:var(--jp);
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:4px;
+}
+
+.vertical-text {
+  position:absolute;
+  z-index:3;
+  right:4%;
+  top:12%;
+  writing-mode:vertical-rl;
+  font-family:var(--jp);
+  letter-spacing:8px;
+  font-size:12px;
+  color:var(--rose);
+}
+
+.scroll-indicator {
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:5;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  gap:10px;
+  font-size:9px;
+  letter-spacing:3px;
+  color:var(--muted);
+}
+
+.scroll-line {
+  width:1px;
+  height:43px;
+  background:var(--rose);
+  transform-origin:top;
+  animation:scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%,100% { transform:scaleY(.3);opacity:.4; }
+  50% { transform:scaleY(1);opacity:1; }
+}
+
+/* MARQUEE */
+
+.marquee {
+  overflow:hidden;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:23px 0;
+  background:var(--paper);
+}
+
+.marquee-track {
+  display:flex;
+  width:max-content;
+  animation:marquee 35s linear infinite;
+}
+
+.marquee span {
+  padding:0 35px;
+  color:var(--brown);
+  font-family:var(--serif);
+  font-size:22px;
+}
+
+.marquee em {
+  color:var(--rose);
+  font-style:normal;
+}
+
+@keyframes marquee {
+  to { transform:translateX(-50%); }
+}
+
+/* SECTION COMMON */
+
+section {
+  padding:120px 0;
+  border-top:1px solid var(--line);
+  position:relative;
+}
+
+.section-head {
+  margin-bottom:55px;
+}
+
+.section-number {
+  color:var(--rose);
+  font-size:10px;
+  letter-spacing:4px;
+  margin-bottom:18px;
+}
+
+.section-title {
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(40px,5vw,65px);
+  letter-spacing:-1.8px;
+  line-height:1.15;
+}
+
+.section-title em {
+  color:var(--rose);
+  font-weight:500;
+}
+
+.section-desc {
+  color:var(--muted);
+  font-size:13px;
+  line-height:2;
+  max-width:570px;
+  margin-top:17px;
+}
+
+/* BOTANICAL ORNAMENT */
+
+.botanical {
+  position:absolute;
+  width:125px;
+  height:125px;
+  right:7%;
+  top:80px;
+  opacity:.5;
+  pointer-events:none;
+}
+
+.botanical svg {
+  width:100%;
+  height:100%;
+  fill:none;
+  stroke:var(--rose);
+  stroke-width:1;
+}
+
+/* ABOUT */
+
+.about {
+  background:var(--paper);
+  overflow:hidden;
+}
+
+.about-grid {
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  align-items:center;
+  gap:85px;
+}
+
+.about-visual {
+  position:relative;
+  min-height:460px;
   display:flex;
   justify-content:center;
   align-items:center;
 }
 
-.image-shape {
-  width:360px;
-  height:470px;
-  background:var(--cream);
-  border-radius:200px 200px 20px 20px;
-  transform:rotate(4deg);
-  position:absolute;
-}
-
-.profile {
-  width:335px;
-  height:445px;
-  border-radius:200px 200px 15px 15px;
-  border:8px solid var(--paper);
+.about-visual img {
+  width:310px;
+  height:420px;
   object-fit:cover;
+  border-radius:160px 160px 8px 8px;
+  border:8px solid var(--ivory);
+  box-shadow:0 25px 65px rgba(73,53,43,.1);
   position:relative;
   z-index:2;
-  box-shadow:var(--shadow);
 }
 
-.image-caption {
+.about-frame {
+  width:310px;
+  height:420px;
+  border:1px solid var(--rose);
+  position:absolute;
+  transform:rotate(-5deg);
+}
+
+.about-stamp {
   position:absolute;
   z-index:3;
-  bottom:25px;
-  left:-20px;
-  padding:16px 22px;
+  bottom:28px;
+  right:2%;
+  width:85px;
+  height:85px;
+  border:1px solid var(--rose);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:12px;
-  box-shadow:var(--shadow);
-  font-size:12px;
-}
-
-/* GENERAL SECTIONS */
-
-section {
-  padding:115px 0;
-  border-top:1px solid var(--line);
-}
-
-.section-top {
-  margin-bottom:55px;
-}
-
-.section-index {
-  color:var(--gold);
-  font-size:11px;
-  letter-spacing:3px;
-  margin-bottom:16px;
-}
-
-.section-title {
-  font-family:'Playfair Display',serif;
-  font-size:clamp(38px,5vw,58px);
-  font-weight:500;
-  letter-spacing:-1.5px;
-}
-
-.section-desc {
-  color:var(--muted);
-  max-width:560px;
-  font-size:14px;
-  line-height:1.9;
-  margin-top:16px;
-}
-
-/* ABOUT */
-
-.about-grid {
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:75px;
-  align-items:start;
+  color:var(--rose);
+  font-family:var(--jp);
+  font-size:22px;
 }
 
 .about-copy p {
-  color:var(--brown2);
-  line-height:2.1;
-  font-size:14px;
-  margin-bottom:22px;
-}
-
-.about-box {
-  background:var(--paper);
-  padding:35px;
-  border-radius:18px;
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-}
-
-.about-box h3 {
-  font-family:'Playfair Display',serif;
-  font-size:27px;
-  margin-bottom:25px;
-}
-
-.detail {
-  padding:16px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.detail:last-child { border:0; }
-
-.detail small {
-  color:var(--muted);
-  display:block;
-  margin-bottom:7px;
-  font-size:11px;
-}
-
-.detail strong {
   font-size:13px;
+  line-height:2.2;
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.about-details {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-top:35px;
+}
+
+.about-detail {
+  border-top:1px solid var(--line);
+  padding-top:15px;
+}
+
+.about-detail small {
+  display:block;
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:2px;
+  margin-bottom:9px;
+}
+
+.about-detail strong {
+  font-size:12px;
+  font-weight:500;
 }
 
 /* SKILLS */
@@ -349,395 +582,500 @@ section {
 .skills-grid {
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:20px;
+  gap:18px;
 }
 
-.skill {
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:17px;
+.skill-card {
   padding:34px;
-  transition:.35s;
+  border:1px solid var(--line);
+  border-radius:5px;
+  background:var(--paper);
+  transition:.4s;
+  position:relative;
+  overflow:hidden;
 }
 
-.skill:hover {
+.skill-card::after {
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  right:-45px;
+  top:-45px;
+  border:1px solid rgba(201,135,150,.3);
+  border-radius:50%;
+  transition:.5s;
+}
+
+.skill-card:hover {
   transform:translateY(-7px);
-  box-shadow:var(--shadow);
+  box-shadow:0 18px 40px rgba(73,53,43,.07);
 }
 
-.skill small {
-  color:var(--gold);
-  letter-spacing:2px;
+.skill-card:hover::after {
+  transform:scale(2);
+}
+
+.skill-card small {
+  color:var(--rose);
   font-size:10px;
+  letter-spacing:3px;
 }
 
-.skill h3 {
-  font-family:'Playfair Display',serif;
-  font-size:27px;
-  margin:17px 0 23px;
+.skill-card h3 {
+  font-family:var(--serif);
+  font-size:25px;
+  margin:17px 0 20px;
 }
 
 .tags {
   display:flex;
   flex-wrap:wrap;
-  gap:9px;
+  gap:8px;
 }
 
 .tag {
-  background:var(--bg);
   border:1px solid var(--line);
   border-radius:30px;
-  padding:9px 14px;
-  font-size:11px;
-  color:var(--brown2);
+  padding:8px 12px;
+  font-size:10px;
+  color:var(--brown);
+  background:var(--ivory);
 }
 
-/* PROJECTS */
+/* FEATURED PROJECTS */
 
-.projects-grid {
+.projects {
+  background:var(--paper);
+}
+
+.project-grid {
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:1fr 1fr;
   gap:25px;
 }
 
-.project {
-  overflow:hidden;
-  background:var(--paper);
+.project-card {
   border:1px solid var(--line);
-  border-radius:18px;
-  transition:.35s;
+  background:var(--ivory);
+  overflow:hidden;
+  border-radius:5px;
+  transition:.4s;
 }
 
-.project:hover {
+.project-card:hover {
   transform:translateY(-8px);
-  box-shadow:var(--shadow);
+  box-shadow:0 25px 50px rgba(73,53,43,.1);
 }
 
-.project-visual {
-  height:260px;
+.project-image {
+  height:290px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 50%,#f3d9dc,#e9d7c8 60%,#d8cbb8);
   display:flex;
   align-items:center;
   justify-content:center;
-  background:var(--cream);
-  position:relative;
-  overflow:hidden;
 }
 
-.project-visual::before,
-.project-visual::after {
-  content:"";
+.project-image .project-symbol {
+  font-family:var(--jp);
+  font-size:75px;
+  color:rgba(73,53,43,.55);
+  transition:.8s;
+}
+
+.project-card:hover .project-symbol {
+  transform:scale(1.2) rotate(-8deg);
+}
+
+.project-flower {
   position:absolute;
-  width:200px;
-  height:200px;
-  border:1px solid rgba(75,56,40,.17);
-  border-radius:50%;
+  font-size:65px;
+  opacity:.3;
+  right:20px;
+  bottom:5px;
 }
 
-.project-visual::after {
-  width:260px;
-  height:260px;
+.project-body {
+  padding:30px;
 }
 
-.project-visual span {
-  z-index:1;
-  font-family:'Playfair Display',serif;
-  font-size:45px;
-  color:var(--brown2);
+.project-index {
+  color:var(--rose);
+  font-size:10px;
+  letter-spacing:3px;
 }
-
-.project-body { padding:30px; }
 
 .project-body h3 {
-  font-family:'Playfair Display',serif;
-  font-size:27px;
-  margin-bottom:13px;
+  font-family:var(--serif);
+  font-size:26px;
+  font-weight:500;
+  margin:14px 0;
 }
 
 .project-body p {
   color:var(--muted);
-  font-size:13px;
-  line-height:1.9;
+  font-size:12px;
+  line-height:2;
 }
 
-.project-footer {
+.project-meta {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-top:25px;
   gap:10px;
+  margin-top:24px;
 }
 
-.project-footer span {
+.project-meta span {
+  font-size:10px;
+  color:var(--rose);
+}
+
+.project-meta a {
   font-size:11px;
-  color:var(--gold);
-}
-
-.project-footer a {
-  font-size:12px;
-  font-weight:600;
-  border-bottom:1px solid var(--gold);
-  padding-bottom:4px;
+  border-bottom:1px solid var(--rose);
+  padding-bottom:5px;
 }
 
 /* EDUCATION */
 
 .timeline {
-  border-left:1px solid var(--gold);
   margin-left:10px;
+  border-left:1px solid var(--rose);
   padding-left:38px;
 }
 
-.timeline-entry {
+.timeline-item {
   position:relative;
   padding-bottom:45px;
 }
 
-.timeline-entry:last-child { padding-bottom:0; }
+.timeline-item:last-child {
+  padding-bottom:0;
+}
 
-.timeline-entry::before {
+.timeline-item::before {
   content:"";
+  width:10px;
+  height:10px;
+  background:var(--rose);
+  border-radius:50%;
   position:absolute;
   left:-44px;
-  top:4px;
-  width:11px;
-  height:11px;
-  border-radius:50%;
-  background:var(--gold);
+  top:5px;
+  box-shadow:0 0 0 5px var(--ivory);
 }
 
-.timeline-entry small {
-  color:var(--gold);
-  font-size:12px;
-  letter-spacing:1px;
+.timeline-item small {
+  color:var(--rose);
+  font-size:10px;
+  letter-spacing:2px;
 }
 
-.timeline-entry h3 {
-  font-family:'Playfair Display',serif;
-  font-size:28px;
-  margin:12px 0;
+.timeline-item h3 {
+  font-family:var(--serif);
+  font-size:27px;
+  font-weight:500;
+  margin:13px 0;
 }
 
-.timeline-entry p {
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.9;
-}
-
-/* INTERESTS */
-
-.interest-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.interest {
-  background:var(--paper);
-  border:1px solid var(--line);
-  padding:30px;
-  border-radius:16px;
-  transition:.3s;
-}
-
-.interest:hover {
-  background:var(--cream);
-}
-
-.interest h3 {
-  font-family:'Playfair Display',serif;
-  font-size:23px;
-  margin-bottom:15px;
-}
-
-.interest p {
+.timeline-item p {
   color:var(--muted);
   font-size:13px;
-  line-height:1.9;
+  line-height:2;
 }
 
-/* CAREER GOAL */
+/* EXPERIENCE */
 
-.vision {
+.experience-card {
   background:var(--brown);
-  color:var(--paper);
-  padding:65px;
-  border-radius:20px;
+  color:var(--ivory);
+  padding:45px;
+  border-radius:5px;
   position:relative;
   overflow:hidden;
 }
 
-.vision small {
-  color:#c4a783;
+.experience-card::after {
+  content:"花";
+  position:absolute;
+  right:30px;
+  top:10px;
+  font-family:var(--jp);
+  font-size:130px;
+  color:rgba(255,255,255,.07);
+}
+
+.experience-card small {
+  color:var(--pink);
   letter-spacing:3px;
+  font-size:10px;
 }
 
-.vision h2 {
-  font-family:'Playfair Display',serif;
-  font-size:clamp(35px,5vw,55px);
-  font-weight:500;
+.experience-card h3 {
+  font-family:var(--serif);
+  font-size:30px;
   margin:20px 0;
+  font-weight:500;
 }
 
-.vision p {
-  color:#ddcbb6;
+.experience-card p {
+  color:#d6c8b9;
+  font-size:13px;
   line-height:2;
-  font-size:14px;
   max-width:700px;
+  position:relative;
+  z-index:2;
 }
 
 /* CONTACT */
 
 .contact {
+  background:var(--paper);
+}
+
+.contact-box {
   text-align:center;
-  background:var(--cream);
+  padding:95px 25px;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(232,183,193,.25),transparent 60%),
+    var(--ivory);
   border:1px solid var(--line);
-  border-radius:25px;
-  padding:85px 25px;
+  position:relative;
+  overflow:hidden;
 }
 
-.contact small {
-  color:var(--gold);
-  letter-spacing:3px;
-}
-
-.contact h2 {
-  font-family:'Playfair Display',serif;
-  font-weight:500;
-  font-size:clamp(42px,6vw,70px);
-  margin:22px 0;
-}
-
-.contact p {
-  color:var(--muted);
+.contact-kanji {
+  color:var(--rose);
+  font-family:var(--jp);
   font-size:14px;
-  line-height:1.9;
-  max-width:550px;
+  letter-spacing:10px;
+}
+
+.contact-box h2 {
+  font-family:var(--serif);
+  font-size:clamp(43px,6vw,75px);
+  font-weight:500;
+  margin:25px 0;
+}
+
+.contact-box h2 em {
+  color:var(--rose);
+}
+
+.contact-box p {
+  color:var(--muted);
+  max-width:520px;
   margin:0 auto 30px;
+  font-size:13px;
+  line-height:2;
 }
 
 .socials {
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
+  justify-content:center;
   gap:25px;
   margin-top:38px;
 }
 
 .socials a {
-  color:var(--brown2);
-  font-size:12px;
+  font-size:11px;
+  color:var(--brown);
   transition:.3s;
 }
 
 .socials a:hover {
-  color:var(--gold);
+  color:var(--rose);
 }
 
 /* FOOTER */
 
 footer {
-  padding:30px 0;
-  border-top:1px solid var(--line);
+  padding:55px 0 35px;
+  background:var(--brown);
+  color:var(--ivory);
+  position:relative;
+  overflow:hidden;
 }
 
-.footer-content {
+.footer-jp {
+  font-family:var(--jp);
+  font-size:13px;
+  letter-spacing:7px;
+  color:var(--pink);
+  margin-bottom:25px;
+}
+
+.footer-main {
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:20px;
-  color:var(--muted);
+  justify-content:space-between;
+  gap:25px;
+}
+
+.footer-main .brand {
+  font-size:30px;
+}
+
+.footer-main p {
+  color:#d3c2b2;
   font-size:11px;
 }
 
-/* REVEAL */
+.footer-bottom {
+  border-top:1px solid rgba(255,255,255,.17);
+  margin-top:35px;
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  color:#c5b4a5;
+  font-size:10px;
+}
+
+/* REVEALS */
 
 .reveal {
   opacity:0;
-  transform:translateY(30px);
-  transition:opacity .8s ease,transform .8s ease;
+  transform:translateY(35px);
+  filter:blur(4px);
 }
 
-.reveal.show {
+.reveal.visible {
   opacity:1;
-  transform:translateY(0);
+  transform:none;
+  filter:blur(0);
+  transition:opacity .9s ease,transform .9s ease,filter .9s ease;
+}
+
+/* PETAL CURSOR */
+
+.cursor-petal {
+  position:fixed;
+  pointer-events:none;
+  z-index:2000;
+  font-size:14px;
+  color:var(--rose);
+  animation:cursorFloat 1.2s ease-out forwards;
+}
+
+@keyframes cursorFloat {
+  0% { opacity:.8;transform:translateY(0) rotate(0); }
+  100% { opacity:0;transform:translateY(-35px) rotate(120deg); }
 }
 
 /* RESPONSIVE */
 
-@media(max-width:900px) {
+@media(max-width:950px) {
   .container { width:90%; }
 
-  .hero-grid,.about-grid {
-    grid-template-columns:1fr;
-    gap:60px;
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:82px;
+    left:5%;
+    width:90%;
+    padding:25px;
+    flex-direction:column;
+    background:var(--paper);
+    border:1px solid var(--line);
+    gap:22px;
   }
 
-  .hero { text-align:center; }
+  .nav-links.open { display:flex; }
 
-  .overline,.hero-buttons {
+  .menu-btn { display:block; }
+
+  .hero-grid {
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .eyebrow,.hero-actions {
     justify-content:center;
   }
 
-  .hero-desc {
+  .hero-description {
     margin-left:auto;
     margin-right:auto;
   }
 
-  .nav-menu {
-    display:none;
-    position:absolute;
-    top:78px;
-    left:5%;
-    width:90%;
-    background:var(--paper);
-    padding:25px;
-    border:1px solid var(--line);
-    border-radius:15px;
-    box-shadow:var(--shadow);
-    flex-direction:column;
-    gap:23px;
-  }
+  .garden { height:480px; }
 
-  .nav-menu.open { display:flex; }
-  .menu-btn { display:block; }
+  .about-grid {
+    grid-template-columns:1fr;
+    gap:40px;
+  }
 }
 
 @media(max-width:600px) {
   section { padding:80px 0; }
 
+  .hero {
+    padding-top:130px;
+    padding-bottom:80px;
+  }
+
   .hero h1 {
-    font-size:59px;
+    font-size:58px;
     letter-spacing:-2px;
   }
 
-  .profile {
-    width:260px;
-    height:350px;
-  }
+  .garden { height:360px; }
 
-  .image-shape {
-    width:280px;
-    height:370px;
-  }
+  .vertical-text { right:0; }
 
-  .skills-grid,.projects-grid,.interest-grid {
+  .skills-grid,.project-grid {
     grid-template-columns:1fr;
   }
 
-  .vision { padding:35px 25px; }
+  .about-visual {
+    min-height:390px;
+  }
 
-  .footer-content {
+  .about-visual img {
+    width:250px;
+    height:350px;
+  }
+
+  .about-frame {
+    width:250px;
+    height:350px;
+  }
+
+  .about-details {
+    grid-template-columns:1fr 1fr;
+  }
+
+  .project-image { height:230px; }
+
+  .contact-box { padding:70px 20px; }
+
+  .footer-main,.footer-bottom {
     flex-direction:column;
     text-align:center;
   }
 
-  .nav-contact { display:none; }
+  .nav-cta { display:none; }
+
+  .experience-card { padding:30px 24px; }
 }
 
 @media(prefers-reduced-motion:reduce) {
   *,*::before,*::after {
     scroll-behavior:auto!important;
+    animation:none!important;
     transition:none!important;
+  }
+
+  .reveal {
+    opacity:1;
+    transform:none;
+    filter:none;
   }
 }
 </style>
@@ -745,28 +1083,39 @@ footer {
 
 <body>
 
+<!-- PRELOADER -->
+
+<div class="loader" id="loader">
+  <div class="loader-title">Swastik <em>花</em></div>
+  <div class="loader-sub">桜 — SAKURA</div>
+  <div class="loader-bar">
+    <div class="loader-fill" id="loaderFill"></div>
+  </div>
+</div>
+
 <!-- NAVIGATION -->
 
-<nav class="navbar">
-  <div class="container nav-content">
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
 
-    <a class="brand" href="#home">Swastik<span>.</span></a>
+    <a href="#home" class="brand">Swastik<span>.</span></a>
 
-    <div class="nav-menu" id="navMenu">
+    <div class="nav-links" id="navLinks">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </div>
 
-    <a class="nav-contact" href="mailto:mrswastik372@gmail.com">
+    <a class="nav-cta" href="mailto:mrswastik372@gmail.com">
       Let's Connect ↗
     </a>
 
     <button class="menu-btn" id="menuBtn"
-      aria-label="Toggle menu" aria-expanded="false">☰</button>
+      aria-label="Open navigation" aria-expanded="false">☰</button>
 
   </div>
 </nav>
@@ -774,67 +1123,115 @@ footer {
 <!-- HERO -->
 
 <header class="hero" id="home">
+
   <div class="container hero-grid">
 
-    <div class="reveal">
+    <div class="hero-copy">
 
-      <div class="overline">
-        <span class="status-dot"></span>
-        Computer Science · AI & ML
+      <div class="eyebrow hero-animate">
+        <span class="eyebrow-line"></span>
+        CREATIVE DEVELOPER · AI & ML
       </div>
 
-      <h1>
-        Creating<br>
-        <em>with purpose.</em>
+      <h1 class="hero-title hero-animate">
+        A world of<br>
+        <em>quiet beauty.</em>
       </h1>
 
-      <p class="hero-desc">
-        I'm Swastik Nayak, a Computer Science Engineering student
-        passionate about technology, thoughtful design and building
-        digital experiences that make a difference.
-      </p>
-
-      <div class="role">
-        Exploring <span id="typing"></span>
+      <div class="hero-jp hero-animate">
+        桜 — The art of creation
       </div>
 
-      <div class="hero-buttons">
-        <a class="btn btn-dark" href="#projects">Explore My Work ↗</a>
-        <a class="btn btn-light" href="#contact">Let's Talk</a>
+      <p class="hero-description hero-animate">
+        I'm Swastik Nayak, a Computer Science Engineering
+        student passionate about technology, creative
+        development and building meaningful digital experiences.
+      </p>
+
+      <div class="hero-role hero-animate">
+        Exploring <span id="typing">Web Development</span>
+      </div>
+
+      <div class="hero-actions hero-animate">
+        <a href="#projects" class="btn btn-dark">
+          Explore My Work ↗
+        </a>
+
+        <a href="#about" class="btn btn-light">
+          Discover My Story
+        </a>
       </div>
 
     </div>
 
-    <div class="image-area reveal">
-      <div class="image-shape"></div>
+    <div class="garden" id="garden">
 
-      <img src="profile.jpg"
-        class="profile"
-        alt="Swastik Nayak"
-        onerror="this.style.opacity='0'">
+      <canvas id="sakura-canvas"></canvas>
 
-      <div class="image-caption">
-        <strong>Swastik Nayak</strong><br>
-        <span style="color:var(--muted)">Student · Developer · Creator</span>
+      <div class="vertical-text">
+        美しい瞬間を大切に
       </div>
+
+      <div class="garden-caption">
+        桜の庭 — SAKURA GARDEN
+      </div>
+
     </div>
 
   </div>
+
+  <div class="scroll-indicator">
+    SCROLL TO EXPLORE
+    <div class="scroll-line"></div>
+  </div>
+
 </header>
+
+<!-- MARQUEE -->
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>静けさ — Serenity <em>✳</em></span>
+    <span>創造 — Creation <em>✳</em></span>
+    <span>美 — Beauty <em>✳</em></span>
+    <span>自然 — Nature <em>✳</em></span>
+    <span>静けさ — Serenity <em>✳</em></span>
+    <span>創造 — Creation <em>✳</em></span>
+    <span>美 — Beauty <em>✳</em></span>
+    <span>自然 — Nature <em>✳</em></span>
+  </div>
+</div>
 
 <!-- ABOUT -->
 
-<section id="about">
+<section class="about" id="about">
+
   <div class="container">
 
-    <div class="section-top reveal">
-      <div class="section-index">01 — INTRODUCTION</div>
-      <h2 class="section-title">Behind the pixels.</h2>
+    <div class="section-head reveal">
+      <div class="section-number">01 — MY STORY</div>
+      <h2 class="section-title">A little about <em>me.</em></h2>
     </div>
 
     <div class="about-grid">
 
+      <div class="about-visual reveal">
+
+        <!-- Replace with your actual profile.jpg -->
+
+        <img src="profile.jpg"
+          alt="Swastik Nayak"
+          loading="lazy"
+          onerror="this.style.opacity='0'">
+
+        <div class="about-frame"></div>
+
+        <div class="about-stamp">花</div>
+
+      </div>
+
       <div class="about-copy reveal">
+
         <p>
           I am pursuing a B.Tech in Computer Science Engineering
           with a specialization in Artificial Intelligence and
@@ -842,65 +1239,69 @@ footer {
         </p>
 
         <p>
-          My journey revolves around understanding technology,
-          writing code and transforming creative ideas into
-          useful digital products.
+          My interests lie in programming, web development,
+          artificial intelligence and interactive digital
+          experiences. I enjoy exploring how technology and
+          creativity can come together.
         </p>
 
         <p>
-          I am currently exploring full-stack development,
-          programming and artificial intelligence while
-          continuously improving my problem-solving skills.
+          I believe in learning through experimentation,
+          building practical projects and improving a little
+          every day.
         </p>
-      </div>
 
-      <div class="about-box reveal">
-        <h3>At a Glance</h3>
+        <div class="about-details">
 
-        <div class="detail">
-          <small>NAME</small>
-          <strong>Swastik Nayak</strong>
+          <div class="about-detail">
+            <small>EDUCATION</small>
+            <strong>B.Tech CSE — AI & ML</strong>
+          </div>
+
+          <div class="about-detail">
+            <small>UNIVERSITY</small>
+            <strong>Sri Sri University</strong>
+          </div>
+
+          <div class="about-detail">
+            <small>INTEREST</small>
+            <strong>Creative Development</strong>
+          </div>
+
+          <div class="about-detail">
+            <small>FOCUS</small>
+            <strong>AI & Technology</strong>
+          </div>
+
         </div>
 
-        <div class="detail">
-          <small>EDUCATION</small>
-          <strong>B.Tech CSE — AI & ML</strong>
-        </div>
-
-        <div class="detail">
-          <small>UNIVERSITY</small>
-          <strong>Sri Sri University</strong>
-        </div>
-
-        <div class="detail">
-          <small>FOCUS</small>
-          <strong>Development & Artificial Intelligence</strong>
-        </div>
       </div>
 
     </div>
   </div>
+
 </section>
 
 <!-- SKILLS -->
 
 <section id="skills">
+
   <div class="container">
 
-    <div class="section-top reveal">
-      <div class="section-index">02 — CAPABILITIES</div>
-      <h2 class="section-title">Tools of my craft.</h2>
+    <div class="section-head reveal">
+      <div class="section-number">02 — MY CAPABILITIES</div>
+      <h2 class="section-title">The tools of <em>creation.</em></h2>
       <p class="section-desc">
-        The technologies I work with and the fields
-        I am actively exploring.
+        Technologies I am learning, exploring and using
+        in my development journey.
       </p>
     </div>
 
     <div class="skills-grid">
 
-      <div class="skill reveal">
+      <div class="skill-card reveal">
         <small>01 / PROGRAMMING</small>
-        <h3>Languages</h3>
+        <h3>Programming Languages</h3>
         <div class="tags">
           <span class="tag">C</span>
           <span class="tag">Python · Learning</span>
@@ -908,19 +1309,19 @@ footer {
         </div>
       </div>
 
-      <div class="skill reveal">
-        <small>02 / WEB</small>
-        <h3>Development</h3>
+      <div class="skill-card reveal">
+        <small>02 / WEB DEVELOPMENT</small>
+        <h3>Frontend Development</h3>
         <div class="tags">
           <span class="tag">HTML5</span>
           <span class="tag">CSS3</span>
-          <span class="tag">Responsive Design</span>
+          <span class="tag">JavaScript</span>
         </div>
       </div>
 
-      <div class="skill reveal">
-        <small>03 / WORKFLOW</small>
-        <h3>Tools</h3>
+      <div class="skill-card reveal">
+        <small>03 / TOOLS</small>
+        <h3>Development Tools</h3>
         <div class="tags">
           <span class="tag">Git</span>
           <span class="tag">GitHub</span>
@@ -928,97 +1329,119 @@ footer {
         </div>
       </div>
 
-      <div class="skill reveal">
+      <div class="skill-card reveal">
         <small>04 / EXPLORATION</small>
-        <h3>Interests</h3>
+        <h3>Core Interests</h3>
         <div class="tags">
           <span class="tag">Artificial Intelligence</span>
           <span class="tag">Machine Learning</span>
           <span class="tag">Full Stack Development</span>
+          <span class="tag">Three.js</span>
+          <span class="tag">GSAP</span>
         </div>
       </div>
 
     </div>
+
   </div>
+
 </section>
 
 <!-- PROJECTS -->
 
-<section id="projects">
+<section class="projects" id="projects">
+
   <div class="container">
 
-    <div class="section-top reveal">
-      <div class="section-index">03 — SELECTED WORK</div>
-      <h2 class="section-title">Ideas into reality.</h2>
+    <div class="section-head reveal">
+      <div class="section-number">03 — SELECTED WORK</div>
+      <h2 class="section-title">Ideas into <em>reality.</em></h2>
       <p class="section-desc">
-        A selection of my personal projects and experiments.
+        A collection of my projects, experiments and
+        creative development journey.
       </p>
     </div>
 
-    <div class="projects-grid">
+    <div class="project-grid">
 
-      <article class="project reveal">
+      <article class="project-card reveal">
 
-        <div class="project-visual">
-          <span>01.</span>
+        <div class="project-image">
+          <span class="project-symbol">桜</span>
+          <span class="project-flower">✿</span>
         </div>
 
         <div class="project-body">
-          <h3>Personal Portfolio</h3>
+          <div class="project-index">PROJECT 01</div>
+
+          <h3>Personal Portfolio Website</h3>
+
           <p>
-            A personal digital space designed to present my
-            technical interests, education and development journey.
+            An editorial-style portfolio presenting my
+            technical skills, personal interests, projects
+            and academic journey.
           </p>
 
-          <div class="project-footer">
+          <div class="project-meta">
             <span>HTML · CSS · JavaScript</span>
             <a href="https://swastik51.github.io"
-               target="_blank" rel="noopener noreferrer">
-              Explore ↗
+              target="_blank" rel="noopener noreferrer">
+              View Website ↗
             </a>
           </div>
         </div>
 
       </article>
 
-      <article class="project reveal">
+      <article class="project-card reveal">
 
-        <div class="project-visual">
-          <span>02.</span>
+        <div class="project-image">
+          <span class="project-symbol">未来</span>
+          <span class="project-flower">✿</span>
         </div>
 
         <div class="project-body">
-          <h3>AI / ML Exploration</h3>
+          <div class="project-index">PROJECT 02</div>
+
+          <h3>AI / ML Project Exploration</h3>
+
           <p>
-            Exploring machine learning concepts and planning
-            applications that solve practical real-world problems.
+            Exploring machine learning and intelligent
+            applications that can solve practical
+            real-world problems.
           </p>
 
-          <div class="project-footer">
+          <div class="project-meta">
             <span>Python · AI · ML</span>
-            <a href="#contact">Coming Soon ↗</a>
+            <a href="https://github.com/swastik51"
+              target="_blank" rel="noopener noreferrer">
+              GitHub ↗
+            </a>
           </div>
         </div>
 
       </article>
 
     </div>
+
   </div>
+
 </section>
 
 <!-- EDUCATION -->
 
 <section id="education">
+
   <div class="container">
 
-    <div class="section-top reveal">
-      <div class="section-index">04 — EDUCATION</div>
-      <h2 class="section-title">Learning never stops.</h2>
+    <div class="section-head reveal">
+      <div class="section-number">04 — EDUCATION</div>
+      <h2 class="section-title">The journey of <em>learning.</em></h2>
     </div>
 
     <div class="timeline">
 
-      <div class="timeline-entry reveal">
+      <div class="timeline-item reveal">
         <small>2025 — PRESENT</small>
         <h3>Bachelor of Technology</h3>
         <p>
@@ -1029,215 +1452,980 @@ footer {
       </div>
 
     </div>
+
   </div>
+
 </section>
 
-<!-- INTERESTS -->
+<!-- EXPERIENCE -->
 
-<section id="interests">
+<section id="experience">
+
   <div class="container">
 
-    <div class="section-top reveal">
-      <div class="section-index">05 — BEYOND CODE</div>
-      <h2 class="section-title">A world of curiosity.</h2>
+    <div class="section-head reveal">
+      <div class="section-number">05 — EXPERIENCE</div>
+      <h2 class="section-title">Growing through <em>creation.</em></h2>
     </div>
 
-    <div class="interest-grid">
+    <div class="experience-card reveal">
 
-      <div class="interest reveal">
-        <h3>Creative Pursuits</h3>
-        <p>
-          Photography, cinematic editing and exploring
-          creative visual storytelling.
-        </p>
-      </div>
+      <small>STUDENT · PERSONAL PROJECTS</small>
 
-      <div class="interest reveal">
-        <h3>Technology</h3>
-        <p>
-          Exploring emerging technologies, AI, programming
-          and game development.
-        </p>
-      </div>
+      <h3>Learning by building.</h3>
 
-      <div class="interest reveal">
-        <h3>Personal Growth</h3>
-        <p>
-          Swimming, gaming, learning new things and
-          continuously challenging myself.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- VISION -->
-
-<section id="vision">
-  <div class="container">
-    <div class="vision reveal">
-      <small>06 — MY DIRECTION</small>
-      <h2>Building today.<br>Innovating tomorrow.</h2>
       <p>
-        My ambition is to become a skilled Full Stack Developer
-        and AI Engineer, building innovative products that
-        combine intelligent technology, creativity and
-        meaningful user experiences.
+        Currently focused on academic learning, developing
+        technical abilities, exploring creative technologies
+        and building personal projects. My journey is centred
+        on consistent improvement and practical experimentation.
       </p>
+
     </div>
+
   </div>
+
 </section>
 
 <!-- CONTACT -->
 
-<section id="contact">
+<section class="contact" id="contact">
+
   <div class="container">
 
-    <div class="contact reveal">
+    <div class="contact-box reveal">
 
-      <small>07 — LET'S CONNECT</small>
+      <div class="contact-kanji">一期一会</div>
 
-      <h2>Have an idea?<br>Let's build it.</h2>
+      <h2>Let's create<br><em>something beautiful.</em></h2>
 
       <p>
-        Whether it's an interesting project, a collaboration
-        or simply a conversation about technology,
-        my inbox is always open.
+        Have an idea, an opportunity or a project in mind?
+        I'd love to connect, collaborate and build something
+        meaningful together.
       </p>
 
-      <a href="mailto:mrswastik372@gmail.com"
-         class="btn btn-dark">
+      <a class="btn btn-dark"
+        href="mailto:mrswastik372@gmail.com">
         Start a Conversation ↗
       </a>
 
       <div class="socials">
 
         <a href="https://github.com/swastik51"
-           target="_blank" rel="noopener noreferrer">
+          target="_blank" rel="noopener noreferrer">
           GitHub ↗
         </a>
 
         <a href="https://www.linkedin.com/in/swastik-nayak-59161a391"
-           target="_blank" rel="noopener noreferrer">
+          target="_blank" rel="noopener noreferrer">
           LinkedIn ↗
         </a>
 
         <a href="https://www.instagram.com/the.swastik.k"
-           target="_blank" rel="noopener noreferrer">
+          target="_blank" rel="noopener noreferrer">
           Instagram ↗
         </a>
 
         <a href="https://maps.app.goo.gl/SUYSmrxmwfmWr4Y9A"
-           target="_blank" rel="noopener noreferrer">
+          target="_blank" rel="noopener noreferrer">
           Location ↗
         </a>
 
         <a href="https://swastik51.github.io"
-           target="_blank" rel="noopener noreferrer">
+          target="_blank" rel="noopener noreferrer">
           Website ↗
         </a>
 
       </div>
+
     </div>
 
   </div>
+
 </section>
 
 <!-- FOOTER -->
 
 <footer>
-  <div class="container footer-content">
-    <a class="brand" href="#home">Swastik<span>.</span></a>
-    <p>© <span id="year"></span> Swastik Nayak. All rights reserved.</p>
-    <a href="#home">Back to top ↑</a>
+
+  <div class="container">
+
+    <div class="footer-jp">桜の庭 — THE SAKURA GARDEN</div>
+
+    <div class="footer-main">
+
+      <a class="brand" href="#home">Swastik<span style="color:var(--pink)">.</span></a>
+
+      <p>Designed with intention. Built with curiosity.</p>
+
+      <a href="#home">Back to beginning ↑</a>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Swastik Nayak</span>
+      <span>静けさ · 創造 · 美</span>
+    </div>
+
   </div>
+
 </footer>
 
-<script>
+<!-- THREE.JS, GSAP, SCROLLTRIGGER AND LENIS -->
+
+<script type="module">
+
+import * as THREE from
+"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js";
+
+import Lenis from
+"https://cdn.jsdelivr.net/npm/lenis@1.1.20/+esm";
+
+const reduceMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+const mobile = window.matchMedia(
+  "(max-width: 600px)"
+).matches;
+
+const gsap = window.gsap;
+const ScrollTrigger = window.ScrollTrigger;
+
+if (gsap && ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// LENIS SMOOTH SCROLL
+
+let lenis = null;
+
+if (!reduceMotion) {
+
+  lenis = new Lenis({
+    duration:1.15,
+    smoothWheel:true,
+    wheelMultiplier:.85,
+    touchMultiplier:1.3
+  });
+
+  if (gsap && ScrollTrigger) {
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add(time => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+  } else {
+
+    function smoothFrame(time) {
+      lenis.raf(time);
+      requestAnimationFrame(smoothFrame);
+    }
+
+    requestAnimationFrame(smoothFrame);
+  }
+}
+
+// THREE.JS SAKURA GARDEN
+
+const canvas = document.getElementById("sakura-canvas");
+
+let renderer;
+let scene;
+let camera;
+let branchGroup;
+let petals = [];
+let flowerGroups = [];
+let animationId;
+let animationActive = true;
+
+try {
+
+  scene = new THREE.Scene();
+
+  scene.fog = new THREE.FogExp2(
+    0xf5f0e8,
+    .055
+  );
+
+  camera = new THREE.PerspectiveCamera(
+    43,
+    1,
+    .1,
+    100
+  );
+
+  camera.position.set(0,0,10);
+
+  renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha:true,
+    antialias:!mobile,
+    powerPreference:"low-power"
+  });
+
+  renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio,mobile ? 1 : 1.5)
+  );
+
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+  renderer.setClearColor(0xf5f0e8,0);
+
+  scene.add(
+    new THREE.AmbientLight(0xffffff,2.0)
+  );
+
+  const warmLight = new THREE.DirectionalLight(
+    0xffe5db,
+    3
+  );
+
+  warmLight.position.set(-3,5,8);
+  scene.add(warmLight);
+
+  const pinkLight = new THREE.PointLight(
+    0xe8b7c1,
+    16,
+    25
+  );
+
+  pinkLight.position.set(3,3,4);
+  scene.add(pinkLight);
+
+  // BRANCH STRUCTURE
+
+  branchGroup = new THREE.Group();
+  branchGroup.position.set(0,-1.2,0);
+  scene.add(branchGroup);
+
+  const barkMaterial = new THREE.MeshStandardMaterial({
+    color:0x49352b,
+    roughness:.88,
+    metalness:.02
+  });
+
+  const blossomMaterial = new THREE.MeshStandardMaterial({
+    color:0xe8b7c1,
+    roughness:.72,
+    side:THREE.DoubleSide
+  });
+
+  const petalColors = [
+    0xe8b7c1,
+    0xf1cbd1,
+    0xdca5b0,
+    0xffe6e4
+  ];
+
+  // Create a curved branch using tapered cylinders
+
+  function createBranch(start,end,radius) {
+
+    const direction = new THREE.Vector3()
+      .subVectors(end,start);
+
+    const length = direction.length();
+
+    const geometry = new THREE.CylinderGeometry(
+      radius * .58,
+      radius,
+      length,
+      7
+    );
+
+    const mesh = new THREE.Mesh(
+      geometry,
+      barkMaterial
+    );
+
+    mesh.position.copy(start).add(end).multiplyScalar(.5);
+
+    mesh.quaternion.setFromUnitVectors(
+      new THREE.Vector3(0,1,0),
+      direction.normalize()
+    );
+
+    branchGroup.add(mesh);
+  }
+
+  // Generate organic tree branches
+
+  const branchEnds = [];
+
+  function growBranch(start,angle,length,radius,depth) {
+
+    const end = new THREE.Vector3(
+      start.x + Math.sin(angle) * length,
+      start.y + Math.cos(angle) * length,
+      start.z + (Math.random()-.5)*.4
+    );
+
+    createBranch(start,end,radius);
+
+    if (depth <= 0) {
+      branchEnds.push(end.clone());
+      return;
+    }
+
+    const split = depth === 1 ? 2 : 2;
+
+    for (let i=0;i<split;i++) {
+
+      const offset = i===0 ? -.52 : .52;
+
+      growBranch(
+        end,
+        angle+offset+(Math.random()-.5)*.15,
+        length*(.65+Math.random()*.08),
+        radius*.67,
+        depth-1
+      );
+    }
+  }
+
+  growBranch(
+    new THREE.Vector3(-.6,-.3,0),
+    -.5,
+    2.6,
+    .16,
+    4
+  );
+
+  // Blossom geometry
+
+  const blossomGeometry = new THREE.SphereGeometry(
+    .11,
+    7,
+    6
+  );
+
+  blossomGeometry.scale(1,.68,.42);
+
+  function createFlower(position,scale=1) {
+
+    const group = new THREE.Group();
+
+    const petalsCount = 5;
+
+    for (let i=0;i<petalsCount;i++) {
+
+      const petal = new THREE.Mesh(
+        blossomGeometry,
+        blossomMaterial
+      );
+
+      const angle =
+        (i/petalsCount)*Math.PI*2;
+
+      petal.position.set(
+        Math.cos(angle)*.13,
+        Math.sin(angle)*.13,
+        0
+      );
+
+      petal.rotation.z = angle;
+
+      petal.scale.setScalar(scale);
+
+      group.add(petal);
+    }
+
+    const center = new THREE.Mesh(
+      new THREE.SphereGeometry(.035,8,8),
+      new THREE.MeshBasicMaterial({color:0xc98796})
+    );
+
+    group.add(center);
+
+    group.position.copy(position);
+
+    group.scale.setScalar(.01);
+
+    branchGroup.add(group);
+
+    flowerGroups.push(group);
+  }
+
+  // Distribute blossom clusters along branches
+
+  branchEnds.forEach((position,index) => {
+
+    const variations = 2;
+
+    for(let i=0;i<variations;i++) {
+
+      const offset = new THREE.Vector3(
+        (Math.random()-.5)*.4,
+        (Math.random()-.5)*.35,
+        (Math.random()-.5)*.3
+      );
+
+      createFlower(
+        position.clone().add(offset),
+        .7+Math.random()*.7
+      );
+    }
+
+  });
+
+  // Add some blossoms along main tree structure
+
+  for(let i=0;i<12;i++) {
+
+    createFlower(
+      new THREE.Vector3(
+        -1.5+Math.random()*3,
+        .2+Math.random()*2.4,
+        (Math.random()-.5)*.7
+      ),
+      .6+Math.random()*.5
+    );
+
+  }
+
+  // PETAL PARTICLE SYSTEM
+
+  const petalGeometry = new THREE.PlaneGeometry(
+    .13,.2
+  );
+
+  const petalMaterials = petalColors.map(color =>
+    new THREE.MeshBasicMaterial({
+      color,
+      side:THREE.DoubleSide,
+      transparent:true,
+      opacity:.9,
+      depthWrite:false
+    })
+  );
+
+  const petalCount = mobile ? 45 : 95;
+
+  for(let i=0;i<petalCount;i++) {
+
+    const petal = new THREE.Mesh(
+      petalGeometry,
+      petalMaterials[
+        Math.floor(Math.random()*petalMaterials.length)
+      ]
+    );
+
+    petal.position.set(
+      (Math.random()-.5)*12,
+      Math.random()*12-3,
+      (Math.random()-.5)*6
+    );
+
+    petal.rotation.set(
+      Math.random()*Math.PI,
+      Math.random()*Math.PI,
+      Math.random()*Math.PI
+    );
+
+    const size=.55+Math.random()*1.4;
+
+    petal.scale.setScalar(size);
+
+    petal.userData = {
+      speed:.006+Math.random()*.014,
+      sway:Math.random()*.8+.3,
+      rotation:.006+Math.random()*.02,
+      phase:Math.random()*Math.PI*2,
+      baseX:petal.position.x
+    };
+
+    scene.add(petal);
+    petals.push(petal);
+  }
+
+  // SOFT ATMOSPHERIC PARTICLES
+
+  const dustCount = mobile ? 50 : 120;
+
+  const dustPositions = new Float32Array(
+    dustCount*3
+  );
+
+  for(let i=0;i<dustCount;i++) {
+
+    dustPositions[i*3]=(Math.random()-.5)*13;
+    dustPositions[i*3+1]=(Math.random()-.5)*11;
+    dustPositions[i*3+2]=(Math.random()-.5)*5;
+
+  }
+
+  const dustGeometry = new THREE.BufferGeometry();
+
+  dustGeometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(dustPositions,3)
+  );
+
+  const dust = new THREE.Points(
+    dustGeometry,
+    new THREE.PointsMaterial({
+      color:0xd9b5a7,
+      size:.025,
+      transparent:true,
+      opacity:.55
+    })
+  );
+
+  scene.add(dust);
+
+  // POINTER PARALLAX
+
+  let pointerX=0;
+  let pointerY=0;
+
+  canvas.addEventListener("pointermove",event => {
+
+    const rect=canvas.getBoundingClientRect();
+
+    pointerX=(event.clientX-rect.left)/rect.width-.5;
+    pointerY=(event.clientY-rect.top)/rect.height-.5;
+
+  },{passive:true});
+
+  canvas.addEventListener("pointerleave",() => {
+    pointerX=0;
+    pointerY=0;
+  });
+
+  // RESIZE
+
+  function resizeScene() {
+
+    const width=canvas.clientWidth;
+    const height=canvas.clientHeight;
+
+    if(!width||!height) return;
+
+    camera.aspect=width/height;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(width,height,false);
+
+  }
+
+  resizeScene();
+
+  window.addEventListener("resize",resizeScene);
+
+  // ANIMATION LOOP
+
+  const clock=new THREE.Clock();
+
+  function animate() {
+
+    animationId=requestAnimationFrame(animate);
+
+    if(!animationActive) return;
+
+    const time=clock.getElapsedTime();
+
+    // Slow branch movement
+
+    if(!reduceMotion) {
+
+      branchGroup.rotation.z =
+        Math.sin(time*.22)*.025;
+
+      branchGroup.rotation.x =
+        Math.sin(time*.18)*.018;
+
+      branchGroup.rotation.y =
+        pointerX*.12;
+
+      branchGroup.position.y =
+        -1.2+Math.sin(time*.5)*.04;
+
+    }
+
+    // Falling petals
+
+    petals.forEach(petal => {
+
+      const data=petal.userData;
+
+      if(!reduceMotion) {
+
+        petal.position.y-=data.speed;
+
+        petal.position.x=
+          data.baseX+
+          Math.sin(time*data.sway+data.phase)*.35+
+          Math.sin(time*.5+data.phase)*pointerX*.2;
+
+        petal.rotation.x+=data.rotation;
+        petal.rotation.y+=data.rotation*.6;
+        petal.rotation.z+=data.rotation*.4;
+
+      }
+
+      if(petal.position.y < -6) {
+
+        petal.position.y=6+Math.random()*3;
+
+        petal.position.x=(Math.random()-.5)*12;
+
+        data.baseX=petal.position.x;
+
+      }
+
+    });
+
+    if(!reduceMotion) {
+      dust.rotation.y=time*.008;
+    }
+
+    renderer.render(scene,camera);
+  }
+
+  animate();
+
+  // BLOSSOM BLOOM ANIMATION
+
+  if(gsap && !reduceMotion) {
+
+    gsap.to(flowerGroups.map(f => f.scale), {
+      x:1,
+      y:1,
+      z:1,
+      duration:1.5,
+      stagger:{
+        each:.035,
+        from:"random"
+      },
+      delay:.5,
+      ease:"back.out(1.5)"
+    });
+
+    // Scroll-triggered garden movement
+
+    gsap.to(branchGroup.rotation, {
+      z:.15,
+      scrollTrigger:{
+        trigger:"#about",
+        start:"top bottom",
+        end:"bottom top",
+        scrub:2
+      }
+    });
+
+    gsap.to(branchGroup.position, {
+      y:-1.7,
+      scrollTrigger:{
+        trigger:"#projects",
+        start:"top bottom",
+        end:"bottom top",
+        scrub:2
+      }
+    });
+
+  } else {
+
+    flowerGroups.forEach(flower => {
+      flower.scale.setScalar(1);
+    });
+
+  }
+
+} catch(error) {
+
+  console.error("Sakura scene failed:",error);
+
+  canvas.style.display="none";
+
+}
+
+// GSAP ANIMATIONS
+
+if(gsap && ScrollTrigger && !reduceMotion) {
+
+  // PRELOADER
+
+  const intro=gsap.timeline({
+    onComplete:() => {
+
+      document.getElementById("loader").style.display="none";
+
+      ScrollTrigger.refresh();
+
+    }
+  });
+
+  intro
+    .to("#loaderFill",{
+      width:"100%",
+      duration:1.1,
+      ease:"power2.inOut"
+    })
+    .to("#loader",{
+      yPercent:-100,
+      duration:1,
+      ease:"power4.inOut"
+    });
+
+  // HERO TEXT
+
+  gsap.from(".hero-animate",{
+    y:45,
+    opacity:0,
+    filter:"blur(8px)",
+    duration:1.2,
+    stagger:.14,
+    delay:1.2,
+    ease:"power3.out"
+  });
+
+  // SECTION REVEALS
+
+  gsap.utils.toArray(".reveal").forEach(element => {
+
+    gsap.fromTo(element,
+      {
+        opacity:0,
+        y:45,
+        filter:"blur(5px)"
+      },
+      {
+        opacity:1,
+        y:0,
+        filter:"blur(0px)",
+        duration:1.1,
+        ease:"power3.out",
+        scrollTrigger:{
+          trigger:element,
+          start:"top 88%",
+          once:true
+        }
+      }
+    );
+
+  });
+
+  // PROJECT CARD STAGGER
+
+  gsap.from(".project-card",{
+    y:65,
+    opacity:0,
+    stagger:.2,
+    duration:1.1,
+    ease:"power3.out",
+    scrollTrigger:{
+      trigger:".project-grid",
+      start:"top 85%",
+      once:true
+    }
+  });
+
+  // PARALLAX BOTANICAL MOVEMENT
+
+  gsap.to(".about-frame",{
+    y:-25,
+    rotation:-8,
+    ease:"none",
+    scrollTrigger:{
+      trigger:".about",
+      start:"top bottom",
+      end:"bottom top",
+      scrub:2
+    }
+  });
+
+  // NAVIGATION BACKGROUND
+
+  ScrollTrigger.create({
+    start:100,
+    onUpdate:self => {
+      document.getElementById("navbar")
+        .classList.toggle("scrolled",self.scroll()>100);
+    }
+  });
+
+  // ACTIVE NAVIGATION
+
+  document.querySelectorAll(
+    ".hero,.about,#skills,#projects,#education,#experience,#contact"
+  ).forEach(section => {
+
+    ScrollTrigger.create({
+      trigger:section,
+      start:"top 45%",
+      end:"bottom 45%",
+
+      onToggle:self => {
+
+        if(self.isActive) {
+
+          document.querySelectorAll(".nav-links a")
+            .forEach(link => {
+
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href")==="#"+section.id
+              );
+
+            });
+
+        }
+
+      }
+
+    });
+
+  });
+
+} else {
+
+  document.querySelectorAll(".reveal").forEach(element => {
+    element.classList.add("visible");
+  });
+
+  document.getElementById("loader").style.display="none";
+
+}
 
 // TYPING EFFECT
 
-const words = [
+const words=[
   "Web Development.",
   "Artificial Intelligence.",
   "Machine Learning.",
   "Creative Technology."
 ];
 
-const typing = document.getElementById("typing");
+const typing=document.getElementById("typing");
 
-let word = 0;
-let char = 0;
-let deleting = false;
+let wordIndex=0;
+let charIndex=0;
+let deleting=false;
 
-function type() {
-  const current = words[word];
+function typeText() {
 
-  typing.textContent = current.substring(0, char);
-
-  if (!deleting) {
-    char++;
-
-    if (char > current.length) {
-      deleting = true;
-      setTimeout(type, 1300);
-      return;
-    }
-  } else {
-    char--;
-
-    if (char < 0) {
-      char = 0;
-      deleting = false;
-      word = (word + 1) % words.length;
-    }
+  if(reduceMotion) {
+    typing.textContent=words[0];
+    return;
   }
 
-  setTimeout(type, deleting ? 40 : 85);
+  const current=words[wordIndex];
+
+  typing.textContent=current.substring(0,charIndex);
+
+  if(!deleting) {
+
+    charIndex++;
+
+    if(charIndex>current.length) {
+
+      deleting=true;
+
+      setTimeout(typeText,1200);
+      return;
+
+    }
+
+  } else {
+
+    charIndex--;
+
+    if(charIndex<0) {
+
+      charIndex=0;
+      deleting=false;
+
+      wordIndex=(wordIndex+1)%words.length;
+
+    }
+
+  }
+
+  setTimeout(typeText,deleting?40:85);
+
 }
 
-type();
+typeText();
 
-// MOBILE NAVIGATION
+// MOBILE MENU
 
-const menuBtn = document.getElementById("menuBtn");
-const navMenu = document.getElementById("navMenu");
+const menuBtn=document.getElementById("menuBtn");
+const navLinks=document.getElementById("navLinks");
 
-menuBtn.addEventListener("click", () => {
-  const open = navMenu.classList.toggle("open");
+menuBtn.addEventListener("click",() => {
 
-  menuBtn.textContent = open ? "×" : "☰";
-  menuBtn.setAttribute("aria-expanded", open);
+  const open=navLinks.classList.toggle("open");
+
+  menuBtn.textContent=open?"×":"☰";
+
+  menuBtn.setAttribute("aria-expanded",open);
+
 });
 
-document.querySelectorAll(".nav-menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("open");
-    menuBtn.textContent = "☰";
-    menuBtn.setAttribute("aria-expanded", "false");
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+  link.addEventListener("click",() => {
+
+    navLinks.classList.remove("open");
+
+    menuBtn.textContent="☰";
+
+    menuBtn.setAttribute("aria-expanded","false");
+
   });
+
 });
 
-// SCROLL REVEAL
+// FLORAL CURSOR EFFECT
 
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
+let lastPetal=0;
 
-document.querySelectorAll(".reveal").forEach(el => {
-  revealObserver.observe(el);
+document.addEventListener("pointermove",event => {
+
+  if(reduceMotion || matchMedia("(pointer:coarse)").matches) return;
+
+  const now=Date.now();
+
+  if(now-lastPetal<110) return;
+
+  lastPetal=now;
+
+  const flower=document.createElement("span");
+
+  flower.className="cursor-petal";
+  flower.textContent="✿";
+
+  flower.style.left=event.clientX+"px";
+  flower.style.top=event.clientY+"px";
+
+  document.body.appendChild(flower);
+
+  flower.addEventListener("animationend",() => flower.remove());
+
 });
 
-// COPYRIGHT YEAR
+// COPYRIGHT
 
-document.getElementById("year").textContent =
+document.getElementById("year").textContent=
   new Date().getFullYear();
+
+// CLEAN UP WHEN PAGE CLOSES
+
+window.addEventListener("pagehide",() => {
+
+  if(animationId) cancelAnimationFrame(animationId);
+
+  if(renderer) renderer.dispose();
+
+  if(lenis) lenis.destroy();
+
+});
 
 </script>
 
