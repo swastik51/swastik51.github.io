@@ -14,7 +14,6 @@
 <style>
 :root {
   --bg:#090a0d;
-  --panel:#111216;
   --text:#f2efe9;
   --muted:#92939b;
   --line:rgba(255,255,255,.11);
@@ -42,16 +41,6 @@ body {
   overflow-x:hidden;
 }
 
-body:before {
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:2;
-  opacity:.12;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
-}
-
 a {
   color:inherit;
   text-decoration:none;
@@ -71,7 +60,65 @@ button {
   margin:auto;
 }
 
-/* NAVIGATION */
+/* =================================
+   CINEMATIC BACKGROUND VIDEO
+================================= */
+
+.ambient-background {
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+  background:#090a0d;
+}
+
+.ambient-background video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.32;
+  filter:brightness(.65) saturate(.7);
+  transform:scale(1.04);
+}
+
+.ambient-overlay {
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9,10,13,.48),
+      rgba(9,10,13,.72) 45%,
+      rgba(9,10,13,.91)
+    ),
+    radial-gradient(
+      ellipse at 75% 35%,
+      rgba(198,167,122,.12),
+      transparent 55%
+    );
+}
+
+/* Film grain */
+
+.grain {
+  position:fixed;
+  inset:0;
+  z-index:5;
+  pointer-events:none;
+  opacity:.10;
+
+  background-image:url(
+    "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E"
+  );
+}
+
+/* =================================
+   NAVIGATION
+================================= */
 
 .navbar {
   position:fixed;
@@ -82,7 +129,7 @@ button {
 }
 
 .navbar.scrolled {
-  background:rgba(9,10,13,.78);
+  background:rgba(9,10,13,.82);
   backdrop-filter:blur(22px);
   border-color:var(--line);
 }
@@ -112,7 +159,7 @@ button {
 .nav-links a {
   font-size:11px;
   color:#b9b8bb;
-  transition:color .3s;
+  transition:.3s;
 }
 
 .nav-links a:hover {
@@ -141,7 +188,9 @@ button {
   cursor:pointer;
 }
 
-/* HERO */
+/* =================================
+   HERO SECTION
+================================= */
 
 .hero {
   min-height:100svh;
@@ -158,20 +207,24 @@ button {
   width:100%;
   height:100%;
   z-index:0;
-  opacity:.9;
+  opacity:.85;
+  pointer-events:none;
 }
 
 .hero:after {
   content:"";
   position:absolute;
   inset:0;
-  background:radial-gradient(
-    ellipse at 72% 48%,
-    transparent 0%,
-    rgba(9,10,13,.1) 32%,
-    var(--bg) 78%
-  );
+  z-index:0;
   pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse at 72% 48%,
+      transparent 0%,
+      rgba(9,10,13,.08) 35%,
+      rgba(9,10,13,.4) 100%
+    );
 }
 
 .hero-grid {
@@ -305,7 +358,9 @@ h1 .accent {
   background:#56545a;
 }
 
-/* PORTRAIT */
+/* =================================
+   PROFILE IMAGE
+================================= */
 
 .hero-side {
   min-height:510px;
@@ -323,11 +378,13 @@ h1 .accent {
   border-radius:190px 190px 18px 18px;
   padding:9px;
   transform:rotate(3deg);
+
   background:linear-gradient(
     145deg,
     rgba(198,167,122,.16),
     rgba(255,255,255,.015)
   );
+
   box-shadow:0 35px 100px rgba(0,0,0,.5);
   transition:transform .7s var(--ease);
 }
@@ -358,7 +415,7 @@ h1 .accent {
   align-items:center;
   justify-content:center;
   text-align:center;
-  color:rgba(234,212,174,.7);
+  color:var(--gold-light);
   font:italic 25px "Playfair Display",serif;
   padding:25px;
 }
@@ -400,9 +457,7 @@ h1 .accent {
 }
 
 @keyframes float {
-  50% {
-    transform:translateY(-13px);
-  }
+  50% { transform:translateY(-13px); }
 }
 
 .scroll-indicator {
@@ -429,14 +484,17 @@ h1 .accent {
 }
 
 @keyframes scrollline {
-  0%,100% {transform:scaleX(.25)}
-  50% {transform:scaleX(1)}
+  0%,100% { transform:scaleX(.25); }
+  50% { transform:scaleX(1); }
 }
 
-/* SECTIONS */
+/* =================================
+   GENERAL SECTIONS
+================================= */
 
 section {
   position:relative;
+  z-index:2;
   padding:125px 0;
   border-top:1px solid rgba(255,255,255,.065);
 }
@@ -490,14 +548,11 @@ section {
 
 .about-card {
   padding:32px;
-  background:linear-gradient(
-    145deg,
-    rgba(255,255,255,.07),
-    rgba(255,255,255,.018)
-  );
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.018));
   border:1px solid var(--line);
   border-radius:16px;
   box-shadow:0 25px 70px #0002;
+  backdrop-filter:blur(15px);
 }
 
 .about-card h3 {
@@ -541,6 +596,7 @@ section {
   border:1px solid var(--line);
   border-radius:15px;
   min-height:210px;
+  backdrop-filter:blur(12px);
   transition:.45s var(--ease);
 }
 
@@ -589,6 +645,7 @@ section {
   background:rgba(255,255,255,.045);
   border-radius:16px;
   overflow:hidden;
+  backdrop-filter:blur(12px);
   transition:.5s var(--ease);
 }
 
@@ -730,6 +787,7 @@ section {
   border:1px solid var(--line);
   background:rgba(255,255,255,.045);
   border-radius:14px;
+  backdrop-filter:blur(12px);
   transition:.35s;
 }
 
@@ -760,23 +818,13 @@ section {
 .vision-wrap {
   padding:1px;
   border-radius:20px;
-  background:linear-gradient(
-    120deg,
-    rgba(198,167,122,.6),
-    rgba(255,255,255,.04),
-    rgba(198,167,122,.2)
-  );
+  background:linear-gradient(120deg,rgba(198,167,122,.6),rgba(255,255,255,.04),rgba(198,167,122,.2));
 }
 
 .vision {
   padding:70px;
   border-radius:19px;
-  background:radial-gradient(
-    ellipse at 85% 15%,
-    #3a3024 0%,
-    #17171a 43%,
-    #111216 100%
-  );
+  background:radial-gradient(ellipse at 85% 15%,#3a3024 0%,#17171a 43%,#111216 100%);
   overflow:hidden;
   position:relative;
 }
@@ -827,17 +875,6 @@ section {
   background:radial-gradient(ellipse at 50% 0%,#30271e 0%,#15161a 60%);
 }
 
-.contact-panel .eyebrow {
-  justify-content:center;
-}
-
-.contact-panel .eyebrow:after {
-  content:"";
-  width:27px;
-  height:1px;
-  background:var(--gold);
-}
-
 .contact-panel h2 {
   font:500 clamp(43px,6vw,75px)/1.05 "Manrope",sans-serif;
   letter-spacing:-4px;
@@ -855,6 +892,24 @@ section {
   color:var(--muted);
   font-size:13px;
   line-height:2;
+}
+
+.contact-eyebrow {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:3px;
+}
+
+.contact-eyebrow:before,
+.contact-eyebrow:after {
+  content:"";
+  width:27px;
+  height:1px;
+  background:var(--gold);
 }
 
 .socials {
@@ -878,6 +933,8 @@ section {
 /* FOOTER */
 
 footer {
+  position:relative;
+  z-index:2;
   padding:28px 0;
   border-top:1px solid var(--line);
 }
@@ -894,14 +951,12 @@ footer {
   color:#c9c5bd;
 }
 
-/* REVEAL ANIMATION */
+/* REVEAL */
 
 .reveal {
   opacity:0;
   transform:translateY(28px);
-  transition:
-    opacity .85s var(--ease),
-    transform .85s var(--ease);
+  transition:opacity .85s var(--ease),transform .85s var(--ease);
 }
 
 .reveal.visible {
@@ -909,7 +964,7 @@ footer {
   transform:translateY(0);
 }
 
-/* CURSOR */
+/* CURSOR LIGHT */
 
 .cursor-glow {
   position:fixed;
@@ -919,15 +974,18 @@ footer {
   height:300px;
   border-radius:50%;
   pointer-events:none;
-  z-index:1;
-  background:radial-gradient(circle,rgba(198,167,122,.065),transparent 68%);
+  z-index:4;
+  background:radial-gradient(circle,rgba(198,167,122,.09),transparent 68%);
   transform:translate(-50%,-50%);
   mix-blend-mode:screen;
 }
 
-/* RESPONSIVE */
+/* =================================
+   RESPONSIVE
+================================= */
 
 @media(max-width:900px) {
+
   .hero-grid {
     grid-template-columns:1fr;
     text-align:center;
@@ -969,6 +1027,7 @@ footer {
 }
 
 @media(max-width:650px) {
+
   .container {
     width:89%;
   }
@@ -1054,16 +1113,13 @@ footer {
   }
 
   .skills-grid,
-  .projects-grid {
+  .projects-grid,
+  .interests-grid {
     grid-template-columns:1fr;
   }
 
   .skill-card {
     min-height:unset;
-  }
-
-  .interests-grid {
-    grid-template-columns:1fr;
   }
 
   .project-art {
@@ -1095,9 +1151,14 @@ footer {
   .cursor-glow {
     display:none;
   }
+
+  .ambient-background video {
+    opacity:.20;
+  }
 }
 
 @media(prefers-reduced-motion:reduce) {
+
   *,
   *::before,
   *::after {
@@ -1111,17 +1172,41 @@ footer {
     opacity:1;
     transform:none;
   }
+
+  .ambient-background video {
+    display:none;
+  }
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- CINEMATIC BACKGROUND VIDEO -->
+
+<div class="ambient-background">
+  <video id="ambientVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster="">
+
+    <source src="background.mp4" type="video/mp4">
+
+  </video>
+</div>
+
+<div class="ambient-overlay"></div>
+<div class="grain"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- NAVIGATION -->
 
 <nav class="navbar" id="navbar">
+
   <div class="container nav-inner">
 
     <a class="brand" href="#home">
@@ -1129,12 +1214,14 @@ footer {
     </a>
 
     <div class="nav-links" id="navLinks">
+
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Expertise</a>
       <a href="#projects">Projects</a>
       <a href="#education">Journey</a>
       <a href="#contact">Contact</a>
+
     </div>
 
     <a class="nav-cta" href="mailto:mrswastik372@gmail.com">
@@ -1142,11 +1229,13 @@ footer {
     </a>
 
     <button class="menu-toggle" id="menuToggle"
-      aria-label="Open navigation" aria-expanded="false">
+      aria-label="Open navigation"
+      aria-expanded="false">
       ☰
     </button>
 
   </div>
+
 </nav>
 
 <!-- HERO -->
@@ -1183,6 +1272,7 @@ footer {
       </div>
 
       <div class="hero-actions reveal">
+
         <a class="button button-primary" href="#projects">
           EXPLORE MY WORK <span>↗</span>
         </a>
@@ -1190,6 +1280,7 @@ footer {
         <a class="button button-ghost" href="#contact">
           LET'S TALK <span>↗</span>
         </a>
+
       </div>
 
       <div class="hero-note reveal">
@@ -1198,11 +1289,12 @@ footer {
 
     </div>
 
-    <!-- PROFILE IMAGE -->
+    <!-- PROFILE -->
 
     <div class="hero-side reveal">
 
       <div class="portrait-frame">
+
         <div class="portrait-inner">
 
           <img src="profile.jpg"
@@ -1210,6 +1302,7 @@ footer {
             onerror="this.remove();this.parentElement.innerHTML='<div class=&quot;portrait-placeholder&quot;>A portrait<br>will live here.</div>'">
 
         </div>
+
       </div>
 
       <div class="float-card card-one">
@@ -1241,6 +1334,7 @@ footer {
   <div class="container">
 
     <div class="section-head reveal">
+
       <div class="section-number">
         01 — THE INTRODUCTION
       </div>
@@ -1248,6 +1342,7 @@ footer {
       <h2 class="section-title">
         Behind the <em>pixels.</em>
       </h2>
+
     </div>
 
     <div class="about-grid">
@@ -1334,43 +1429,59 @@ footer {
     <div class="skills-grid">
 
       <article class="skill-card reveal">
+
         <div class="skill-index">01 / PROGRAMMING</div>
+
         <h3>Languages</h3>
+
         <div class="tags">
           <span class="tag">C</span>
           <span class="tag">Python · Learning</span>
           <span class="tag">JavaScript · Learning</span>
         </div>
+
       </article>
 
       <article class="skill-card reveal">
+
         <div class="skill-index">02 / DIGITAL CRAFT</div>
+
         <h3>Development</h3>
+
         <div class="tags">
           <span class="tag">HTML5</span>
           <span class="tag">CSS3</span>
           <span class="tag">Responsive Design</span>
         </div>
+
       </article>
 
       <article class="skill-card reveal">
+
         <div class="skill-index">03 / WORKFLOW</div>
+
         <h3>Tools</h3>
+
         <div class="tags">
           <span class="tag">Git</span>
           <span class="tag">GitHub</span>
           <span class="tag">VS Code</span>
         </div>
+
       </article>
 
       <article class="skill-card reveal">
+
         <div class="skill-index">04 / EXPLORATION</div>
+
         <h3>Interests</h3>
+
         <div class="tags">
           <span class="tag">Artificial Intelligence</span>
           <span class="tag">Machine Learning</span>
           <span class="tag">Full Stack Development</span>
         </div>
+
       </article>
 
     </div>
@@ -1421,12 +1532,14 @@ footer {
           </p>
 
           <div class="project-meta">
+
             <span>HTML · CSS · JavaScript</span>
 
             <a href="https://swastik51.github.io"
               target="_blank" rel="noopener noreferrer">
               VIEW PROJECT ↗
             </a>
+
           </div>
 
         </div>
@@ -1450,8 +1563,13 @@ footer {
           </p>
 
           <div class="project-meta">
+
             <span>PYTHON · AI · ML</span>
-            <a href="#contact">IN DEVELOPMENT ↗</a>
+
+            <a href="#contact">
+              IN DEVELOPMENT ↗
+            </a>
+
           </div>
 
         </div>
@@ -1597,7 +1715,7 @@ footer {
 
     <div class="contact-panel reveal">
 
-      <div class="eyebrow">
+      <div class="contact-eyebrow">
         HAVE A PROJECT IN MIND?
       </div>
 
@@ -1660,21 +1778,21 @@ footer {
       Crafted with curiosity.
     </span>
 
-    <span>
-      DESIGNED TO KEEP EVOLVING ↗
-    </span>
+    <span>DESIGNED TO KEEP EVOLVING ↗</span>
 
   </div>
 
 </footer>
 
-<!-- THREE.JS -->
+<!-- THREE.JS LIBRARY -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 
 <script>
 
+// =================================
 // NAVIGATION
+// =================================
 
 const navbar = document.getElementById('navbar');
 const navLinks = document.getElementById('navLinks');
@@ -1688,7 +1806,7 @@ menuToggle.addEventListener('click', () => {
 
   const open = navLinks.classList.toggle('open');
 
-  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.setAttribute('aria-expanded',String(open));
   menuToggle.textContent = open ? '×' : '☰';
 
 });
@@ -1706,7 +1824,36 @@ navLinks.querySelectorAll('a').forEach(link => {
 
 });
 
+// =================================
+// CINEMATIC VIDEO
+// =================================
+
+const backgroundVideo =
+  document.getElementById('ambientVideo');
+
+if(backgroundVideo) {
+
+  backgroundVideo.muted = true;
+
+  backgroundVideo.play().catch(() => {
+    console.log('Video playback may require browser permission.');
+  });
+
+  document.addEventListener('visibilitychange', () => {
+
+    if(document.hidden) {
+      backgroundVideo.pause();
+    } else {
+      backgroundVideo.play().catch(() => {});
+    }
+
+  });
+
+}
+
+// =================================
 // SCROLL REVEAL
+// =================================
 
 const revealObserver = new IntersectionObserver(entries => {
 
@@ -1728,7 +1875,9 @@ document.querySelectorAll('.reveal').forEach(el => {
   revealObserver.observe(el);
 });
 
+// =================================
 // TYPING ANIMATION
+// =================================
 
 const roles = [
   'Artificial Intelligence',
@@ -1773,7 +1922,7 @@ function typeLoop() {
 
       deleting = false;
 
-      roleIndex = (roleIndex + 1) % roles.length;
+      roleIndex = (roleIndex+1)%roles.length;
 
     }
 
@@ -1785,23 +1934,29 @@ function typeLoop() {
 
 setTimeout(typeLoop,1800);
 
+// =================================
 // CURRENT YEAR
+// =================================
 
 document.getElementById('year').textContent =
   new Date().getFullYear();
 
+// =================================
 // CURSOR LIGHT
+// =================================
 
 const glow = document.getElementById('cursorGlow');
 
-window.addEventListener('pointermove', e => {
+window.addEventListener('pointermove',e => {
 
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
+  glow.style.left = e.clientX+'px';
+  glow.style.top = e.clientY+'px';
 
 }, {passive:true});
 
-// CINEMATIC THREE.JS 3D SCENE
+// =================================
+// THREE.JS CINEMATIC 3D ENVIRONMENT
+// =================================
 
 (() => {
 
@@ -1832,14 +1987,14 @@ window.addEventListener('pointermove', e => {
 
   const camera = new THREE.PerspectiveCamera(
     42,
-    window.innerWidth / window.innerHeight,
+    window.innerWidth/window.innerHeight,
     .1,
     100
   );
 
   camera.position.set(0,0,12);
 
-  // Main 3D sculpture
+  // Main sculpture
 
   const group = new THREE.Group();
 
@@ -1855,13 +2010,13 @@ window.addEventListener('pointermove', e => {
       color:0xc6a77a,
       wireframe:true,
       transparent:true,
-      opacity:.17
+      opacity:.20
     })
   );
 
   group.add(wire);
 
-  // Inner sculpture
+  // Inner geometry
 
   const inner = new THREE.Mesh(
     new THREE.IcosahedronGeometry(1.65,1),
@@ -1869,13 +2024,13 @@ window.addEventListener('pointermove', e => {
       color:0xe4c99e,
       wireframe:true,
       transparent:true,
-      opacity:.11
+      opacity:.14
     })
   );
 
   group.add(inner);
 
-  // Outer orbital rings
+  // Orbital ring one
 
   const ring = new THREE.Mesh(
     new THREE.TorusGeometry(3.1,.006,8,180),
@@ -1883,14 +2038,16 @@ window.addEventListener('pointermove', e => {
       color:0xc6a77a,
       wireframe:true,
       transparent:true,
-      opacity:.18
+      opacity:.20
     })
   );
 
-  ring.rotation.x = 1.12;
-  ring.rotation.y = .35;
+  ring.rotation.x=1.12;
+  ring.rotation.y=.35;
 
   group.add(ring);
+
+  // Orbital ring two
 
   const ring2 = new THREE.Mesh(
     new THREE.TorusGeometry(3.5,.004,8,180),
@@ -1898,54 +2055,54 @@ window.addEventListener('pointermove', e => {
       color:0xe4c99e,
       wireframe:true,
       transparent:true,
-      opacity:.11
+      opacity:.13
     })
   );
 
-  ring2.rotation.x = .6;
-  ring2.rotation.y = -.7;
+  ring2.rotation.x=.6;
+  ring2.rotation.y=-.7;
 
   group.add(ring2);
 
   // Floating particles
 
-  const count = 850;
+  const count=850;
 
-  const positions = new Float32Array(count*3);
+  const positions=new Float32Array(count*3);
 
   for(let i=0;i<count;i++) {
 
-    const radius = 3.2 + Math.random()*7.5;
+    const radius=3.2+Math.random()*7.5;
 
-    const theta = Math.random()*Math.PI*2;
+    const theta=Math.random()*Math.PI*2;
 
-    const phi = Math.acos(2*Math.random()-1);
+    const phi=Math.acos(2*Math.random()-1);
 
-    positions[i*3] =
+    positions[i*3]=
       radius*Math.sin(phi)*Math.cos(theta);
 
-    positions[i*3+1] =
+    positions[i*3+1]=
       radius*Math.sin(phi)*Math.sin(theta);
 
-    positions[i*3+2] =
+    positions[i*3+2]=
       radius*Math.cos(phi)-2;
 
   }
 
-  const particlesGeo = new THREE.BufferGeometry();
+  const particlesGeo=new THREE.BufferGeometry();
 
   particlesGeo.setAttribute(
     'position',
     new THREE.BufferAttribute(positions,3)
   );
 
-  const particles = new THREE.Points(
+  const particles=new THREE.Points(
     particlesGeo,
     new THREE.PointsMaterial({
       color:0xd6bd98,
       size:.018,
       transparent:true,
-      opacity:.55,
+      opacity:.6,
       sizeAttenuation:true
     })
   );
@@ -1954,19 +2111,19 @@ window.addEventListener('pointermove', e => {
 
   // Mouse interaction
 
-  const pointer = {x:0,y:0};
+  const pointer={x:0,y:0};
 
   window.addEventListener('pointermove',e => {
 
-    pointer.x = (e.clientX/window.innerWidth-.5)*2;
+    pointer.x=(e.clientX/window.innerWidth-.5)*2;
 
-    pointer.y = (e.clientY/window.innerHeight-.5)*2;
+    pointer.y=(e.clientY/window.innerHeight-.5)*2;
 
   }, {passive:true});
 
   // Animation loop
 
-  let frame = 0;
+  let frame=0;
 
   function animate() {
 
@@ -1974,22 +2131,21 @@ window.addEventListener('pointermove', e => {
       requestAnimationFrame(animate);
     }
 
-    frame += .003;
+    frame+=.003;
 
-    group.rotation.y += reduced ? 0 : .0017;
+    group.rotation.y+=reduced ? 0 : .0017;
 
-    group.rotation.x =
-      Math.sin(frame*.7)*.12 + pointer.y*.055;
+    group.rotation.x=
+      Math.sin(frame*.7)*.12+pointer.y*.055;
 
-    group.position.x =
-      3.1 + pointer.x*.22;
+    group.position.x=3.1+pointer.x*.22;
 
-    group.position.y =
-      .1 - pointer.y*.15 + Math.sin(frame)*.08;
+    group.position.y=
+      .1-pointer.y*.15+Math.sin(frame)*.08;
 
-    particles.rotation.y += reduced ? 0 : .00018;
+    particles.rotation.y+=reduced ? 0 : .00018;
 
-    particles.rotation.x = pointer.y*.012;
+    particles.rotation.x=pointer.y*.012;
 
     renderer.render(scene,camera);
 
@@ -2001,7 +2157,7 @@ window.addEventListener('pointermove', e => {
 
   window.addEventListener('resize',() => {
 
-    camera.aspect =
+    camera.aspect=
       window.innerWidth/window.innerHeight;
 
     camera.updateProjectionMatrix();
