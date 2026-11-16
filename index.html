@@ -1,167 +1,531 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090a0d">
-<meta name="description" content="Swastik Nayak | Creative Technologist, AI & ML Developer">
-<title>Swastik Nayak — Creative Technologist</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08090b">
+<meta name="description" content="Swastik Nayak — Creative Technologist, AI & ML Developer">
+<title>Swastik Nayak | Beyond Ordinary</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 
 <style>
-:root{--bg:#090a0d;--text:#f2efe9;--muted:#92939b;--line:rgba(255,255,255,.11);--gold:#c6a77a;--light:#ead4ae;--max:1240px}
+:root{
+  --bg:#08090b;
+  --gold:#c6a77a;
+  --light:#ead4ae;
+  --text:#f5f1e9;
+  --muted:#92939b;
+  --line:rgba(255,255,255,.12);
+  --max:1240px;
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer}
-.container{width:min(88%,var(--max));margin:auto}
+.container{width:min(89%,var(--max));margin:auto}
 
-.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background:#090a0d}
-.ambient video{width:100%;height:100%;object-fit:cover;opacity:.28;filter:brightness(.65) saturate(.7)}
-.overlay{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#090a0d77,#090a0dbd 50%,#090a0df2),radial-gradient(ellipse at 75% 35%,#c6a77a20,transparent 55%)}
+/* CINEMATIC VIDEO BACKGROUND */
+.video-bg{
+  position:fixed;inset:0;z-index:0;
+  overflow:hidden;background:#08090b;
+}
+.video-bg video{
+  width:100%;height:100%;object-fit:cover;
+  opacity:.48;filter:brightness(.65) saturate(.72);
+  transform:scale(1.04);
+}
+.video-shade{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,#05060955,#08090bc9 75%,#08090b),
+    radial-gradient(ellipse at 50% 35%,transparent,#05060999 90%);
+}
+.grain{
+  position:fixed;inset:-50%;z-index:3;pointer-events:none;
+  opacity:.12;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+  animation:grainMove .25s steps(2) infinite;
+}
+@keyframes grainMove{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(2%,-2%)}
+  50%{transform:translate(-2%,2%)}
+  75%{transform:translate(2%,2%)}
+  100%{transform:translate(-2%,-2%)}
+}
+.ambient-glow{
+  position:fixed;width:450px;height:450px;
+  border-radius:50%;pointer-events:none;z-index:2;
+  background:radial-gradient(circle,#c6a77a17,transparent 70%);
+  transform:translate(-50%,-50%);
+}
 
-.nav{position:fixed;inset:0 0 auto;z-index:20;transition:.3s}
-.nav.scrolled{background:#090a0ddd;backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
-.navin{height:78px;display:flex;align-items:center;justify-content:space-between}
+/* CINEMATIC INTRO */
+#intro{
+  position:fixed;inset:0;z-index:100000;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:#08090b;
+  transition:opacity 1.3s ease,visibility 1.3s ease;
+}
+#intro video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;opacity:.64;
+  filter:brightness(.65) saturate(.75);
+  animation:introZoom 15s ease-in-out infinite alternate;
+}
+@keyframes introZoom{
+  from{transform:scale(1)}
+  to{transform:scale(1.13)}
+}
+.intro-shade{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,#05060955,#08090b55 45%,#08090bdd),
+    radial-gradient(ellipse at center,transparent,#050609bb 100%);
+}
+.intro-lines{
+  position:absolute;inset:0;pointer-events:none;
+  display:grid;place-items:center;
+}
+.intro-ring{
+  position:absolute;width:min(75vw,700px);aspect-ratio:1;
+  border:1px solid #ead4ae27;border-radius:50%;
+  animation:ringRotate 35s linear infinite;
+}
+.intro-ring:before{
+  content:"";position:absolute;inset:12%;
+  border:1px solid #ead4ae19;border-radius:50%;
+}
+.intro-ring:after{
+  content:"";position:absolute;inset:-7%;
+  border:1px dashed #ead4ae1b;border-radius:50%;
+}
+@keyframes ringRotate{to{transform:rotate(360deg)}}
+.intro-content{
+  position:relative;z-index:5;text-align:center;
+  width:min(92%,900px);padding:30px 15px;
+  animation:introReveal 1.8s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes introReveal{
+  from{opacity:0;transform:translateY(45px);filter:blur(12px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+.intro-label{
+  color:var(--light);font-size:10px;
+  letter-spacing:6px;text-transform:uppercase;
+  margin-bottom:32px;
+}
+.intro-title{
+  font:500 clamp(45px,9vw,110px)/1.02 Manrope;
+  letter-spacing:-6px;color:#f5f1e9;
+  text-shadow:0 10px 70px #000;
+}
+.intro-title em{
+  color:var(--light);
+  font-family:"Playfair Display",serif;
+  font-weight:500;
+}
+.intro-subtitle{
+  color:#c5c0b7;font-size:12px;
+  letter-spacing:3px;margin-top:24px;
+}
+.intro-rule{
+  width:70px;height:1px;background:var(--gold);
+  margin:35px auto;
+}
+#enter{
+  position:relative;border:1px solid #ead4ae;
+  background:linear-gradient(130deg,#ead4ae,#a7834f);
+  color:#15120e;padding:17px 32px;
+  border-radius:40px;font-size:10px;
+  letter-spacing:2px;font-weight:800;
+  box-shadow:0 0 45px #c6a77a44;
+  transition:.35s;
+}
+#enter:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 65px #c6a77a88;
+}
+.intro-foot{
+  display:block;color:#999;font-size:9px;
+  letter-spacing:2px;margin-top:24px;
+}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+
+/* NAVIGATION */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  transition:.4s;
+}
+.nav.scrolled{
+  background:#090a0de8;backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--line);
+}
+.navin{
+  height:80px;display:flex;align-items:center;
+  justify-content:space-between;
+}
 .brand{font:800 24px Manrope;letter-spacing:-1px}
 .brand span{color:var(--gold)}
-.links{display:flex;gap:28px}
-.links a,.navcta{font-size:11px;color:#bbb}
-.navcta{border:1px solid #c6a77a88;padding:12px 18px;border-radius:30px}
-.menu{display:none;background:none;border:0;color:white;font-size:24px}
+.links{display:flex;gap:27px}
+.links a,.navcta{font-size:10px;letter-spacing:1px;color:#bbb}
+.links a:hover{color:var(--light)}
+.navcta{
+  border:1px solid #c6a77a77;
+  padding:12px 18px;border-radius:30px;
+}
+.menu{
+  display:none;background:none;border:0;
+  color:white;font-size:25px;
+}
 
-.hero{min-height:100svh;position:relative;display:flex;align-items:center;padding:135px 0 80px;overflow:hidden}
-.heroGrid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px}
-#scene{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
-h1{font:500 clamp(56px,8vw,108px)/.98 Manrope;letter-spacing:-6px}
-h1 em,.sectionTitle em,.vision em,.contact h2 em{font:italic 500 1em "Playfair Display";color:var(--gold)}
-.eyebrow{display:inline-flex;gap:9px;align-items:center;border:1px solid var(--line);border-radius:30px;padding:9px 13px;font-size:10px;letter-spacing:1px;color:#c5c4c5;margin-bottom:28px}
+/* HERO */
+.hero{
+  min-height:100svh;position:relative;
+  display:flex;align-items:center;
+  padding:145px 0 80px;z-index:4;
+}
+.heroGrid{
+  display:grid;grid-template-columns:1.1fr .9fr;
+  align-items:center;gap:35px;
+}
+.heroCopy{max-width:650px}
+.eyebrow{
+  display:inline-flex;gap:9px;align-items:center;
+  border:1px solid var(--line);border-radius:30px;
+  padding:10px 14px;font-size:9px;
+  letter-spacing:1px;color:#ccc;margin-bottom:28px;
+}
 .dot{width:7px;height:7px;background:#91a98b;border-radius:50%}
-.lead{max-width:530px;color:#aaa;font-size:14px;line-height:2;margin-top:25px}
-.role{font-size:13px;margin-top:20px;color:#ddd}
+h1{
+  font:500 clamp(58px,8vw,105px)/.99 Manrope;
+  letter-spacing:-6px;
+}
+h1 em,.sectionTitle em,.vision em,.contact h2 em{
+  color:var(--gold);
+  font:italic 500 1em "Playfair Display";
+}
+.role{font-size:13px;color:#ddd;margin-top:23px}
 .role span{color:var(--light)}
+.lead{
+  max-width:530px;color:#aaa;
+  font-size:14px;line-height:2;margin-top:25px;
+}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.btn{display:inline-flex;padding:15px 21px;border-radius:30px;font-size:11px;font-weight:700}
+.btn{
+  display:inline-flex;align-items:center;
+  padding:15px 22px;border-radius:30px;
+  font-size:10px;font-weight:700;letter-spacing:1px;
+  transition:.3s;
+}
+.btn:hover{transform:translateY(-3px)}
 .primary{background:var(--gold);color:#111}
 .ghost{border:1px solid var(--line)}
-.note{margin-top:50px;color:#777;font-size:10px;letter-spacing:1.5px}
-.portraitWrap{min-height:490px;display:grid;place-items:center;position:relative}
-.portrait{width:min(340px,80%);height:440px;padding:9px;border:1px solid #c6a77a66;border-radius:180px 180px 16px 16px;background:#c6a77a18;transform:rotate(3deg);box-shadow:0 30px 90px #0008}
-.portrait div{height:100%;overflow:hidden;border-radius:170px 170px 10px 10px;background:#25211c}
+.note{
+  margin-top:48px;color:#777;
+  font-size:9px;letter-spacing:2px;
+}
+.portraitWrap{
+  min-height:490px;display:grid;
+  place-items:center;position:relative;
+}
+.portrait{
+  width:min(340px,80%);height:440px;
+  padding:9px;border:1px solid #c6a77a66;
+  border-radius:180px 180px 16px 16px;
+  background:#c6a77a18;transform:rotate(3deg);
+  box-shadow:0 30px 90px #0008;
+}
+.portrait div{
+  height:100%;overflow:hidden;
+  border-radius:170px 170px 10px 10px;
+  background:#25211c;
+}
 .portrait img{width:100%;height:100%;object-fit:cover}
-.float{position:absolute;padding:14px 17px;border:1px solid var(--line);border-radius:12px;background:#111216dd;backdrop-filter:blur(12px);font-size:11px}
-.float small{display:block;color:#888;font-size:9px;letter-spacing:1px;margin-bottom:6px}
+.float{
+  position:absolute;padding:14px 17px;
+  border:1px solid var(--line);border-radius:12px;
+  background:#111216dd;backdrop-filter:blur(12px);
+  font-size:11px;
+}
+.float small{
+  display:block;color:#888;font-size:9px;
+  letter-spacing:1px;margin-bottom:6px;
+}
 .f1{left:0;bottom:60px}
 .f2{right:0;top:55px}
 
-section{position:relative;z-index:2;padding:110px 0;border-top:1px solid #ffffff10}
+/* SECTIONS */
+section{
+  position:relative;z-index:4;
+  padding:110px 0;border-top:1px solid #ffffff10;
+  background:linear-gradient(180deg,#08090b22,#08090b55);
+}
 .num{color:var(--gold);font-size:10px;letter-spacing:3px;margin-bottom:16px}
-.sectionTitle{font:500 clamp(38px,5vw,64px)/1.08 Manrope;letter-spacing:-3px;margin-bottom:35px}
-.intro{color:var(--muted);font-size:13px;line-height:2;max-width:570px;margin-top:-18px;margin-bottom:38px}
+.sectionTitle{
+  font:500 clamp(38px,5vw,64px)/1.08 Manrope;
+  letter-spacing:-3px;margin-bottom:35px;
+}
+.intro{
+  color:var(--muted);font-size:13px;line-height:2;
+  max-width:570px;margin-top:-18px;margin-bottom:38px;
+}
 .aboutGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px}
 .copy p{color:#b7b5b8;font-size:14px;line-height:2.1;margin-bottom:20px}
-.card,.skill,.project,.interest{border:1px solid var(--line);background:#ffffff09;border-radius:15px;padding:28px;backdrop-filter:blur(12px)}
-.card h3,.skill h3,.project h3,.interest h3{font:500 24px "Playfair Display";margin-bottom:15px}
+.card,.skill,.project,.interest{
+  border:1px solid var(--line);background:#ffffff09;
+  border-radius:15px;padding:28px;backdrop-filter:blur(12px);
+}
+.card h3,.skill h3,.project h3,.interest h3{
+  font:500 24px "Playfair Display";margin-bottom:15px;
+}
 .detail{padding:13px 0;border-bottom:1px solid var(--line)}
 .detail:last-child{border:0}
-.detail small{display:block;color:#888;font-size:9px;letter-spacing:2px;margin-bottom:6px}
+.detail small{
+  display:block;color:#888;font-size:9px;
+  letter-spacing:2px;margin-bottom:6px;
+}
 .detail strong{font-size:12px}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .skill{min-height:175px}
 .skill small{color:var(--gold);font-size:9px;letter-spacing:2px}
 .tags{display:flex;flex-wrap:wrap;gap:8px}
-.tag{font-size:10px;color:#aaa;border:1px solid var(--line);padding:8px 11px;border-radius:25px}
+.tag{
+  font-size:10px;color:#aaa;border:1px solid var(--line);
+  padding:8px 11px;border-radius:25px;
+}
 .project{padding:0;overflow:hidden}
-.art{height:220px;display:grid;place-items:center;background:radial-gradient(circle,#373027,#15161b 70%);font:italic 60px "Playfair Display";color:var(--light)}
+.art{
+  height:220px;display:grid;place-items:center;
+  background:radial-gradient(circle,#373027,#15161b 70%);
+  font:italic 60px "Playfair Display";color:var(--light);
+}
 .projectBody{padding:26px}
-.projectBody p,.interest p{color:var(--muted);font-size:12px;line-height:1.9}
+.projectBody p,.interest p{
+  color:var(--muted);font-size:12px;line-height:1.9;
+}
 .meta{margin-top:20px;color:var(--gold);font-size:10px}
-.timeline{border-left:1px solid #c6a77a88;padding-left:30px;margin-left:8px}
+.timeline{
+  border-left:1px solid #c6a77a88;
+  padding-left:30px;margin-left:8px;
+}
 .timeline article{padding-bottom:35px;position:relative}
-.timeline article:before{content:"";position:absolute;left:-36px;top:4px;width:10px;height:10px;background:var(--gold);border-radius:50%}
+.timeline article:before{
+  content:"";position:absolute;left:-36px;top:4px;
+  width:10px;height:10px;background:var(--gold);border-radius:50%;
+}
 .timeline small{color:var(--gold);font-size:10px;letter-spacing:2px}
 .timeline h3{font:25px "Playfair Display";margin:12px 0}
 .timeline p{color:var(--muted);font-size:13px;line-height:1.9}
 .interest .symbol{color:var(--gold);font-size:22px;margin-bottom:20px}
-.vision{padding:65px;border:1px solid #c6a77a66;border-radius:20px;background:radial-gradient(ellipse at 85% 15%,#3a3024,#17171a 55%,#111216)}
-.vision h2,.contact h2{font:500 clamp(38px,5vw,64px)/1.1 Manrope;letter-spacing:-3px;margin:20px 0}
-.vision p,.contact p{color:#aaa;font-size:13px;line-height:2;max-width:680px}
-.contact{text-align:center;padding:75px 25px;border:1px solid #c6a77a55;border-radius:20px;background:radial-gradient(ellipse at 50% 0%,#30271e,#15161a 65%)}
+.vision{
+  padding:65px;border:1px solid #c6a77a66;border-radius:20px;
+  background:radial-gradient(ellipse at 85% 15%,#3a3024,#17171a 55%,#111216);
+}
+.vision h2,.contact h2{
+  font:500 clamp(38px,5vw,64px)/1.1 Manrope;
+  letter-spacing:-3px;margin:20px 0;
+}
+.vision p,.contact p{
+  color:#aaa;font-size:13px;line-height:2;max-width:680px;
+}
+.contact{
+  text-align:center;padding:75px 25px;
+  border:1px solid #c6a77a55;border-radius:20px;
+  background:radial-gradient(ellipse at 50% 0%,#30271e,#15161a 65%);
+}
 .contact p{margin:0 auto 25px}
-.socials{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin-top:30px;font-size:11px;color:#aaa}
-footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:25px 0;color:#888;font-size:10px}
+.socials{
+  display:flex;justify-content:center;gap:25px;
+  flex-wrap:wrap;margin-top:30px;font-size:11px;color:#aaa;
+}
+footer{
+  position:relative;z-index:4;border-top:1px solid var(--line);
+  padding:25px 0;color:#888;font-size:10px;
+  background:#08090b;
+}
 .footerin{display:flex;justify-content:space-between;gap:15px}
-
 .reveal{opacity:0;transform:translateY(24px);transition:.8s}
 .reveal.visible{opacity:1;transform:none}
-.glow{position:fixed;width:260px;height:260px;border-radius:50%;pointer-events:none;z-index:4;background:radial-gradient(circle,#c6a77a18,transparent 70%);transform:translate(-50%,-50%)}
 
 /* NISHI */
-#nishi-launcher{position:fixed;right:24px;bottom:24px;z-index:99999;width:64px;height:64px;border-radius:50%;border:1px solid var(--light);background:linear-gradient(145deg,var(--light),#a7834f);color:#15120e;font-size:27px;box-shadow:0 0 35px #c6a77a66;animation:pulse 3s infinite}
-#nishi-panel{display:none;position:fixed;right:24px;bottom:100px;z-index:99999;width:min(390px,calc(100vw - 24px));height:570px;max-height:calc(100dvh - 115px);flex-direction:column;overflow:hidden;background:#101115f7;border:1px solid #c6a77a99;border-radius:18px;box-shadow:0 20px 80px #000b;backdrop-filter:blur(22px)}
+#nishi-launcher{
+  position:fixed;right:24px;bottom:24px;z-index:99999;
+  width:64px;height:64px;border-radius:50%;
+  border:1px solid var(--light);
+  background:linear-gradient(145deg,var(--light),#a7834f);
+  color:#15120e;font-size:27px;
+  box-shadow:0 0 35px #c6a77a66;animation:pulse 3s infinite;
+}
+#nishi-panel{
+  display:none;position:fixed;right:24px;bottom:100px;
+  z-index:99999;width:min(390px,calc(100vw - 24px));
+  height:570px;max-height:calc(100dvh - 115px);
+  flex-direction:column;overflow:hidden;
+  background:#101115f7;border:1px solid #c6a77a99;
+  border-radius:18px;box-shadow:0 20px 80px #000b;
+  backdrop-filter:blur(22px);
+}
 #nishi-panel.open{display:flex;animation:appear .25s ease}
 @keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.nHead{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:linear-gradient(120deg,#252019,#151518);border-bottom:1px solid #c6a77a44}
+.nHead{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 18px;background:linear-gradient(120deg,#252019,#151518);
+  border-bottom:1px solid #c6a77a44;
+}
 .nBrand{display:flex;align-items:center;gap:11px}
-.nAvatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,var(--light),#a7834f);color:#111}
+.nAvatar{
+  width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--light),#a7834f);color:#111;
+}
 .nName{font:800 15px Manrope;color:var(--light);letter-spacing:1px}
 .nStatus{font-size:10px;color:#91a98b;margin-top:4px}
 #nishi-close{background:none;border:0;color:var(--light);font-size:26px}
-#nishi-messages{flex:1;min-height:0;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
-.nMessage{max-width:90%;padding:12px 14px;border-radius:14px;font-size:12px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
-.nBot{align-self:flex-start;background:#25231f;color:#e8dfd1;border:1px solid #c6a77a22;border-bottom-left-radius:4px}
-.nUser{align-self:flex-end;background:var(--gold);color:#17130d;border-bottom-right-radius:4px}
-#nishi-form{display:flex;gap:7px;padding:11px;background:#17171a;border-top:1px solid #c6a77a33}
-#nishi-input{flex:1;min-width:0;padding:12px;background:#242329;color:white;border:1px solid #504332;border-radius:10px;outline:none;font:12px "DM Sans"}
+#nishi-messages{
+  flex:1;min-height:0;overflow:auto;padding:16px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.nMessage{
+  max-width:90%;padding:12px 14px;border-radius:14px;
+  font-size:12px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;
+}
+.nBot{
+  align-self:flex-start;background:#25231f;color:#e8dfd1;
+  border:1px solid #c6a77a22;border-bottom-left-radius:4px;
+}
+.nUser{
+  align-self:flex-end;background:var(--gold);color:#17130d;
+  border-bottom-right-radius:4px;
+}
+#nishi-form{
+  display:flex;gap:7px;padding:11px;background:#17171a;
+  border-top:1px solid #c6a77a33;
+}
+#nishi-input{
+  flex:1;min-width:0;padding:12px;background:#242329;color:white;
+  border:1px solid #504332;border-radius:10px;outline:none;
+  font:12px "DM Sans";
+}
 #nishi-input:focus{border-color:var(--gold)}
-#nishi-send,.voiceBtn,#voiceToggle{border:1px solid #c6a77a66;border-radius:10px;background:#c6a77a;color:#15120e;font-weight:700;font-size:11px;padding:0 13px}
+#nishi-send,.voiceBtn,#voiceToggle{
+  border:1px solid #c6a77a66;border-radius:10px;
+  background:#c6a77a;color:#15120e;font-weight:700;
+  font-size:11px;padding:0 13px;
+}
 .voiceBtn{background:#25231f;color:var(--light);font-size:17px;min-width:42px}
 .voiceBtn.listening{background:#8e3e38;color:white;animation:pulse 1s infinite}
-.voiceSettings{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 12px;background:#17171a;color:#999;font-size:10px}
+.voiceSettings{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;padding:8px 12px;background:#17171a;color:#999;font-size:10px;
+}
 #voiceToggle{background:#25231f;color:var(--light);padding:7px 10px}
 #voiceStatus{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nFoot{text-align:center;padding:8px;background:#17171a;color:#777;font-size:9px;letter-spacing:1px}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #c6a77a33,0 0 28px #c6a77a55}50%{box-shadow:0 0 0 12px #c6a77a00,0 0 42px #c6a77a88}}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 #c6a77a33,0 0 28px #c6a77a55}
+  50%{box-shadow:0 0 0 12px #c6a77a00,0 0 42px #c6a77a88}
+}
 
-/* Cinematic first-visit welcome */
-#welcome-screen{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#30271e 0%,#111114 42%,#07080b 100%);transition:opacity .9s ease,visibility .9s ease}
-#welcome-screen::before,#welcome-screen::after{content:"";position:absolute;width:min(70vw,620px);aspect-ratio:1;border:1px solid #c6a77a33;border-radius:50%;animation:welcomeOrbit 22s linear infinite}
-#welcome-screen::after{width:min(52vw,450px);border-color:#ead4ae22;animation-direction:reverse;animation-duration:16s}
-@keyframes welcomeOrbit{to{transform:rotate(360deg) scale(1.04)}}
-.welcome-inner{position:relative;z-index:1;width:min(90%,760px);text-align:center;padding:35px 20px}
-.welcome-kicker{color:var(--gold);font-size:10px;letter-spacing:5px;text-transform:uppercase;margin-bottom:24px}
-.welcome-title{font:500 clamp(46px,9vw,92px)/1.02 Manrope;letter-spacing:-5px;color:#f2efe9}
-.welcome-title em{font:italic 500 1em "Playfair Display";color:var(--gold)}
-.welcome-copy{max-width:520px;margin:22px auto 30px;color:#aaa;font-size:13px;line-height:2}
-#welcome-enter{border:1px solid #ead4ae;background:linear-gradient(135deg,#ead4ae,#ad8956);color:#15120e;border-radius:40px;padding:16px 27px;font-size:11px;font-weight:800;letter-spacing:1.5px;box-shadow:0 0 38px #c6a77a44}
-.welcome-hint{display:block;margin-top:18px;color:#777;font-size:10px;letter-spacing:1px}
-#welcome-screen.dismissed{opacity:0;visibility:hidden;pointer-events:none}
-
-@media(prefers-reduced-motion:reduce){#welcome-screen::before,#welcome-screen::after{animation:none}}
-@media(max-width:900px){.heroGrid{grid-template-columns:1fr;text-align:center}.heroCopy{margin:auto}.lead{margin-left:auto;margin-right:auto}.actions{justify-content:center}.note{margin-top:35px}.aboutGrid{grid-template-columns:1fr;gap:30px}.portraitWrap{min-height:440px}}
-@media(max-width:650px){.container{width:89%}.navin{height:70px}.menu{display:block}.navcta{display:none}.links{display:none;position:absolute;top:70px;left:5.5%;width:89%;padding:22px;background:#101116f7;border:1px solid var(--line);border-radius:14px;flex-direction:column}.links.open{display:flex}.hero{padding:120px 0 60px}h1{font-size:clamp(52px,14vw,75px);letter-spacing:-4px}.portrait{height:360px;width:255px}.portraitWrap{min-height:410px}.f1{left:0;bottom:35px}.f2{right:0;top:30px}.float{padding:11px}section{padding:82px 0}.grid2,.grid3{grid-template-columns:1fr}.vision{padding:35px 24px}.contact{padding:55px 18px}.footerin{flex-direction:column;text-align:center}.glow{display:none}#nishi-launcher{right:16px;bottom:16px}#nishi-panel{right:8px;bottom:88px;width:calc(100vw - 16px)}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}.ambient video{display:none}}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .heroGrid{grid-template-columns:1fr;text-align:center}
+  .heroCopy{margin:auto}
+  .lead{margin-left:auto;margin-right:auto}
+  .actions{justify-content:center}
+  .note{margin-top:35px}
+  .aboutGrid{grid-template-columns:1fr;gap:30px}
+  .portraitWrap{min-height:440px}
+}
+@media(max-width:650px){
+  .container{width:89%}
+  .navin{height:70px}
+  .menu{display:block}
+  .navcta{display:none}
+  .links{
+    display:none;position:absolute;top:70px;left:5.5%;width:89%;
+    padding:22px;background:#101116f7;border:1px solid var(--line);
+    border-radius:14px;flex-direction:column;
+  }
+  .links.open{display:flex}
+  .hero{padding:120px 0 60px}
+  h1{font-size:clamp(52px,14vw,75px);letter-spacing:-4px}
+  .portrait{height:360px;width:255px}
+  .portraitWrap{min-height:410px}
+  .f1{left:0;bottom:35px}
+  .f2{right:0;top:30px}
+  .float{padding:11px}
+  section{padding:82px 0}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .vision{padding:35px 24px}
+  .contact{padding:55px 18px}
+  .footerin{flex-direction:column;text-align:center}
+  #nishi-launcher{right:16px;bottom:16px}
+  #nishi-panel{right:8px;bottom:88px;width:calc(100vw - 16px)}
+  .intro-title{letter-spacing:-3px}
+  .intro-label{letter-spacing:3px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  .grain{display:none}
+}
 </style>
 </head>
-<body>
-<div class="ambient"><video id="ambientVideo" autoplay muted loop playsinline src="background.mp4"></video></div>
-<div class="overlay"></div>
-<div class="glow" id="glow"></div>
 
-<div id="welcome-screen">
-  <div class="welcome-inner">
-    <div class="welcome-kicker">A DIGITAL EXPERIENCE BY SWASTIK NAYAK</div>
-    <h1 class="welcome-title">Beyond the <em>ordinary.</em></h1>
-    <p class="welcome-copy">A space where technology, creativity and curiosity come together. Step inside and explore.</p>
-    <button id="welcome-enter">ENTER EXPERIENCE ↗</button>
-    <span class="welcome-hint">DESIGNED WITH INTENTION · BUILT TO EVOLVE</span>
+<body class="locked">
+
+<!-- BACKGROUND VIDEO -->
+<div class="video-bg">
+  <video autoplay muted loop playsinline preload="metadata">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="video-shade"></div>
+<div class="grain"></div>
+<div class="ambient-glow" id="glow"></div>
+
+<!-- CINEMATIC INTRO -->
+<div id="intro">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  <div class="intro-shade"></div>
+  <div class="intro-lines"><div class="intro-ring"></div></div>
+
+  <div class="intro-content">
+    <div class="intro-label">A DIGITAL EXPERIENCE BY SWASTIK NAYAK</div>
+
+    <h1 class="intro-title">
+      Beyond the<br><em>ordinary.</em>
+    </h1>
+
+    <p class="intro-subtitle">
+      TECHNOLOGY · CREATIVITY · INTELLIGENCE
+    </p>
+
+    <div class="intro-rule"></div>
+
+    <button id="enter">ENTER EXPERIENCE &nbsp; ↗</button>
+
+    <span class="intro-foot">
+      AN IMMERSIVE DIGITAL JOURNEY
+    </span>
   </div>
 </div>
 
+<!-- NAVIGATION -->
 <nav class="nav" id="navbar">
   <div class="container navin">
     <a class="brand" href="#home">SWASTIK<span>.</span></a>
@@ -181,337 +545,265 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:25px
   </div>
 </nav>
 
-<canvas id="scene"></canvas>
-
 <main id="home">
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container heroGrid">
-      <div class="heroCopy reveal">
-        <div class="eyebrow">
-          <span class="dot"></span>
-          AVAILABLE FOR LEARNING & COLLABORATION
-        </div>
 
-        <h1>Creating<br>with <em>purpose.</em></h1>
-
-        <p class="role">
-          Computer Science Student
-          <span> · AI &amp; ML Enthusiast</span>
-        </p>
-
-        <p class="lead">
-          I am Swastik Nayak — an aspiring developer exploring the
-          intersection of artificial intelligence, technology and
-          creative digital experiences. I believe in building
-          things that are not only functional, but meaningful.
-        </p>
-
-        <div class="actions">
-          <a href="#projects" class="btn primary">EXPLORE MY WORK ↗</a>
-          <a href="#about" class="btn ghost">DISCOVER MORE</a>
-        </div>
-
-        <div class="note">
-          CURIOUS MIND · CREATIVE THINKING · CONTINUOUS LEARNING
-        </div>
+<header class="hero">
+  <div class="container heroGrid">
+    <div class="heroCopy reveal">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        AVAILABLE FOR LEARNING & COLLABORATION
       </div>
 
-      <div class="portraitWrap reveal">
-        <div class="portrait">
-          <div>
-            <img src="profile.jpg" alt="Swastik Nayak portrait"
-                 onerror="this.style.display='none'">
-          </div>
-        </div>
+      <h1>Creating<br>with <em>purpose.</em></h1>
 
-        <div class="float f1">
-          <small>FOCUS</small>
-          Artificial Intelligence
-        </div>
-
-        <div class="float f2">
-          <small>CURRENTLY EXPLORING</small>
-          Full Stack Development
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="num">01 — THE INTRODUCTION</div>
-      <h2 class="sectionTitle">Behind the <em>pixels.</em></h2>
-
-      <div class="aboutGrid">
-        <div class="copy">
-          <p>
-            I am pursuing a B.Tech in Computer Science Engineering
-            with a specialization in Artificial Intelligence and
-            Machine Learning at Sri Sri University.
-          </p>
-
-          <p>
-            My journey revolves around understanding technology,
-            writing code and transforming creative ideas into
-            useful digital products. I enjoy the space where
-            engineering meets thoughtful design.
-          </p>
-
-          <p>
-            I am currently exploring full-stack development,
-            programming and artificial intelligence while
-            continuously improving my problem-solving skills.
-          </p>
-        </div>
-
-        <aside class="card">
-          <h3>A little about me</h3>
-
-          <div class="detail">
-            <small>NAME</small>
-            <strong>Swastik Nayak</strong>
-          </div>
-
-          <div class="detail">
-            <small>EDUCATION</small>
-            <strong>B.Tech CSE — AI &amp; ML</strong>
-          </div>
-
-          <div class="detail">
-            <small>UNIVERSITY</small>
-            <strong>Sri Sri University</strong>
-          </div>
-
-          <div class="detail">
-            <small>FOCUS</small>
-            <strong>Development &amp; Artificial Intelligence</strong>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="container">
-      <div class="num">02 — CAPABILITIES</div>
-      <h2 class="sectionTitle">Tools of <em>my craft.</em></h2>
-
-      <p class="intro">
-        A growing toolkit, shaped by curiosity, experimentation
-        and the desire to build things that work beautifully.
+      <p class="role">
+        Computer Science Student
+        <span> · AI &amp; ML Enthusiast</span>
       </p>
 
-      <div class="grid2">
-        <article class="skill">
-          <small>01 / PROGRAMMING</small>
-          <h3>Languages</h3>
-          <div class="tags">
-            <span class="tag">C</span>
-            <span class="tag">C++</span>
-            <span class="tag">Python</span>
-            <span class="tag">JavaScript · Learning</span>
-          </div>
-        </article>
-
-        <article class="skill">
-          <small>02 / DIGITAL CRAFT</small>
-          <h3>Development</h3>
-          <div class="tags">
-            <span class="tag">HTML5</span>
-            <span class="tag">CSS3</span>
-            <span class="tag">Responsive Design</span>
-          </div>
-        </article>
-
-        <article class="skill">
-          <small>03 / WORKFLOW</small>
-          <h3>Tools</h3>
-          <div class="tags">
-            <span class="tag">Git</span>
-            <span class="tag">GitHub</span>
-            <span class="tag">VS Code</span>
-            <span class="tag">SQL</span>
-          </div>
-        </article>
-
-        <article class="skill">
-          <small>04 / EXPLORATION</small>
-          <h3>Interests</h3>
-          <div class="tags">
-            <span class="tag">Artificial Intelligence</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Full Stack Development</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <div class="num">03 — SELECTED WORK</div>
-      <h2 class="sectionTitle">Ideas into <em>reality.</em></h2>
-
-      <p class="intro">
-        A selection of personal projects and experiments.
-        The beginning of a much bigger journey.
+      <p class="lead">
+        I am Swastik Nayak — an aspiring developer exploring the
+        intersection of artificial intelligence, technology and
+        creative digital experiences. I believe in building
+        things that are not only functional, but meaningful.
       </p>
 
-      <div class="grid2">
-        <article class="project">
-          <div class="art">01.</div>
-          <div class="projectBody">
-            <h3>Personal Portfolio</h3>
-            <p>
-              A personal digital space designed to present my
-              technical interests, education and development
-              journey through a considered visual experience.
-            </p>
-            <div class="meta">
-              HTML · CSS · JAVASCRIPT ·
-              <a href="https://swastik51.github.io"
-                 target="_blank" rel="noopener">VIEW PROJECT ↗</a>
-            </div>
-          </div>
-        </article>
+      <div class="actions">
+        <a href="#projects" class="btn primary">EXPLORE MY WORK ↗</a>
+        <a href="#about" class="btn ghost">DISCOVER MORE</a>
+      </div>
 
-        <article class="project">
-          <div class="art">02.</div>
-          <div class="projectBody">
-            <h3>AI / ML Exploration</h3>
-            <p>
-              Exploring machine learning concepts and planning
-              practical applications that can solve meaningful
-              real-world problems.
-            </p>
-            <div class="meta">
-              PYTHON · AI · ML · IN DEVELOPMENT
-            </div>
-          </div>
-        </article>
+      <div class="note">
+        CURIOUS MIND · CREATIVE THINKING · CONTINUOUS LEARNING
       </div>
     </div>
-  </section>
 
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="container">
-      <div class="num">04 — THE JOURNEY</div>
-      <h2 class="sectionTitle">Learning <em>never stops.</em></h2>
-
-      <div class="timeline">
-        <article>
-          <small>2025 — PRESENT</small>
-          <h3>Bachelor of Technology</h3>
-          <p>
-            Computer Science Engineering<br>
-            Specialization: Artificial Intelligence &amp; Machine Learning<br>
-            Sri Sri University, Cuttack, Odisha
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTERESTS -->
-  <section id="interests">
-    <div class="container">
-      <div class="num">05 — BEYOND THE SCREEN</div>
-      <h2 class="sectionTitle">A world of <em>curiosity.</em></h2>
-
-      <div class="grid3">
-        <article class="interest">
-          <div class="symbol">✳</div>
-          <h3>Creative pursuits</h3>
-          <p>
-            Photography, cinematic editing and exploring
-            creative visual storytelling.
-          </p>
-        </article>
-
-        <article class="interest">
-          <div class="symbol">⌘</div>
-          <h3>Technology</h3>
-          <p>
-            Exploring emerging technologies, AI, programming
-            and game development.
-          </p>
-        </article>
-
-        <article class="interest">
-          <div class="symbol">↗</div>
-          <h3>Personal growth</h3>
-          <p>
-            Gaming, learning new things and continuously
-            challenging myself to grow.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- VISION -->
-  <section id="vision">
-    <div class="container">
-      <div class="vision">
-        <small style="color:var(--gold);letter-spacing:3px">
-          06 — THE DIRECTION
-        </small>
-
-        <h2>
-          Building today.<br>
-          <em>Innovating tomorrow.</em>
-        </h2>
-
-        <p>
-          My ambition is to become a skilled Full Stack Developer
-          and AI Engineer, building innovative products that
-          combine intelligent technology, creativity and
-          meaningful user experiences.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact">
-        <div style="color:var(--gold);letter-spacing:3px;font-size:10px">
-          HAVE A PROJECT IN MIND?
-        </div>
-
-        <h2>
-          Let's create<br>
-          <em>something meaningful.</em>
-        </h2>
-
-        <p>
-          I'm always open to thoughtful conversations,
-          creative collaborations and opportunities to learn,
-          build and grow.
-        </p>
-
-        <a class="btn primary" href="mailto:mrswastik372@gmail.com">
-          GET IN TOUCH ↗
-        </a>
-
-        <div class="socials">
-          <a href="mailto:mrswastik372@gmail.com">EMAIL ↗</a>
-          <a href="https://github.com/swastik51"
-             target="_blank" rel="noopener">GITHUB ↗</a>
-          <a href="https://www.linkedin.com/"
-             target="_blank" rel="noopener">LINKEDIN ↗</a>
-          <a href="https://www.instagram.com/"
-             target="_blank" rel="noopener">INSTAGRAM ↗</a>
+    <div class="portraitWrap reveal">
+      <div class="portrait">
+        <div>
+          <img src="profile.jpg" alt="Swastik Nayak portrait"
+            onerror="this.style.display='none'">
         </div>
       </div>
+
+      <div class="float f1">
+        <small>FOCUS</small>
+        Artificial Intelligence
+      </div>
+
+      <div class="float f2">
+        <small>CURRENTLY EXPLORING</small>
+        Full Stack Development
+      </div>
     </div>
-  </section>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="num">01 — THE INTRODUCTION</div>
+    <h2 class="sectionTitle">Behind the <em>pixels.</em></h2>
+
+    <div class="aboutGrid">
+      <div class="copy">
+        <p>
+          I am pursuing a B.Tech in Computer Science Engineering
+          with a specialization in Artificial Intelligence and
+          Machine Learning at Sri Sri University.
+        </p>
+        <p>
+          My journey revolves around understanding technology,
+          writing code and transforming creative ideas into
+          useful digital products. I enjoy the space where
+          engineering meets thoughtful design.
+        </p>
+        <p>
+          I am currently exploring full-stack development,
+          programming and artificial intelligence while
+          continuously improving my problem-solving skills.
+        </p>
+      </div>
+
+      <aside class="card">
+        <h3>A little about me</h3>
+        <div class="detail"><small>NAME</small><strong>Swastik Nayak</strong></div>
+        <div class="detail"><small>EDUCATION</small><strong>B.Tech CSE — AI &amp; ML</strong></div>
+        <div class="detail"><small>UNIVERSITY</small><strong>Sri Sri University</strong></div>
+        <div class="detail"><small>FOCUS</small><strong>Development &amp; Artificial Intelligence</strong></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="num">02 — CAPABILITIES</div>
+    <h2 class="sectionTitle">Tools of <em>my craft.</em></h2>
+    <p class="intro">
+      A growing toolkit, shaped by curiosity, experimentation
+      and the desire to build things that work beautifully.
+    </p>
+
+    <div class="grid2">
+      <article class="skill">
+        <small>01 / PROGRAMMING</small>
+        <h3>Languages</h3>
+        <div class="tags">
+          <span class="tag">C</span><span class="tag">C++</span>
+          <span class="tag">Python</span><span class="tag">JavaScript · Learning</span>
+        </div>
+      </article>
+      <article class="skill">
+        <small>02 / DIGITAL CRAFT</small>
+        <h3>Development</h3>
+        <div class="tags">
+          <span class="tag">HTML5</span><span class="tag">CSS3</span>
+          <span class="tag">Responsive Design</span>
+        </div>
+      </article>
+      <article class="skill">
+        <small>03 / WORKFLOW</small>
+        <h3>Tools</h3>
+        <div class="tags">
+          <span class="tag">Git</span><span class="tag">GitHub</span>
+          <span class="tag">VS Code</span><span class="tag">SQL</span>
+        </div>
+      </article>
+      <article class="skill">
+        <small>04 / EXPLORATION</small>
+        <h3>Interests</h3>
+        <div class="tags">
+          <span class="tag">Artificial Intelligence</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Full Stack Development</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="num">03 — SELECTED WORK</div>
+    <h2 class="sectionTitle">Ideas into <em>reality.</em></h2>
+    <p class="intro">
+      A selection of personal projects and experiments.
+      The beginning of a much bigger journey.
+    </p>
+
+    <div class="grid2">
+      <article class="project">
+        <div class="art">01.</div>
+        <div class="projectBody">
+          <h3>Personal Portfolio</h3>
+          <p>
+            A personal digital space designed to present my
+            technical interests, education and development
+            journey through a considered visual experience.
+          </p>
+          <div class="meta">
+            HTML · CSS · JAVASCRIPT ·
+            <a href="https://swastik51.github.io" target="_blank" rel="noopener">VIEW PROJECT ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="art">02.</div>
+        <div class="projectBody">
+          <h3>AI / ML Exploration</h3>
+          <p>
+            Exploring machine learning concepts and planning
+            practical applications that can solve meaningful
+            real-world problems.
+          </p>
+          <div class="meta">PYTHON · AI · ML · IN DEVELOPMENT</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="num">04 — THE JOURNEY</div>
+    <h2 class="sectionTitle">Learning <em>never stops.</em></h2>
+    <div class="timeline">
+      <article>
+        <small>2025 — PRESENT</small>
+        <h3>Bachelor of Technology</h3>
+        <p>
+          Computer Science Engineering<br>
+          Specialization: Artificial Intelligence &amp; Machine Learning<br>
+          Sri Sri University, Cuttack, Odisha
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="interests">
+  <div class="container">
+    <div class="num">05 — BEYOND THE SCREEN</div>
+    <h2 class="sectionTitle">A world of <em>curiosity.</em></h2>
+    <div class="grid3">
+      <article class="interest">
+        <div class="symbol">✳</div>
+        <h3>Creative pursuits</h3>
+        <p>Photography, cinematic editing and exploring creative visual storytelling.</p>
+      </article>
+      <article class="interest">
+        <div class="symbol">⌘</div>
+        <h3>Technology</h3>
+        <p>Exploring emerging technologies, AI, programming and game development.</p>
+      </article>
+      <article class="interest">
+        <div class="symbol">↗</div>
+        <h3>Personal growth</h3>
+        <p>Gaming, learning new things and continuously challenging myself to grow.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="vision">
+  <div class="container">
+    <div class="vision">
+      <small style="color:var(--gold);letter-spacing:3px">06 — THE DIRECTION</small>
+      <h2>Building today.<br><em>Innovating tomorrow.</em></h2>
+      <p>
+        My ambition is to become a skilled Full Stack Developer
+        and AI Engineer, building innovative products that
+        combine intelligent technology, creativity and
+        meaningful user experiences.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact">
+      <div style="color:var(--gold);letter-spacing:3px;font-size:10px">
+        HAVE A PROJECT IN MIND?
+      </div>
+      <h2>Let's create<br><em>something meaningful.</em></h2>
+      <p>
+        I'm always open to thoughtful conversations,
+        creative collaborations and opportunities to learn,
+        build and grow.
+      </p>
+      <a class="btn primary" href="mailto:mrswastik372@gmail.com">GET IN TOUCH ↗</a>
+      <div class="socials">
+        <a href="mailto:mrswastik372@gmail.com">EMAIL ↗</a>
+        <a href="https://github.com/swastik51" target="_blank" rel="noopener">GITHUB ↗</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer>
@@ -521,28 +813,19 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:25px
   </div>
 </footer>
 
-<!-- NISHI FLOATING LAUNCHER -->
-<button id="nishi-launcher" aria-label="Open NISHI">
-  ✦
-</button>
+<!-- NISHI LAUNCHER -->
+<button id="nishi-launcher" aria-label="Open NISHI">✦</button>
 
-<!-- NISHI AI CHAT WORKSPACE -->
 <div id="nishi-panel" role="dialog" aria-label="NISHI AI assistant">
-
   <div class="nHead">
     <div class="nBrand">
       <div class="nAvatar">✦</div>
       <div>
         <div class="nName">NISHI</div>
-        <div class="nStatus" id="nishi-presence">
-          ● AI assistant · Ready to help
-        </div>
+        <div class="nStatus" id="nishi-presence">● AI assistant · Ready to help</div>
       </div>
     </div>
-
-    <button id="nishi-close" aria-label="Close NISHI">
-      ×
-    </button>
+    <button id="nishi-close" aria-label="Close NISHI">×</button>
   </div>
 
   <div id="nishi-messages" aria-live="polite">
@@ -553,1146 +836,456 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:25px
 
       Ask me about technology, AI, programming,
       current events or anything you're curious about.
-      I can search the live web to help answer current questions.
     </div>
   </div>
 
   <div class="voiceSettings">
     <span id="voiceStatus">Ready to chat</span>
-    <button id="voiceToggle" type="button">
-      🔊 Voice ON
-    </button>
+    <button id="voiceToggle" type="button">🔊 Voice ON</button>
   </div>
 
   <form id="nishi-form">
-    <button
-      type="button"
-      id="nishi-mic"
-      class="voiceBtn"
-      aria-label="Use microphone">
-      🎙
-    </button>
-
-    <input
-      id="nishi-input"
-      type="text"
-      placeholder="Ask NISHI anything..."
-      maxlength="2000"
-      autocomplete="off"
-      required>
-
-    <button id="nishi-send" type="submit">
-      ↑
-    </button>
+    <button type="button" id="nishi-mic" class="voiceBtn" aria-label="Use microphone">🎙</button>
+    <input id="nishi-input" type="text" placeholder="Ask NISHI anything..." maxlength="2000" autocomplete="off" required>
+    <button id="nishi-send" type="submit">↑</button>
   </form>
 
   <div class="voiceSettings">
-    <label>
-      <input type="checkbox" id="liveSearchToggle" checked>
-      Live web search
-    </label>
+    <label><input type="checkbox" id="liveSearchToggle" checked> Live web search</label>
     <span>Current information</span>
   </div>
 
   <div class="voiceSettings">
-    <label>
-      <input type="checkbox" id="memoryConsent">
-      Remember useful details
-    </label>
-
-    <button type="button" id="clearMemory">
-      Clear memory
-    </button>
+    <label><input type="checkbox" id="memoryConsent"> Remember useful details</label>
+    <button type="button" id="clearMemory">Clear memory</button>
   </div>
 
-  <div class="nFoot" id="memoryNote">
-    Memory is off. Your choice, your privacy.
-  </div>
-
-  <div class="nFoot">
-    CLOUDFLARE AI · TAVILY SEARCH · ELEVENLABS VOICE
-  </div>
+  <div class="nFoot" id="memoryNote">Memory is off. Your choice, your privacy.</div>
+  <div class="nFoot">CLOUDFLARE AI · TAVILY SEARCH · ELEVENLABS VOICE</div>
 </div>
 
 <script>
 "use strict";
 
-/* =========================================
-   NISHI CONFIGURATION
-========================================= */
+/* NISHI CONFIGURATION */
+const API="https://nishi-ai.mrswastik372.workers.dev/";
+const CHAT_URL=API;
+const SEARCH_URL=API+"search";
+const TTS_URL=API+"tts";
+const MEMORY_URL=API+"memory";
 
-const API = "https://nishi-ai.mrswastik372.workers.dev/";
-const CHAT_URL = API;
-const SEARCH_URL = API + "search";
-const TTS_URL = API + "tts";
-const MEMORY_URL = API + "memory";
+const MEMORY_KEY="nishi_visitor_memory_v1";
+const CONSENT_KEY="nishi_visitor_memory_consent_v1";
+const HISTORY_KEY="nishi_chat_history_v1";
 
-const MEMORY_KEY = "nishi_visitor_memory_v1";
-const CONSENT_KEY = "nishi_visitor_memory_consent_v1";
-const HISTORY_KEY = "nishi_chat_history_v1";
+let conversation=[];
+let isSending=false;
+let voiceEnabled=true;
+let currentAudio=null;
 
-let conversation = [];
-let isSending = false;
-let voiceEnabled = true;
-let currentAudio = null;
+const $=id=>document.getElementById(id);
+const panel=$("nishi-panel");
+const launcher=$("nishi-launcher");
+const messagesBox=$("nishi-messages");
+const form=$("nishi-form");
+const input=$("nishi-input");
+const sendButton=$("nishi-send");
+const micButton=$("nishi-mic");
+const voiceToggle=$("voiceToggle");
+const voiceStatus=$("voiceStatus");
+const liveSearchToggle=$("liveSearchToggle");
+const memoryConsent=$("memoryConsent");
+const memoryNote=$("memoryNote");
+const clearMemory=$("clearMemory");
 
+function setStatus(message){voiceStatus.textContent=message}
+function setPresence(message){$("nishi-presence").textContent=message}
 
-/* =========================================
-   ELEMENT REFERENCES
-========================================= */
-
-const $ = id => document.getElementById(id);
-
-const panel = $("nishi-panel");
-const launcher = $("nishi-launcher");
-const messagesBox = $("nishi-messages");
-const form = $("nishi-form");
-const input = $("nishi-input");
-const sendButton = $("nishi-send");
-const micButton = $("nishi-mic");
-
-const voiceToggle = $("voiceToggle");
-const voiceStatus = $("voiceStatus");
-const liveSearchToggle = $("liveSearchToggle");
-
-const memoryConsent = $("memoryConsent");
-const memoryNote = $("memoryNote");
-const clearMemory = $("clearMemory");
-
-
-/* =========================================
-   GENERAL HELPERS
-========================================= */
-
-function setStatus(message) {
-  if (voiceStatus) voiceStatus.textContent = message;
+function getMemory(){
+  try{
+    if(localStorage.getItem(CONSENT_KEY)!=="true")return "";
+    return localStorage.getItem(MEMORY_KEY)||"";
+  }catch{return ""}
 }
-
-function setPresence(message) {
-  const element = $("nishi-presence");
-  if (element) element.textContent = message;
+function hasMemoryConsent(){
+  try{return localStorage.getItem(CONSENT_KEY)==="true"}
+  catch{return false}
 }
-
-function getMemory() {
-  try {
-    if (localStorage.getItem(CONSENT_KEY) !== "true") {
-      return "";
+function saveHistory(){
+  try{
+    sessionStorage.setItem(HISTORY_KEY,JSON.stringify(conversation.slice(-20)));
+  }catch{}
+}
+function loadHistory(){
+  try{
+    const saved=JSON.parse(sessionStorage.getItem(HISTORY_KEY)||"[]");
+    if(Array.isArray(saved)){
+      conversation=saved.filter(item=>
+        item&&(item.role==="user"||item.role==="assistant")&&
+        typeof item.content==="string"
+      ).slice(-20);
     }
-
-    return localStorage.getItem(MEMORY_KEY) || "";
-
-  } catch {
-    return "";
-  }
+  }catch{conversation=[]}
 }
-
-function hasMemoryConsent() {
-  try {
-    return localStorage.getItem(CONSENT_KEY) === "true";
-  } catch {
-    return false;
-  }
-}
-
-function saveHistory() {
-  try {
-    sessionStorage.setItem(
-      HISTORY_KEY,
-      JSON.stringify(conversation.slice(-20))
-    );
-  } catch {}
-}
-
-function loadHistory() {
-  try {
-    const saved = JSON.parse(
-      sessionStorage.getItem(HISTORY_KEY) || "[]"
-    );
-
-    if (Array.isArray(saved)) {
-      conversation = saved
-        .filter(item =>
-          item &&
-          (item.role === "user" || item.role === "assistant") &&
-          typeof item.content === "string"
-        )
-        .slice(-20);
-    }
-  } catch {
-    conversation = [];
-  }
-}
-
-
-/* =========================================
-   SAFE MESSAGE RENDERING
-========================================= */
-
-function add(text, user = false) {
-
-  const welcome = messagesBox.querySelector(".nBot");
-
-  if (welcome && !conversation.length) {
-    welcome.remove();
-  }
-
-  const message = document.createElement("div");
-
-  message.className =
-    "nMessage " + (user ? "nUser" : "nBot");
-
-  message.textContent = String(text);
-
+function add(text,user=false){
+  const welcome=messagesBox.querySelector(".nBot");
+  if(welcome&&!conversation.length)welcome.remove();
+  const message=document.createElement("div");
+  message.className="nMessage "+(user?"nUser":"nBot");
+  message.textContent=String(text);
   messagesBox.appendChild(message);
-
-  messagesBox.scrollTop = messagesBox.scrollHeight;
-
+  messagesBox.scrollTop=messagesBox.scrollHeight;
   return message;
 }
-
-function addTyping() {
-  const typing = document.createElement("div");
-
-  typing.className = "nMessage nBot";
-  typing.textContent = "NISHI is thinking... ✨";
-
+function addTyping(){
+  const typing=document.createElement("div");
+  typing.className="nMessage nBot";
+  typing.textContent="NISHI is thinking... ✨";
   messagesBox.appendChild(typing);
-
-  messagesBox.scrollTop = messagesBox.scrollHeight;
-
+  messagesBox.scrollTop=messagesBox.scrollHeight;
   return typing;
 }
-
-function addSources(results) {
-
-  if (!Array.isArray(results) || !results.length) return;
-
-  const wrapper = document.createElement("div");
-
-  wrapper.className = "nMessage nBot";
-
-  const heading = document.createElement("strong");
-  heading.textContent = "Sources";
-
+function addSources(results){
+  if(!Array.isArray(results)||!results.length)return;
+  const wrapper=document.createElement("div");
+  wrapper.className="nMessage nBot";
+  const heading=document.createElement("strong");
+  heading.textContent="Sources";
   wrapper.appendChild(heading);
-
-  results.slice(0, 6).forEach((result, index) => {
-
-    if (!result.url) return;
-
-    try {
-
-      const url = new URL(result.url);
-
-      if (url.protocol !== "https:") return;
-
-      const link = document.createElement("a");
-
-      link.href = url.href;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-
-      link.textContent =
-        "\n" + (index + 1) + ". " +
-        (result.title || url.hostname);
-
-      link.style.display = "block";
-      link.style.marginTop = "8px";
-      link.style.color = "#d6b98d";
-      link.style.textDecoration = "underline";
-
+  results.slice(0,6).forEach((result,index)=>{
+    if(!result.url)return;
+    try{
+      const url=new URL(result.url);
+      if(url.protocol!=="https:")return;
+      const link=document.createElement("a");
+      link.href=url.href;
+      link.target="_blank";
+      link.rel="noopener noreferrer";
+      link.textContent="\n"+(index+1)+". "+(result.title||url.hostname);
+      link.style.display="block";
+      link.style.marginTop="8px";
+      link.style.color="#d6b98d";
+      link.style.textDecoration="underline";
       wrapper.appendChild(link);
-
-    } catch {}
+    }catch{}
   });
-
   messagesBox.appendChild(wrapper);
-
-  messagesBox.scrollTop = messagesBox.scrollHeight;
+  messagesBox.scrollTop=messagesBox.scrollHeight;
 }
 
-
-/* =========================================
-   MEMORY CONSENT
-========================================= */
-
-function updateMemoryUI() {
-
-  const enabled = hasMemoryConsent();
-
-  if (memoryConsent) {
-    memoryConsent.checked = enabled;
-  }
-
-  if (memoryNote) {
-
-    memoryNote.textContent = enabled
-      ? "Memory enabled. You can clear it anytime."
-      : "Memory is off. Your choice, your privacy.";
-  }
+/* VISITOR MEMORY */
+function updateMemoryUI(){
+  const enabled=hasMemoryConsent();
+  memoryConsent.checked=enabled;
+  memoryNote.textContent=enabled?
+    "Memory enabled. You can clear it anytime.":
+    "Memory is off. Your choice, your privacy.";
 }
-
-memoryConsent.addEventListener("change", () => {
-
-  try {
-
-    if (memoryConsent.checked) {
-
-      localStorage.setItem(CONSENT_KEY, "true");
-
-      memoryNote.textContent =
-        "Memory enabled. NISHI can remember useful details.";
-
-    } else {
-
+memoryConsent.addEventListener("change",()=>{
+  try{
+    if(memoryConsent.checked){
+      localStorage.setItem(CONSENT_KEY,"true");
+      memoryNote.textContent="Memory enabled. NISHI can remember useful details.";
+    }else{
       localStorage.removeItem(MEMORY_KEY);
-
-      localStorage.setItem(CONSENT_KEY, "false");
-
-      memoryNote.textContent =
-        "Memory disabled. Saved visitor memory cleared.";
+      localStorage.setItem(CONSENT_KEY,"false");
+      memoryNote.textContent="Memory disabled. Saved visitor memory cleared.";
     }
-
-  } catch {
-
-    memoryNote.textContent =
-      "Your browser could not save the memory preference.";
+  }catch{
+    memoryNote.textContent="Your browser could not save the memory preference.";
   }
 });
-
-clearMemory.addEventListener("click", () => {
-
-  try {
-
+clearMemory.addEventListener("click",()=>{
+  try{
     localStorage.removeItem(MEMORY_KEY);
-
-    localStorage.setItem(CONSENT_KEY, "false");
-
-    memoryConsent.checked = false;
-
-    memoryNote.textContent =
-      "Memory cleared and disabled.";
-
-  } catch {
-
-    memoryNote.textContent =
-      "Could not clear memory in this browser.";
+    localStorage.setItem(CONSENT_KEY,"false");
+    memoryConsent.checked=false;
+    memoryNote.textContent="Memory cleared and disabled.";
+  }catch{
+    memoryNote.textContent="Could not clear memory in this browser.";
   }
 });
-
 updateMemoryUI();
 
-
-/* =========================================
-   UPDATE VISITOR MEMORY
-========================================= */
-
-async function updateVisitorMemory(userMessage) {
-
-  if (!hasMemoryConsent()) return;
-
-  try {
-
-    const response = await fetch(MEMORY_URL, {
-
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-
-        userMessage,
-
-        existingMemory: getMemory()
-
-      })
+async function updateVisitorMemory(userMessage){
+  if(!hasMemoryConsent())return;
+  try{
+    const response=await fetch(MEMORY_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({userMessage,existingMemory:getMemory()})
     });
-
-    if (!response.ok) return;
-
-    const data = await response.json();
-
-    if (
-      typeof data.memory === "string" &&
-      hasMemoryConsent()
-    ) {
-
-      localStorage.setItem(
-        MEMORY_KEY,
-        data.memory.slice(0, 5000)
-      );
+    if(!response.ok)return;
+    const data=await response.json();
+    if(typeof data.memory==="string"&&hasMemoryConsent()){
+      localStorage.setItem(MEMORY_KEY,data.memory.slice(0,5000));
     }
-
-  } catch (error) {
-
-    console.warn("Memory update unavailable:", error);
-  }
+  }catch(error){console.warn("Memory update unavailable:",error)}
 }
 
-
-/* =========================================
-   TAVILY LIVE SEARCH
-========================================= */
-
-async function performLiveSearch(query) {
-
-  const response = await fetch(SEARCH_URL, {
-
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json"
-    },
-
-    body: JSON.stringify({
-      query
-    })
+/* TAVILY SEARCH */
+async function performLiveSearch(query){
+  const response=await fetch(SEARCH_URL,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({query})
   });
-
-  if (!response.ok) {
-
-    const error = await response.json().catch(() => ({}));
-
-    throw new Error(
-      error.details ||
-      error.error ||
-      "Live search is temporarily unavailable."
-    );
+  if(!response.ok){
+    const error=await response.json().catch(()=>({}));
+    throw new Error(error.error||"Live search is temporarily unavailable.");
   }
-
-  const data = await response.json();
-
-  return Array.isArray(data.results)
-    ? data.results
-    : [];
+  const data=await response.json();
+  return Array.isArray(data.results)?data.results:[];
 }
 
-
-/* =========================================
-   ELEVENLABS VOICE OUTPUT
-========================================= */
-
-async function speak(text) {
-
-  if (!voiceEnabled || !text) return;
-
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio = null;
-  }
-
-  try {
-
+/* ELEVENLABS VOICE */
+async function speak(text){
+  if(!voiceEnabled||!text)return;
+  if(currentAudio){currentAudio.pause();currentAudio=null}
+  let audioURL=null;
+  try{
     setStatus("NISHI is speaking...");
-
-    const response = await fetch(TTS_URL, {
-
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-        text: text.slice(0, 2500)
-      })
+    const response=await fetch(TTS_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({text:text.slice(0,2500)})
     });
-
-    if (!response.ok) {
-      throw new Error("Voice generation unavailable.");
-    }
-
-    const audioBlob = await response.blob();
-
-    const audioURL = URL.createObjectURL(audioBlob);
-
-    currentAudio = new Audio(audioURL);
-
-    currentAudio.onended = () => {
-
+    if(!response.ok)throw new Error("Voice generation unavailable.");
+    const audioBlob=await response.blob();
+    audioURL=URL.createObjectURL(audioBlob);
+    currentAudio=new Audio(audioURL);
+    currentAudio.onended=()=>{
       URL.revokeObjectURL(audioURL);
-
-      currentAudio = null;
-
+      currentAudio=null;
       setStatus("Ready to chat");
     };
-
-    currentAudio.onerror = () => {
-
+    currentAudio.onerror=()=>{
       URL.revokeObjectURL(audioURL);
-
-      currentAudio = null;
-
+      currentAudio=null;
       setStatus("Voice playback unavailable");
     };
-
     await currentAudio.play();
-
-  } catch (error) {
-
-    console.warn("Voice error:", error);
-
+  }catch(error){
+    if(audioURL)URL.revokeObjectURL(audioURL);
+    console.warn("Voice error:",error);
     setStatus("Voice unavailable. Text chat still works.");
   }
 }
-
-voiceToggle.addEventListener("click", () => {
-
-  voiceEnabled = !voiceEnabled;
-
-  voiceToggle.textContent = voiceEnabled
-    ? "🔊 Voice ON"
-    : "🔇 Voice OFF";
-
-  if (!voiceEnabled && currentAudio) {
-
-    currentAudio.pause();
-
-    currentAudio = null;
-  }
-
-  setStatus(
-    voiceEnabled
-      ? "Voice enabled"
-      : "Voice disabled"
-  );
+voiceToggle.addEventListener("click",()=>{
+  voiceEnabled=!voiceEnabled;
+  voiceToggle.textContent=voiceEnabled?"🔊 Voice ON":"🔇 Voice OFF";
+  if(!voiceEnabled&&currentAudio){currentAudio.pause();currentAudio=null}
+  setStatus(voiceEnabled?"Voice enabled":"Voice disabled");
 });
 
+/* CHAT */
+async function sendMessage(text){
+  if(isSending)return;
+  text=String(text||"").trim();
+  if(!text)return;
+  if(text.length>2000){add("Please keep your message under 2,000 characters.");return}
 
-/* =========================================
-   CHAT WITH NISHI
-========================================= */
-
-async function sendMessage(text) {
-
-  if (isSending) return;
-
-  text = String(text || "").trim();
-
-  if (!text) return;
-
-  if (text.length > 2000) {
-    add("Please keep your message under 2,000 characters.");
-    return;
-  }
-
-  isSending = true;
-
-  sendButton.disabled = true;
-  input.disabled = true;
-
-  add(text, true);
-
-  conversation.push({
-    role: "user",
-    content: text
-  });
-
+  isSending=true;
+  sendButton.disabled=true;
+  input.disabled=true;
+  add(text,true);
+  conversation.push({role:"user",content:text});
   saveHistory();
 
-  const typing = addTyping();
-
+  const typing=addTyping();
   setPresence("● NISHI is thinking...");
+  let searchResults=[];
 
-  let searchResults = [];
-
-  try {
-
-    /*
-      SEARCH CURRENT INFORMATION FIRST
-    */
-
-    if (liveSearchToggle.checked) {
-
+  try{
+    if(liveSearchToggle.checked){
       setStatus("Searching the live web...");
-
-      try {
-
-        searchResults = await performLiveSearch(text);
-
-      } catch (searchError) {
-
-        console.warn("Search failed:", searchError);
-
-        add(
-          "I couldn't reach live search right now. " +
-          "I'll try answering without current web results."
-        );
+      try{searchResults=await performLiveSearch(text)}
+      catch(searchError){
+        console.warn("Search failed:",searchError);
+        add("I couldn't reach live search right now. I'll try answering without current web results.");
       }
     }
 
-    /*
-      SEND SEARCH RESULTS TO AI
-    */
-
     setStatus("Preparing your answer...");
-
-    const response = await fetch(CHAT_URL, {
-
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-
-        messages: conversation.slice(-10),
-
-        memory: getMemory(),
-
-        webResults: searchResults
-
+    const response=await fetch(CHAT_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        messages:conversation.slice(-10),
+        memory:getMemory(),
+        webResults:searchResults
       })
     });
 
-    if (!response.ok) {
-
-      const error = await response.json().catch(() => ({}));
-
-      throw new Error(
-        error.details ||
-        error.error ||
-        "NISHI could not process the request."
-      );
+    if(!response.ok){
+      const error=await response.json().catch(()=>({}));
+      throw new Error(error.error||"NISHI could not process the request.");
     }
 
-    const data = await response.json();
-
-    if (!data.reply) {
-      throw new Error("NISHI returned an empty response.");
-    }
+    const data=await response.json();
+    if(!data.reply)throw new Error("NISHI returned an empty response.");
 
     typing.remove();
-
-    const reply = String(data.reply);
-
+    const reply=String(data.reply);
     add(reply);
+    if(searchResults.length)addSources(searchResults);
 
-    if (searchResults.length) {
-      addSources(searchResults);
-    }
-
-    conversation.push({
-
-      role: "assistant",
-
-      content: reply
-
-    });
-
+    conversation.push({role:"assistant",content:reply});
     saveHistory();
 
-    if (voiceEnabled) {
-      await speak(reply);
-    }
-
-    if (hasMemoryConsent()) {
-      updateVisitorMemory(text);
-    }
+    if(voiceEnabled)await speak(reply);
+    if(hasMemoryConsent())updateVisitorMemory(text);
 
     setPresence("● NISHI · Ready to help");
-
     setStatus("Ready to chat");
-
-  } catch (error) {
-
+  }catch(error){
     typing.remove();
-
-    console.error("NISHI error:", error);
-
-    add(
-      "I'm sorry, something went wrong while connecting. " +
-      "Please try again in a moment.\n\n" +
-      "Details: " + String(error.message || error)
-    );
-
+    console.error("NISHI error:",error);
+    add("I'm sorry, something went wrong while connecting. Please try again.\n\nDetails: "+String(error.message||error));
     setPresence("● Connection issue");
-
     setStatus("Connection error");
-
-  } finally {
-
-    isSending = false;
-
-    sendButton.disabled = false;
-    input.disabled = false;
-
+  }finally{
+    isSending=false;
+    sendButton.disabled=false;
+    input.disabled=false;
     input.focus();
   }
 }
 
-
-/* =========================================
-   CHAT FORM
-========================================= */
-
-form.addEventListener("submit", event => {
-
+form.addEventListener("submit",event=>{
   event.preventDefault();
-
-  const text = input.value.trim();
-
-  if (!text) return;
-
-  input.value = "";
-
+  const text=input.value.trim();
+  if(!text)return;
+  input.value="";
   sendMessage(text);
 });
 
-
-/* =========================================
-   MICROPHONE INPUT
-========================================= */
-
-const SpeechRecognition =
-  window.SpeechRecognition ||
-  window.webkitSpeechRecognition;
-
-let recognition = null;
-let listening = false;
-
-if (SpeechRecognition) {
-
-  recognition = new SpeechRecognition();
-
-  recognition.lang = "en-IN";
-
-  recognition.continuous = false;
-
-  recognition.interimResults = false;
-
-  recognition.onstart = () => {
-
-    listening = true;
-
+/* MICROPHONE */
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+let recognition=null;
+let listening=false;
+if(SpeechRecognition){
+  recognition=new SpeechRecognition();
+  recognition.lang="en-IN";
+  recognition.continuous=false;
+  recognition.interimResults=false;
+  recognition.onstart=()=>{
+    listening=true;
     micButton.classList.add("listening");
-
-    micButton.textContent = "●";
-
+    micButton.textContent="●";
     setStatus("Listening...");
   };
-
-  recognition.onresult = event => {
-
-    const transcript =
-      event.results[0][0].transcript;
-
-    input.value = transcript;
-
+  recognition.onresult=event=>{
+    const transcript=event.results[0][0].transcript;
+    input.value=transcript;
     sendMessage(transcript);
   };
-
-  recognition.onerror = event => {
-
-    console.warn("Microphone error:", event.error);
-
-    setStatus(
-      "Microphone error: " + event.error
-    );
+  recognition.onerror=event=>{
+    console.warn("Microphone error:",event.error);
+    setStatus("Microphone error: "+event.error);
   };
-
-  recognition.onend = () => {
-
-    listening = false;
-
+  recognition.onend=()=>{
+    listening=false;
     micButton.classList.remove("listening");
-
-    micButton.textContent = "🎙";
-
-    if (voiceStatus.textContent === "Listening...") {
-      setStatus("Ready to chat");
-    }
+    micButton.textContent="🎙";
+    if(voiceStatus.textContent==="Listening...")setStatus("Ready to chat");
   };
-
-} else {
-
-  micButton.title =
-    "Speech recognition is not supported in this browser.";
 }
-
-micButton.addEventListener("click", () => {
-
-  if (!recognition) {
-
-    setStatus(
-      "Please use Chrome for microphone support."
-    );
-
-    return;
-  }
-
-  if (listening) {
-
-    recognition.stop();
-
-  } else {
-
-    try {
-
-      recognition.start();
-
-    } catch (error) {
-
-      console.warn(error);
-
-      setStatus("Microphone could not start.");
-    }
+micButton.addEventListener("click",()=>{
+  if(!recognition){setStatus("Please use Chrome for microphone support.");return}
+  if(listening){recognition.stop()}
+  else{
+    try{recognition.start()}
+    catch(error){console.warn(error);setStatus("Microphone could not start.")}
   }
 });
 
-
-/* =========================================
-   OPEN / CLOSE NISHI
-========================================= */
-
-function openNishi() {
-
+/* OPEN / CLOSE NISHI */
+function openNishi(){
   panel.classList.add("open");
-
-  launcher.style.display = "none";
-
+  launcher.style.display="none";
   input.focus();
 }
-
-function closeNishi() {
-
+function closeNishi(){
   panel.classList.remove("open");
-
-  launcher.style.display = "block";
+  launcher.style.display="block";
 }
+launcher.addEventListener("click",openNishi);
+$("nishi-close").addEventListener("click",closeNishi);
 
-launcher.addEventListener("click", openNishi);
-
-$("nishi-close").addEventListener("click", closeNishi);
-
-
-/* =========================================
-   LOAD CONVERSATION HISTORY
-========================================= */
-
+/* HISTORY */
 loadHistory();
-
-if (conversation.length) {
-
-  const welcome = messagesBox.querySelector(".nBot");
-
-  if (welcome) welcome.remove();
-
-  conversation.forEach(message => {
-
-    add(
-      message.content,
-      message.role === "user"
-    );
-  });
+if(conversation.length){
+  const welcome=messagesBox.querySelector(".nBot");
+  if(welcome)welcome.remove();
+  conversation.forEach(message=>add(message.content,message.role==="user"));
 }
 
-
-/* =========================================
-   CINEMATIC WELCOME SCREEN
-========================================= */
-
-const welcomeScreen = $("welcome-screen");
-
-$("welcome-enter").addEventListener("click", () => {
-
-  welcomeScreen.classList.add("dismissed");
-
-  try {
-    sessionStorage.setItem("portfolio_entered", "true");
-  } catch {}
-
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    setTimeout(() => {
-      openNishi();
-    }, 900);
-  }
+/* CINEMATIC ENTRY */
+const intro=$("intro");
+$("enter").addEventListener("click",()=>{
+  intro.classList.add("hide");
+  document.body.classList.remove("locked");
+  try{sessionStorage.setItem("portfolio_entered","true")}catch{}
 });
-
-try {
-
-  if (sessionStorage.getItem("portfolio_entered") === "true") {
-    welcomeScreen.classList.add("dismissed");
+try{
+  if(sessionStorage.getItem("portfolio_entered")==="true"){
+    intro.classList.add("hide");
+    document.body.classList.remove("locked");
   }
+}catch{}
 
-} catch {}
-
-
-/* =========================================
-   MOBILE NAVIGATION
-========================================= */
-
-$("menuBtn").addEventListener("click", () => {
-
+/* NAVIGATION */
+$("menuBtn").addEventListener("click",()=>{
   $("navLinks").classList.toggle("open");
 });
-
-document.querySelectorAll("#navLinks a").forEach(link => {
-
-  link.addEventListener("click", () => {
-
-    $("navLinks").classList.remove("open");
-  });
+document.querySelectorAll("#navLinks a").forEach(link=>{
+  link.addEventListener("click",()=>$("navLinks").classList.remove("open"));
+});
+window.addEventListener("scroll",()=>{
+  $("navbar").classList.toggle("scrolled",window.scrollY>40);
 });
 
-
-/* =========================================
-   NAVBAR SCROLL EFFECT
-========================================= */
-
-window.addEventListener("scroll", () => {
-
-  $("navbar").classList.toggle(
-    "scrolled",
-    window.scrollY > 40
-  );
-});
-
-
-/* =========================================
-   REVEAL ANIMATIONS
-========================================= */
-
-const observer = new IntersectionObserver(entries => {
-
-  entries.forEach(entry => {
-
-    if (entry.isIntersecting) {
-
+/* REVEAL */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
       entry.target.classList.add("visible");
-
       observer.unobserve(entry.target);
     }
   });
-
-}, {
-  threshold: 0.12
-});
-
-document.querySelectorAll(".reveal, section").forEach(element => {
-
+},{threshold:.12});
+document.querySelectorAll(".reveal,section").forEach(element=>{
   element.classList.add("reveal");
-
   observer.observe(element);
 });
 
-
-/* =========================================
-   GOLDEN CURSOR LIGHT
-========================================= */
-
-if (window.matchMedia("(pointer:fine)").matches) {
-
-  window.addEventListener("pointermove", event => {
-
-    const glow = $("glow");
-
-    glow.style.left = event.clientX + "px";
-
-    glow.style.top = event.clientY + "px";
+/* CURSOR LIGHT */
+if(window.matchMedia("(pointer:fine)").matches){
+  window.addEventListener("pointermove",event=>{
+    const glow=$("glow");
+    glow.style.left=event.clientX+"px";
+    glow.style.top=event.clientY+"px";
   });
 }
 
-
-/* =========================================
-   THREE.JS BACKGROUND ANIMATION
-========================================= */
-
-function initThreeScene() {
-
-  const canvas = $("scene");
-
-  if (!canvas || !window.THREE) return;
-
-  const THREE = window.THREE;
-
-  const renderer = new THREE.WebGLRenderer({
-
-    canvas,
-
-    alpha: true,
-
-    antialias: true
-
-  });
-
-  renderer.setPixelRatio(
-    Math.min(window.devicePixelRatio || 1, 2)
-  );
-
-  const scene = new THREE.Scene();
-
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    100
-  );
-
-  camera.position.z = 8;
-
-  const group = new THREE.Group();
-
-  scene.add(group);
-
-  const geometry = new THREE.IcosahedronGeometry(2.1, 2);
-
-  const material = new THREE.MeshBasicMaterial({
-
-    color: 0xc6a77a,
-
-    wireframe: true,
-
-    transparent: true,
-
-    opacity: 0.18
-
-  });
-
-  const sculpture = new THREE.Mesh(
-    geometry,
-    material
-  );
-
-  group.add(sculpture);
-
-  const particleCount = 450;
-
-  const positions = new Float32Array(
-    particleCount * 3
-  );
-
-  for (let i = 0; i < particleCount * 3; i++) {
-
-    positions[i] = (Math.random() - 0.5) * 18;
-  }
-
-  const particleGeometry = new THREE.BufferGeometry();
-
-  particleGeometry.setAttribute(
-    "position",
-    new THREE.BufferAttribute(positions, 3)
-  );
-
-  const particleMaterial = new THREE.PointsMaterial({
-
-    color: 0xd9c19d,
-
-    size: 0.025,
-
-    transparent: true,
-
-    opacity: 0.5
-
-  });
-
-  const particles = new THREE.Points(
-    particleGeometry,
-    particleMaterial
-  );
-
-  scene.add(particles);
-
-  function resize() {
-
-    const width = window.innerWidth;
-
-    const height = window.innerHeight;
-
-    camera.aspect = width / height;
-
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(width, height, false);
-  }
-
-  window.addEventListener("resize", resize);
-
-  resize();
-
-  let frame = 0;
-
-  function animate() {
-
-    requestAnimationFrame(animate);
-
-    frame += 0.003;
-
-    group.rotation.y = frame * 0.45;
-
-    group.rotation.x = Math.sin(frame * 0.6) * 0.12;
-
-    particles.rotation.y = frame * 0.08;
-
-    renderer.render(scene, camera);
-  }
-
-  animate();
-}
-
-
-/* =========================================
-   LOAD THREE.JS
-========================================= */
-
-const threeScript = document.createElement("script");
-
-threeScript.src =
-  "https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js";
-
-threeScript.onload = initThreeScene;
-
-threeScript.onerror = () => {
-  console.warn("Three.js could not be loaded.");
-};
-
-document.head.appendChild(threeScript);
-
-
-/* =========================================
-   FOOTER YEAR
-========================================= */
-
-$("year").textContent = new Date().getFullYear();
-
-
-/* =========================================
-   CONNECTION CHECK
-========================================= */
-
-async function checkNishiConnection() {
-
-  try {
-
-    const response = await fetch(API);
-
-    if (!response.ok) throw new Error("Worker unavailable");
-
-    const data = await response.json();
-
-    if (data.status === "online") {
-
-      setPresence("● NISHI · Connected");
-
-    } else {
-
-      setPresence("● NISHI · Check connection");
-    }
-
-  } catch (error) {
-
+/* FOOTER */
+$("year").textContent=new Date().getFullYear();
+
+/* CONNECTION CHECK */
+async function checkNishiConnection(){
+  try{
+    const response=await fetch(API);
+    if(!response.ok)throw new Error("Worker unavailable");
+    const data=await response.json();
+    if(data.status==="online")setPresence("● NISHI · Connected");
+    else setPresence("● NISHI · Check connection");
+  }catch(error){
     setPresence("● NISHI · Connection unavailable");
-
-    console.warn("Worker health check failed:", error);
+    console.warn("Worker health check failed:",error);
   }
 }
-
 checkNishiConnection();
-
 </script>
 </body>
 </html>
-
