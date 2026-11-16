@@ -3,728 +3,1117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090909">
-<meta name="description" content="Swastik Nayak — Creative Technologist, AI & ML Developer">
-<title>Swastik Nayak — Creative Technologist</title>
+<meta name="theme-color" content="#080808">
+<meta name="description" content="Swastik Nayak — Computer Science, Artificial Intelligence and Machine Learning portfolio.">
+<title>Swastik Nayak | Personal Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#090909;
-  --surface:#111110;
-  --surface2:#171614;
-  --gold:#c9a66b;
-  --gold-light:#ead6ac;
-  --text:#f1eee8;
-  --muted:#96918a;
-  --line:rgba(201,166,107,.19);
-  --serif:'Playfair Display',serif;
-  --sans:'DM Sans',sans-serif;
+  --bg: #080808;
+  --surface: #111111;
+  --surface2: #171717;
+  --gold: #d6b879;
+  --gold-light: #f0dcae;
+  --text: #f4f0e8;
+  --muted: #99948b;
+  --border: rgba(214,184,121,.18);
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", sans-serif;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--sans);
-  overflow-x:hidden;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-a{color:inherit;text-decoration:none}
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-::selection{background:var(--gold);color:#090909}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--gold);
+  color: #080808;
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .45;
+}
 
 /* PRELOADER */
 
-#preloader{
-  position:fixed;inset:0;z-index:100000;
-  display:grid;place-items:center;
-  background:#090909;
-  transition:opacity .7s,visibility .7s;
-}
-#preloader.hide{opacity:0;visibility:hidden}
-.preloader-content{text-align:center}
-.preloader-logo{
-  font:60px var(--serif);
-  color:var(--gold);
-  animation:pulse 1.5s infinite alternate;
-}
-.preloader-line{
-  width:120px;height:1px;
-  background:#30291e;margin:20px auto;
-  overflow:hidden;
-}
-.preloader-line:after{
-  content:"";display:block;width:40%;height:100%;
-  background:var(--gold);
-  animation:loading 1.2s infinite;
-}
-@keyframes loading{
-  from{transform:translateX(-100%)}
-  to{transform:translateX(300%)}
-}
-@keyframes pulse{
-  to{text-shadow:0 0 35px #c9a66b}
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #080808;
+  display: grid;
+  place-items: center;
+  transition: opacity .7s, visibility .7s;
 }
 
-/* OPTIMIZED CINEMATIC WELCOME */
+#preloader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
 
-#welcome{
-  position:fixed;inset:0;z-index:9999;
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;text-align:center;
-  overflow:hidden;isolation:isolate;
+.loader-content {
+  text-align: center;
+}
+
+.loader-logo {
+  font-family: var(--serif);
+  color: var(--gold);
+  font-size: 42px;
+  letter-spacing: 5px;
+}
+
+.loader-line {
+  width: 120px;
+  height: 2px;
+  background: #29251e;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.loader-line::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: var(--gold);
+  animation: loading 1.2s infinite ease-in-out;
+}
+
+@keyframes loading {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(350%); }
+}
+
+/* WELCOME SCREEN */
+
+#welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse at center,#242017 0%,#11100d 48%,#080808 100%);
-  transition:opacity .8s ease,visibility .8s ease;
+    radial-gradient(ellipse at 70% 30%, #30291e 0%, transparent 45%),
+    linear-gradient(135deg, #111 0%, #050505 100%);
+  transition: opacity 1s, visibility 1s;
 }
-#welcome.hide{
-  opacity:0;visibility:hidden;pointer-events:none;
+
+#welcome.exit {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
-#welcome-video{
-  position:absolute;inset:0;z-index:-2;
-  width:100%;height:100%;
-  object-fit:cover;opacity:.28;
-  pointer-events:none;background:#090909;
+
+#welcome-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .45;
 }
-.welcome-overlay{
-  position:absolute;inset:0;z-index:-1;
-  pointer-events:none;
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,.48),
-    rgba(0,0,0,.65) 55%,
-    rgba(0,0,0,.88)
+
+.welcome-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.86),
+    rgba(0,0,0,.35),
+    rgba(0,0,0,.75)
   );
 }
-.welcome-content{
-  position:relative;z-index:2;padding:20px;
-  animation:welcomeEntrance 1.1s ease both;
-}
-@keyframes welcomeEntrance{
-  from{opacity:0;transform:translateY(22px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.welcome-orb{
-  position:absolute;z-index:0;
-  width:min(500px,85vw);aspect-ratio:1;
-  border:1px solid rgba(201,166,107,.13);
-  border-radius:50%;pointer-events:none;
-  animation:welcomeRotate 50s linear infinite;
-}
-.welcome-orb:before,.welcome-orb:after{
-  content:"";position:absolute;inset:35px;
-  border:1px solid rgba(201,166,107,.1);
-  border-radius:50%;
-}
-.welcome-orb:after{inset:80px}
-@keyframes welcomeRotate{to{transform:rotate(360deg)}}
-.welcome-kicker{
-  color:var(--gold);font-size:10px;
-  letter-spacing:5px;margin-bottom:25px;
-}
-.welcome-title{
-  font:clamp(48px,9vw,100px) var(--serif);
-  font-weight:400;letter-spacing:-3px;
-}
-.welcome-title span{color:var(--gold)}
-.welcome-description{
-  color:#aaa49a;max-width:440px;
-  line-height:1.9;font-size:13px;
-  margin:20px auto 28px;
-}
-.welcome-bottom{
-  position:absolute;bottom:35px;z-index:2;
-  color:#777;font-size:9px;letter-spacing:3px;
-}
-.gold-button{
-  display:inline-block;padding:15px 30px;
-  background:var(--gold);color:#100e0a;
-  border:1px solid var(--gold);
-  font-size:10px;letter-spacing:2px;
-  text-transform:uppercase;transition:.3s;
-}
-.gold-button:hover{
-  background:transparent;color:var(--gold);
-  box-shadow:0 0 30px rgba(201,166,107,.15);
-  transform:translateY(-3px);
+
+.welcome-orb {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  border: 1px solid rgba(214,184,121,.13);
+  box-shadow: 0 0 100px rgba(214,184,121,.08);
+  animation: orb 10s ease-in-out infinite alternate;
 }
 
-/* MOBILE VIDEO OPTIMIZATION */
-
-@media(max-width:768px){
-  #welcome-video{display:none}
-  #welcome{
-    background:radial-gradient(
-      ellipse at 50% 42%,
-      #30271b 0%,#17130e 42%,#080808 100%
-    );
-  }
-  .welcome-orb{
-    animation:none;
-    width:85vw;
-  }
-}
-@media(prefers-reduced-motion:reduce){
-  #welcome-video{display:none}
-  .welcome-orb,.welcome-content{animation:none}
+@keyframes orb {
+  from { transform: scale(.85) rotate(0); }
+  to { transform: scale(1.15) rotate(30deg); }
 }
 
-/* BACKGROUND PARTICLES */
+.welcome-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 25px;
+  animation: welcomeIn 1.5s ease both;
+}
 
-#particles{
-  position:fixed;inset:0;
-  width:100%;height:100%;
-  z-index:-1;pointer-events:none;opacity:.5;
+@keyframes welcomeIn {
+  from { opacity: 0; transform: translateY(35px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-small {
+  color: var(--gold);
+  letter-spacing: 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.welcome-title {
+  font-family: var(--serif);
+  font-size: clamp(45px, 9vw, 105px);
+  font-weight: 400;
+  margin: 24px 0 15px;
+  line-height: 1.1;
+}
+
+.welcome-title span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.welcome-subtitle {
+  color: #c5beb2;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.enter-btn {
+  margin-top: 48px;
+  padding: 16px 35px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold-light);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 11px;
+  transition: .35s;
+}
+
+.enter-btn:hover {
+  background: var(--gold);
+  color: #080808;
+  box-shadow: 0 0 35px rgba(214,184,121,.2);
 }
 
 /* NAVIGATION */
 
-.navbar{
-  position:fixed;top:0;left:0;width:100%;
-  z-index:1000;padding:22px 6%;
-  display:flex;align-items:center;
-  justify-content:space-between;
-  background:rgba(9,9,9,.75);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid rgba(255,255,255,.035);
-  transition:.3s;
-}
-.navbar.scrolled{
-  padding:14px 6%;
-  background:rgba(9,9,9,.94);
-}
-.logo{
-  font:25px var(--serif);
-  color:var(--gold);letter-spacing:1px;
-}
-.logo small{
-  font:9px var(--sans);color:#aaa;
-  letter-spacing:3px;margin-left:7px;
-}
-.nav-links{display:flex;gap:30px;align-items:center}
-.nav-links a{
-  font-size:10px;letter-spacing:1.4px;
-  color:#aaa49a;transition:.3s;
-}
-.nav-links a:hover,.nav-links a.active{color:var(--gold)}
-.nav-actions{display:flex;align-items:center;gap:12px}
-.nav-command{
-  border:1px solid var(--line);
-  background:transparent;color:var(--gold);
-  padding:9px 12px;font-size:10px;
-  letter-spacing:1px;border-radius:5px;
-}
-.menu-toggle{
-  display:none;background:none;border:0;
-  color:var(--gold);font-size:25px;
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 7%;
+  background: rgba(8,8,8,.82);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.05);
 }
 
-/* GENERAL SECTIONS */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-section{
-  padding:120px 9%;
-  position:relative;
+.logo {
+  font-family: var(--serif);
+  font-size: 25px;
+  color: var(--gold);
+  letter-spacing: 2px;
 }
-.section-kicker{
-  color:var(--gold);font-size:10px;
-  letter-spacing:4px;text-transform:uppercase;
-  margin-bottom:18px;
-}
-.section-title{
-  font:clamp(35px,5vw,58px) var(--serif);
-  font-weight:400;line-height:1.2;
-}
-.section-title span{color:var(--gold)}
-.section-description{
-  color:var(--muted);font-size:13px;
-  line-height:1.9;max-width:580px;margin-top:18px;
-}
-.section-heading{margin-bottom:55px}
 
-/* HERO */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
 
-#home{
-  min-height:100vh;display:flex;
-  align-items:center;padding-top:140px;
+.nav-links a {
+  font-size: 11px;
+  color: #c4bfb5;
+  letter-spacing: 1px;
+  transition: .3s;
 }
-.hero-grid{
-  width:100%;display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:70px;align-items:center;
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold);
 }
-.hero-label{
-  color:var(--gold);font-size:10px;
-  letter-spacing:4px;margin-bottom:25px;
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--gold);
+  font-size: 25px;
 }
-.hero-title{
-  font:clamp(55px,8vw,105px) var(--serif);
-  font-weight:400;line-height:1.04;
-  letter-spacing:-3px;
+
+/* COMMON */
+
+main {
+  position: relative;
+  z-index: 1;
 }
-.hero-title span{
-  display:block;color:var(--gold);
-  font-style:italic;
+
+section {
+  position: relative;
+  padding: 115px 9%;
 }
-.hero-description{
-  max-width:480px;color:var(--muted);
-  line-height:2;font-size:13px;margin:28px 0;
+
+.section-label {
+  color: var(--gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 10px;
+  margin-bottom: 17px;
 }
-.hero-buttons{display:flex;gap:13px;flex-wrap:wrap}
-.outline-button{
-  display:inline-block;padding:15px 25px;
-  border:1px solid var(--line);
-  color:var(--gold-light);font-size:10px;
-  letter-spacing:2px;text-transform:uppercase;
-  background:transparent;transition:.3s;
+
+.section-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(35px, 5vw, 58px);
+  margin-bottom: 25px;
 }
-.outline-button:hover{
-  background:rgba(201,166,107,.1);
-  border-color:var(--gold);
+
+.section-title span {
+  color: var(--gold);
+  font-style: italic;
 }
-.hero-meta{
-  display:flex;gap:35px;
-  margin-top:55px;flex-wrap:wrap;
+
+.section-description {
+  color: var(--muted);
+  max-width: 650px;
+  line-height: 1.9;
+  font-size: 14px;
 }
-.hero-meta-item strong{
-  display:block;font:25px var(--serif);
-  color:var(--gold);
+
+.gold-line {
+  height: 1px;
+  width: 65px;
+  background: var(--gold);
+  margin: 25px 0;
 }
-.hero-meta-item span{
-  display:block;color:var(--muted);
-  font-size:9px;letter-spacing:1.5px;margin-top:5px;
+
+.container {
+  max-width: 1250px;
+  margin: auto;
 }
-.hero-visual{display:flex;justify-content:center;position:relative}
-.profile-frame{
-  width:min(350px,100%);aspect-ratio:4/5;
-  border:1px solid rgba(201,166,107,.35);
-  padding:12px;position:relative;
-  transform:rotate(2deg);
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s, transform .8s;
 }
-.profile-frame:before{
-  content:"";position:absolute;
-  inset:22px -15px -15px 22px;
-  border:1px solid rgba(201,166,107,.23);
-  z-index:-1;
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
 }
-.profile-frame img{
-  width:100%;height:100%;
-  object-fit:cover;filter:grayscale(30%);
-  background:#171614;
+
+/* HOME */
+
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 130px;
 }
-.profile-caption{
-  position:absolute;bottom:28px;left:28px;
-  padding:12px 16px;
-  background:rgba(9,9,9,.8);
-  font-size:10px;letter-spacing:2px;color:var(--gold);
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.home-eyebrow {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.home-title {
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 85px);
+  font-weight: 400;
+  line-height: 1.12;
+  margin: 25px 0;
+}
+
+.home-title span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.home-text {
+  max-width: 530px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.home-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+.btn {
+  padding: 14px 24px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: #080808;
+  font-size: 11px;
+  letter-spacing: 1px;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+}
+
+.btn-outline:hover {
+  background: var(--gold);
+  color: #080808;
+}
+
+.profile-frame {
+  width: 100%;
+  max-width: 380px;
+  margin: auto;
+  position: relative;
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+
+.profile-frame::before {
+  content: "";
+  position: absolute;
+  inset: -12px 12px 12px -12px;
+  border: 1px solid rgba(214,184,121,.35);
+  z-index: -1;
+}
+
+.profile-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  filter: saturate(.8);
+  background: #171717;
+}
+
+.profile-caption {
+  color: var(--gold);
+  font-family: var(--serif);
+  text-align: center;
+  margin-top: 15px;
+  letter-spacing: 2px;
 }
 
 /* ABOUT */
 
-#about{background:linear-gradient(180deg,#0b0b0a,#10100e)}
-.about-grid{
-  display:grid;grid-template-columns:.8fr 1.2fr;
-  gap:75px;align-items:start;
+#about {
+  background: linear-gradient(180deg, #0b0b0b, #10100e);
 }
-.about-mark{
-  border:1px solid var(--line);padding:35px;
-  min-height:300px;display:flex;
-  flex-direction:column;justify-content:space-between;
+
+.about-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 70px;
+  align-items: center;
 }
-.about-mark strong{font:80px var(--serif);color:var(--gold)}
-.about-mark span{
-  font-size:10px;letter-spacing:3px;color:var(--muted);
+
+.about-mark {
+  min-height: 350px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  background: radial-gradient(circle, #292316, #10100e 65%);
 }
-.about-copy p{
-  color:#aaa49a;font-size:14px;
-  line-height:2.1;margin-bottom:20px;
+
+.about-mark span {
+  font-family: var(--serif);
+  color: var(--gold);
+  font-size: 130px;
+  font-style: italic;
 }
-.about-details{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:18px;margin-top:35px;
+
+.about-copy p {
+  color: var(--muted);
+  line-height: 2;
+  font-size: 14px;
+  margin-bottom: 18px;
 }
-.detail{
-  padding:18px;border:1px solid var(--line);
-  background:rgba(255,255,255,.015);
+
+.about-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 25px;
 }
-.detail small{
-  display:block;color:var(--gold);
-  font-size:9px;letter-spacing:2px;margin-bottom:8px;
+
+.fact {
+  border-left: 1px solid var(--gold);
+  padding: 8px 15px;
 }
-.detail strong{font-size:12px;font-weight:400}
+
+.fact strong {
+  display: block;
+  color: var(--gold);
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.fact span {
+  font-size: 12px;
+  color: var(--muted);
+}
 
 /* SKILLS */
 
-#skills{background:#090909}
-.skills-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:16px;
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 45px;
 }
-.skill-card{
-  border:1px solid var(--line);padding:28px;
-  background:linear-gradient(145deg,#151411,#0c0c0b);
-  transition:.35s;min-height:170px;
+
+.skill-card {
+  padding: 30px;
+  background: linear-gradient(145deg, #151515, #0c0c0c);
+  border: 1px solid var(--border);
+  transition: .35s;
 }
-.skill-card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(201,166,107,.55);
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+.skill-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--gold);
 }
-.skill-icon{font-size:24px;color:var(--gold);margin-bottom:22px}
-.skill-card h3{font:21px var(--serif);margin-bottom:10px}
-.skill-card p{color:var(--muted);font-size:11px;line-height:1.8}
+
+.skill-icon {
+  font-size: 25px;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.skill-card h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.skill-card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.skill-tags span {
+  color: var(--gold-light);
+  border: 1px solid var(--border);
+  padding: 6px 9px;
+  font-size: 10px;
+}
 
 /* PROJECTS */
 
-#projects{background:#10100e}
-.project-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+#projects {
+  background: #0e0e0e;
 }
-.project-card{
-  border:1px solid var(--line);
-  background:#0b0b0a;overflow:hidden;transition:.35s;
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 45px;
 }
-.project-card:hover{
-  transform:translateY(-6px);border-color:var(--gold);
+
+.project-card {
+  background: #151515;
+  border: 1px solid var(--border);
+  padding: 30px;
+  transition: .35s;
 }
-.project-image{
-  height:210px;display:grid;place-items:center;
-  background:radial-gradient(circle at 50% 40%,rgba(201,166,107,.17),transparent 65%),#151411;
-  font:65px var(--serif);color:var(--gold);
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
 }
-.project-content{padding:27px}
-.project-number{color:var(--gold);font-size:9px;letter-spacing:3px}
-.project-content h3{font:25px var(--serif);margin:12px 0}
-.project-content p{font-size:12px;color:var(--muted);line-height:1.9}
-.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.project-tags span{
-  border:1px solid var(--line);
-  padding:6px 10px;font-size:9px;color:#c6b28e;
+
+.project-number {
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 35px;
+}
+
+.project-card h3 {
+  font-family: var(--serif);
+  font-size: 25px;
+  font-weight: 400;
+  margin: 20px 0 12px;
+}
+
+.project-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.project-tech {
+  margin-top: 20px;
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 1px;
 }
 
 /* EDUCATION */
 
-#education{background:#090909}
-.education-card{
-  max-width:760px;border-left:1px solid var(--gold);
-  padding:10px 0 10px 35px;position:relative;
+.timeline {
+  margin-top: 45px;
+  border-left: 1px solid var(--gold);
+  padding-left: 30px;
 }
-.education-card:before{
-  content:"";position:absolute;left:-5px;top:17px;
-  width:9px;height:9px;border-radius:50%;
-  background:var(--gold);box-shadow:0 0 18px var(--gold);
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 35px;
 }
-.education-year{color:var(--gold);font-size:10px;letter-spacing:2px}
-.education-card h3{font:27px var(--serif);margin:14px 0 8px}
-.education-card p{color:var(--muted);font-size:12px;line-height:1.9}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+  border-radius: 50%;
+  left: -35px;
+  top: 5px;
+}
+
+.timeline-item .year {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.timeline-item h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.timeline-item p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
 
 /* INTERESTS */
 
-#interests{background:#10100e}
-.interest-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:13px;
+#interests {
+  background: #10100e;
 }
-.interest{
-  min-height:140px;padding:25px 17px;
-  border:1px solid var(--line);
-  display:flex;flex-direction:column;
-  justify-content:space-between;transition:.3s;
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 40px;
 }
-.interest:hover{background:#191711;transform:translateY(-5px)}
-.interest span{font-size:24px;color:var(--gold)}
-.interest strong{font:18px var(--serif);font-weight:400}
+
+.interest {
+  border: 1px solid var(--border);
+  padding: 25px 15px;
+  text-align: center;
+  transition: .3s;
+}
+
+.interest:hover {
+  background: #1b1812;
+  border-color: var(--gold);
+}
+
+.interest span {
+  display: block;
+  font-size: 25px;
+  margin-bottom: 12px;
+}
+
+.interest h3 {
+  color: var(--gold-light);
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+}
 
 /* VISION */
 
-#vision{
-  text-align:center;
-  background:radial-gradient(ellipse at center,rgba(201,166,107,.09),transparent 65%);
+.vision-box {
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
+  padding: 60px 25px;
+  border: 1px solid var(--border);
+  background: radial-gradient(ellipse, #211d14, #0c0c0c 70%);
 }
-.vision-quote{
-  max-width:850px;margin:auto;
-  font:clamp(30px,5vw,57px) var(--serif);
-  line-height:1.45;color:#e8dfd0;
+
+.vision-box blockquote {
+  font-family: var(--serif);
+  font-size: clamp(25px, 4vw, 42px);
+  line-height: 1.5;
 }
-.vision-quote span{color:var(--gold);font-style:italic}
-.vision-caption{
-  color:var(--muted);font-size:10px;
-  letter-spacing:3px;margin-top:35px;
+
+.vision-box blockquote span {
+  color: var(--gold);
+  font-style: italic;
 }
 
 /* CONTACT */
 
-#contact{background:#10100e}
-.contact-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:65px;
+#contact {
+  background: #10100e;
 }
-.contact-info h3{
-  font:38px var(--serif);line-height:1.3;margin-bottom:20px;
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 60px;
+  margin-top: 45px;
 }
-.contact-info h3 span{color:var(--gold)}
-.contact-info p{color:var(--muted);font-size:13px;line-height:2}
-.contact-form{display:flex;flex-direction:column;gap:15px}
-.contact-form input,.contact-form textarea{
-  width:100%;padding:16px;background:#090909;
-  border:1px solid var(--line);outline:none;
-  color:white;font-size:12px;
+
+.contact-info p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  margin-bottom: 25px;
 }
-.contact-form input:focus,.contact-form textarea:focus{border-color:var(--gold)}
-.contact-form textarea{min-height:130px;resize:vertical}
-.contact-form button{align-self:flex-start}
-.form-note{font-size:11px;color:var(--muted)}
+
+.contact-detail {
+  margin: 22px 0;
+}
+
+.contact-detail small {
+  display: block;
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.contact-detail a {
+  color: var(--text);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.contact-form {
+  display: grid;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: #171717;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 16px;
+  outline: none;
+  font-size: 13px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--gold);
+}
+
+.contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form button {
+  justify-self: start;
+}
 
 /* FOOTER */
 
-footer{
-  padding:35px 8%;display:flex;
-  justify-content:space-between;align-items:center;
-  border-top:1px solid var(--line);
-  color:var(--muted);font-size:10px;
-  letter-spacing:1px;gap:20px;flex-wrap:wrap;
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 35px 8%;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: #080808;
 }
-footer span{color:var(--gold)}
 
-/* REVEAL */
+.footer-logo {
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 27px;
+}
 
-.reveal{
-  opacity:0;transform:translateY(30px);
-  transition:opacity .7s ease,transform .7s ease;
+footer p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 12px;
 }
-.reveal.visible{opacity:1;transform:translateY(0)}
 
-/* NISHI CHAT */
+/* NISHI AI */
 
-#nishi-launcher{
-  position:fixed;right:25px;bottom:25px;z-index:5000;
-  width:62px;height:62px;border-radius:50%;
-  border:1px solid rgba(201,166,107,.65);
-  background:radial-gradient(circle at 30% 25%,#e7d2a6,#9d7541);
-  color:#15110a;font:25px var(--serif);
-  box-shadow:0 0 30px rgba(201,166,107,.25);
-  transition:.3s;
+#nishi-launcher {
+  position: fixed;
+  z-index: 2000;
+  bottom: 25px;
+  right: 25px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: #17140e;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 20px;
+  box-shadow: 0 0 30px rgba(214,184,121,.15);
+  transition: .3s;
 }
-#nishi-launcher:hover{transform:scale(1.08)}
-#nishi-panel{
-  position:fixed;right:25px;bottom:100px;z-index:5001;
-  width:min(390px,calc(100vw - 30px));
-  height:530px;max-height:75vh;
-  display:none;flex-direction:column;
-  background:#11110f;border:1px solid var(--line);
-  border-radius:15px;overflow:hidden;
-  box-shadow:0 20px 80px rgba(0,0,0,.65);
+
+#nishi-launcher:hover {
+  transform: scale(1.08);
+  background: var(--gold);
+  color: #080808;
 }
-#nishi-panel.open{display:flex;animation:panelIn .3s ease}
-@keyframes panelIn{
-  from{opacity:0;transform:translateY(15px)}
-  to{opacity:1;transform:translateY(0)}
+
+#nishi-panel {
+  position: fixed;
+  z-index: 2001;
+  right: 25px;
+  bottom: 95px;
+  width: min(370px, calc(100vw - 30px));
+  height: 500px;
+  max-height: calc(100dvh - 120px);
+  background: #111;
+  border: 1px solid var(--border);
+  box-shadow: 0 15px 60px #000;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
 }
-.nishi-header{
-  display:flex;align-items:center;
-  justify-content:space-between;
-  padding:17px;border-bottom:1px solid var(--line);
+
+#nishi-panel.open {
+  display: flex;
+  animation: chatIn .25s ease;
 }
-.nishi-brand{display:flex;align-items:center;gap:10px}
-.nishi-avatar{
-  width:36px;height:36px;display:grid;
-  place-items:center;background:var(--gold);
-  color:#111;border-radius:50%;font:20px var(--serif);
+
+@keyframes chatIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.nishi-brand strong{
-  display:block;font-size:12px;
-  letter-spacing:2px;color:var(--gold-light);
+
+.nishi-header {
+  padding: 17px;
+  background: #19160f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
 }
-.nishi-brand small{
-  display:block;color:var(--muted);
-  font-size:9px;margin-top:4px;
+
+.nishi-header strong {
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 21px;
 }
-.nishi-header button{
-  background:none;border:0;color:#aaa;font-size:20px;
+
+.nishi-header small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 4px;
 }
-#nishi-messages{
-  flex:1;overflow-y:auto;padding:17px;
-  display:flex;flex-direction:column;gap:13px;
+
+#nishi-close {
+  border: 0;
+  background: none;
+  color: var(--gold);
+  font-size: 22px;
 }
-.nishi-message{
-  max-width:88%;padding:12px 14px;
-  border-radius:10px;font-size:12px;line-height:1.8;
-  white-space:pre-wrap;overflow-wrap:anywhere;
+
+#nishi-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.nishi-message.bot{
-  align-self:flex-start;background:#1c1a16;
-  color:#ddd2bd;border:1px solid rgba(201,166,107,.1);
+
+.message {
+  max-width: 88%;
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
-.nishi-message.user{
-  align-self:flex-end;background:#c9a66b;color:#17130c;
+
+.message.bot {
+  align-self: flex-start;
+  background: #1b1b1b;
+  border: 1px solid var(--border);
+  color: #ddd;
 }
-.nishi-input-area{padding:13px;border-top:1px solid var(--line)}
-#nishi-form{display:flex;gap:7px}
-#nishi-input{
-  flex:1;min-width:0;padding:13px;
-  background:#090909;border:1px solid var(--line);
-  outline:none;color:white;font-size:12px;border-radius:7px;
+
+.message.user {
+  align-self: flex-end;
+  background: #302819;
+  color: var(--gold-light);
 }
-#nishi-form button,.nishi-tool{
-  border:1px solid var(--line);background:#201c14;
-  color:var(--gold);padding:0 12px;border-radius:7px;
+
+.nishi-input-row {
+  display: flex;
+  border-top: 1px solid var(--border);
 }
-.nishi-tools{
-  display:flex;justify-content:space-between;margin-top:9px;
+
+#nishi-input {
+  min-width: 0;
+  flex: 1;
+  background: #171717;
+  color: white;
+  border: 0;
+  outline: none;
+  padding: 15px;
+  font-size: 12px;
 }
-.nishi-tools small{font-size:9px;color:#777}
-.nishi-tool{font-size:11px;padding:7px 11px}
-.nishi-tool.active{background:var(--gold);color:#111}
+
+#nishi-form button {
+  padding: 0 18px;
+  border: 0;
+  background: var(--gold);
+  color: #080808;
+}
 
 /* COMMAND CENTRE */
 
-#nishi-command-launcher{
-  position:fixed;right:25px;bottom:103px;z-index:4999;
-  padding:11px 15px;display:flex;align-items:center;gap:9px;
-  color:var(--gold-light);background:rgba(15,15,17,.88);
-  border:1px solid rgba(201,166,107,.4);
-  border-radius:30px;backdrop-filter:blur(12px);
-  box-shadow:0 0 25px rgba(201,166,107,.1);
-  font-size:10px;letter-spacing:1.5px;transition:.3s;
+#command-centre {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(12px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 15vh 15px 20px;
 }
-#nishi-command-launcher:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 30px rgba(201,166,107,.25);
+
+#command-centre.open {
+  display: flex;
 }
-#nishi-command-overlay{
-  position:fixed;inset:0;z-index:10000;
-  display:none;align-items:flex-start;
-  justify-content:center;padding:13vh 15px 25px;
-  background:rgba(0,0,0,.76);
-  backdrop-filter:blur(10px);opacity:0;
-  transition:opacity .25s;
+
+.command-box {
+  width: min(550px, 100%);
+  background: #121212;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 90px #000;
 }
-#nishi-command-overlay.active{display:flex;opacity:1}
-#nishi-command-box{
-  width:min(610px,100%);max-height:75vh;overflow:hidden;
-  border:1px solid rgba(201,166,107,.4);
-  border-radius:17px;
-  background:radial-gradient(ellipse at 50% 0%,rgba(201,166,107,.13),transparent 55%),#101010;
-  box-shadow:0 25px 100px #000;
-  transform:translateY(15px) scale(.98);
-  transition:.3s;
+
+#command-search {
+  width: 100%;
+  background: transparent;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 22px;
+  font-size: 15px;
 }
-#nishi-command-overlay.active #nishi-command-box{
-  transform:translateY(0) scale(1);
+
+.command-heading {
+  padding: 15px 20px;
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 3px;
 }
-.ncc-header{
-  display:flex;align-items:center;
-  justify-content:space-between;padding:20px 22px 15px;
+
+.command-list {
+  padding: 0 10px 12px;
 }
-.ncc-brand{display:flex;align-items:center;gap:11px}
-.ncc-symbol{
-  display:grid;place-items:center;width:36px;height:36px;
-  border-radius:50%;background:linear-gradient(135deg,#f4dfad,#b38b4b);
-  color:#15110a;font:21px var(--serif);
+
+.command-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 12px;
+  background: transparent;
+  color: #ccc;
+  border: 0;
+  text-align: left;
+  font-size: 12px;
 }
-.ncc-title{font-size:12px;letter-spacing:2.4px;color:#e8d2a6}
-.ncc-subtitle{font-size:9px;letter-spacing:1.2px;color:#777;margin-top:4px}
-#ncc-close{
-  padding:7px 10px;color:#aaa;background:#191817;
-  border:1px solid #35312b;border-radius:6px;
+
+.command-item:hover {
+  background: #292316;
+  color: var(--gold);
 }
-.ncc-search-wrap{position:relative;margin:10px 19px 17px}
-#ncc-search{
-  width:100%;padding:16px 16px 16px 43px;
-  color:#eee;background:rgba(255,255,255,.035);
-  border:1px solid rgba(201,166,107,.27);
-  border-radius:10px;outline:none;font-size:13px;
+
+.command-item small {
+  color: #777;
 }
-#ncc-search:focus{border-color:var(--gold)}
-#ncc-search::placeholder{color:#777}
-.ncc-search-icon{
-  position:absolute;left:15px;top:14px;
-  color:var(--gold);font-size:17px;
+
+.command-footer {
+  padding: 12px 20px;
+  color: #777;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
 }
-.ncc-section-label{
-  padding:5px 22px 10px;color:#81796d;
-  font-size:9px;letter-spacing:2px;
-}
-#ncc-results{padding:0 11px 12px;max-height:340px;overflow-y:auto}
-.ncc-item{
-  width:100%;display:flex;align-items:center;gap:13px;
-  padding:12px;color:#e8e1d5;text-align:left;
-  background:transparent;border:1px solid transparent;
-  border-radius:9px;transition:.2s;
-}
-.ncc-item:hover,.ncc-item.selected{
-  background:rgba(201,166,107,.09);
-  border-color:rgba(201,166,107,.2);
-}
-.ncc-item-icon{
-  width:32px;height:32px;display:grid;
-  place-items:center;flex-shrink:0;
-  color:var(--gold);background:rgba(201,166,107,.08);
-  border-radius:8px;
-}
-.ncc-item-text{flex:1}
-.ncc-item-title{display:block;font-size:12px}
-.ncc-item-description{
-  display:block;margin-top:4px;color:#817b71;font-size:10px;
-}
-.ncc-enter{color:#837c70;font-size:11px}
-#ncc-empty{
-  display:none;padding:25px;text-align:center;
-  color:#898176;font-size:12px;
-}
-.ncc-footer{
-  display:flex;justify-content:space-between;gap:8px;
-  padding:13px 20px;color:#777167;
-  border-top:1px solid rgba(255,255,255,.06);
-  font-size:9px;
-}
-.ncc-footer strong{color:var(--gold);font-weight:500}
 
 /* RESPONSIVE */
 
-@media(max-width:900px){
-  .nav-links{
-    position:absolute;top:100%;left:0;width:100%;
-    display:none;flex-direction:column;gap:0;
-    background:#0d0d0c;border-bottom:1px solid var(--line);
+@media(max-width: 900px) {
+  header { padding: 17px 5%; }
+
+  .nav-links {
+    gap: 15px;
   }
-  .nav-links.show{display:flex}
-  .nav-links a{
-    width:100%;padding:17px 7%;
-    border-top:1px solid #1d1b17;
+
+  .nav-links a {
+    font-size: 10px;
   }
-  .menu-toggle{display:block}
-  .hero-grid{grid-template-columns:1fr;gap:55px}
-  .hero-visual{max-width:350px}
-  .about-grid{grid-template-columns:1fr;gap:30px}
-  .skills-grid{grid-template-columns:repeat(2,1fr)}
-  .interest-grid{grid-template-columns:repeat(2,1fr)}
+
+  section { padding: 90px 6%; }
+
+  .home-grid,
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .home-content { text-align: center; }
+  .home-text { margin: auto; }
+  .home-actions { justify-content: center; }
+
+  .profile-frame { max-width: 300px; }
+
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .interests-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media(max-width:600px){
-  section{padding:90px 7%}
-  .navbar{padding:17px 6%}
-  .logo{font-size:21px}
-  .logo small{display:none}
-  .nav-command{display:none}
-  .hero-title{font-size:60px}
-  .hero-meta{gap:22px}
-  .skills-grid,.project-grid{grid-template-columns:1fr}
-  .about-details{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr;gap:35px}
-  .interest-grid{grid-template-columns:repeat(2,1fr)}
-  #nishi-panel{right:15px;bottom:95px}
-  #nishi-launcher{right:16px;bottom:16px}
-  #nishi-command-launcher{right:16px;bottom:91px}
-  .ncc-footer{font-size:8px}
+
+@media(max-width: 650px) {
+  header { padding: 15px 6%; }
+
+  .menu-btn { display: block; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(8,8,8,.98);
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links.open { display: flex; }
+
+  .nav-links a { font-size: 12px; }
+
+  section { padding: 85px 7%; }
+
+  #home { min-height: auto; padding-top: 140px; }
+
+  .home-title { font-size: 48px; }
+
+  .skills-grid,
+  .projects-grid { grid-template-columns: 1fr; }
+
+  .about-facts { grid-template-columns: 1fr 1fr; }
+
+  #welcome-video { display: none; }
+
+  .welcome-title { font-size: 49px; }
+  .welcome-small { letter-spacing: 3px; }
+
+  #nishi-launcher {
+    width: 52px;
+    height: 52px;
+    right: 17px;
+    bottom: 18px;
+  }
+
+  #nishi-panel {
+    right: 15px;
+    bottom: 82px;
+    height: min(500px, calc(100dvh - 110px));
+  }
 }
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
   }
 }
 </style>
@@ -732,25 +1121,17 @@ footer span{color:var(--gold)}
 
 <body>
 
-<!-- PRELOADER -->
-
 <div id="preloader">
-  <div class="preloader-content">
-    <div class="preloader-logo">S.</div>
-    <div class="preloader-line"></div>
-    <div style="font-size:9px;letter-spacing:4px;color:#a69a84">
-      INITIALIZING EXPERIENCE
-    </div>
+  <div class="loader-content">
+    <div class="loader-logo">SN.</div>
+    <div class="loader-line"></div>
   </div>
 </div>
 
-<!-- CINEMATIC WELCOME -->
+<!-- WELCOME -->
 
 <div id="welcome">
-
-  <video id="welcome-video"
-    autoplay muted loop playsinline
-    preload="auto" disablepictureinpicture>
+  <video id="welcome-video" autoplay muted loop playsinline preload="metadata">
     <source src="background.mp4" type="video/mp4">
   </video>
 
@@ -758,45 +1139,31 @@ footer span{color:var(--gold)}
   <div class="welcome-orb"></div>
 
   <div class="welcome-content">
-    <div class="welcome-kicker">A PERSONAL DIGITAL EXPERIENCE</div>
-
-    <h1 class="welcome-title">
-      Swastik <span>Nayak.</span>
-    </h1>
-
-    <p class="welcome-description">
-      Exploring technology, intelligence and creativity.
-      Welcome to my digital space.
-    </p>
-
-    <button class="gold-button" id="enter-site">
-      Enter Experience &nbsp; ↗
-    </button>
+    <div class="welcome-small">A Personal Digital Experience</div>
+    <h1 class="welcome-title">Swastik <span>Nayak</span></h1>
+    <p class="welcome-subtitle">Technology · Creativity · Innovation</p>
+    <button class="enter-btn" id="enter-btn">Enter Experience ↗</button>
   </div>
-
-  <div class="welcome-bottom">DESIGNED WITH INTENTION</div>
 </div>
 
 <canvas id="particles"></canvas>
 
-<!-- NAVIGATION -->
+<header>
+  <nav class="navbar">
+    <a href="#home" class="logo">SN.</a>
 
-<header class="navbar" id="navbar">
-  <a class="logo" href="#home">S.<small>SWASTIK NAYAK</small></a>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
 
-  <nav class="nav-links" id="nav-links">
-    <a href="#home">HOME</a>
-    <a href="#about">ABOUT</a>
-    <a href="#skills">SKILLS</a>
-    <a href="#projects">PROJECTS</a>
-    <a href="#education">EDUCATION</a>
-    <a href="#contact">CONTACT</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
-
-  <div class="nav-actions">
-    <button class="nav-command" id="nav-command">⌘ K</button>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
-  </div>
 </header>
 
 <main>
@@ -804,98 +1171,84 @@ footer span{color:var(--gold)}
 <!-- HOME -->
 
 <section id="home">
-  <div class="hero-grid">
+  <div class="container home-grid">
+    <div class="home-content reveal">
+      <div class="home-eyebrow">Hello, I'm Swastik Nayak</div>
 
-    <div class="reveal">
-      <div class="hero-label">CREATIVE TECHNOLOGIST · AI & ML</div>
-
-      <h1 class="hero-title">
-        Building<br>Ideas Into <span>Reality.</span>
+      <h1 class="home-title">
+        Building the<br>
+        <span>Future</span> with<br>
+        Intelligence.
       </h1>
 
-      <p class="hero-description">
-        Hello, I'm Swastik Nayak. A Computer Science student
-        passionate about Artificial Intelligence, Machine Learning,
-        software development and creating meaningful digital experiences.
+      <p class="home-text">
+        A Computer Science Engineering student specializing in
+        Artificial Intelligence and Machine Learning. Passionate
+        about technology, creative experiences and building
+        meaningful digital solutions.
       </p>
 
-      <div class="hero-buttons">
-        <a href="#projects" class="gold-button">Explore My Work ↗</a>
-        <a href="#contact" class="outline-button">Let's Connect</a>
-      </div>
-
-      <div class="hero-meta">
-        <div class="hero-meta-item">
-          <strong>AI/ML</strong><span>FOCUS AREA</span>
-        </div>
-        <div class="hero-meta-item">
-          <strong>∞</strong><span>IDEAS TO EXPLORE</span>
-        </div>
-        <div class="hero-meta-item">
-          <strong>01</strong><span>CREATIVE MIND</span>
-        </div>
+      <div class="home-actions">
+        <a href="#projects" class="btn">Explore My Work ↗</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
       </div>
     </div>
 
-    <div class="hero-visual reveal">
-      <div class="profile-frame">
-        <img src="profile.jpg" alt="Swastik Nayak">
-        <div class="profile-caption">SWASTIK NAYAK · 2026</div>
-      </div>
+    <div class="profile-frame reveal">
+      <img src="profile.jpg" alt="Swastik Nayak"
+           onerror="this.style.display='none'">
+      <div class="profile-caption">SWASTIK NAYAK</div>
     </div>
-
   </div>
 </section>
 
 <!-- ABOUT -->
 
 <section id="about">
-  <div class="section-heading reveal">
-    <div class="section-kicker">01 / THE PERSON</div>
-    <h2 class="section-title">A little about <span>me.</span></h2>
-  </div>
-
-  <div class="about-grid">
+  <div class="container about-grid">
     <div class="about-mark reveal">
-      <strong>S.</strong>
-      <span>LEARN · CREATE · INNOVATE</span>
+      <span>S.</span>
     </div>
 
     <div class="about-copy reveal">
+      <div class="section-label">01 / About Me</div>
+      <h2 class="section-title">A little about <span>myself.</span></h2>
+      <div class="gold-line"></div>
+
       <p>
         I'm Swastik Nayak, a B.Tech Computer Science and Engineering
-        student specializing in Artificial Intelligence and Machine Learning
-        at Sri Sri University.
+        student specializing in Artificial Intelligence and Machine
+        Learning at Sri Sri University, Cuttack.
       </p>
 
       <p>
-        I enjoy understanding how technology works, experimenting with
-        new ideas, building projects and exploring the possibilities
-        of intelligent systems.
+        I enjoy exploring the intersection of technology, design and
+        creativity. My interests include programming, intelligent
+        systems, web development and creating experiences that make
+        technology feel more human.
       </p>
 
       <p>
-        My goal is to grow into a developer who combines technical
-        knowledge, creativity and thoughtful problem-solving to build
-        useful products.
+        I believe in continuous learning, experimenting with ideas
+        and turning curiosity into practical projects.
       </p>
 
-      <div class="about-details">
-        <div class="detail">
-          <small>EDUCATION</small>
-          <strong>B.Tech CSE · AI & ML</strong>
+      <div class="about-facts">
+        <div class="fact">
+          <strong>EDUCATION</strong>
+          <span>B.Tech CSE — AI & ML</span>
         </div>
-        <div class="detail">
-          <small>UNIVERSITY</small>
-          <strong>Sri Sri University</strong>
+        <div class="fact">
+          <strong>UNIVERSITY</strong>
+          <span>Sri Sri University</span>
         </div>
-        <div class="detail">
-          <small>LOCATION</small>
-          <strong>Odisha, India</strong>
+        <div class="fact">
+          <strong>LOCATION</strong>
+          <span>Odisha, India</span>
         </div>
-        <div class="detail">
-          <small>INTEREST</small>
-          <strong>AI · Software · Design</strong>
+        <div class="fact">
+          <strong>INTEREST</strong>
+          <span>AI & Technology</span>
         </div>
       </div>
     </div>
@@ -905,975 +1258,781 @@ footer span{color:var(--gold)}
 <!-- SKILLS -->
 
 <section id="skills">
-  <div class="section-heading reveal">
-    <div class="section-kicker">02 / WHAT I WORK WITH</div>
-    <h2 class="section-title">My technical <span>toolkit.</span></h2>
-    <p class="section-description">
-      Technologies and programming languages I have explored
-      as part of my development journey.
+  <div class="container">
+    <div class="section-label reveal">02 / Capabilities</div>
+    <h2 class="section-title reveal">Skills & <span>Expertise.</span></h2>
+    <p class="section-description reveal">
+      Technologies and areas I'm learning, exploring and developing.
     </p>
-  </div>
 
-  <div class="skills-grid">
-    <article class="skill-card reveal">
-      <div class="skill-icon">⌘</div>
-      <h3>Python</h3>
-      <p>Programming fundamentals, problem-solving and exploring AI applications.</p>
-    </article>
+    <div class="skills-grid">
+      <article class="skill-card reveal">
+        <div class="skill-icon">⌘</div>
+        <h3>Programming</h3>
+        <p>Building logical foundations and solving problems through code.</p>
+        <div class="skill-tags">
+          <span>Python</span><span>C</span><span>C++</span>
+        </div>
+      </article>
 
-    <article class="skill-card reveal">
-      <div class="skill-icon">C</div>
-      <h3>C</h3>
-      <p>Programming fundamentals and structured problem-solving.</p>
-    </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">⌘</div>
+        <h3>Web Development</h3>
+        <p>Creating responsive and visually engaging digital experiences.</p>
+        <div class="skill-tags">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span>
+        </div>
+      </article>
 
-    <article class="skill-card reveal">
-      <div class="skill-icon">C++</div>
-      <h3>C++</h3>
-      <p>Object-oriented programming and algorithmic thinking.</p>
-    </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">✳</div>
+        <h3>Artificial Intelligence</h3>
+        <p>Exploring machine learning concepts and intelligent applications.</p>
+        <div class="skill-tags">
+          <span>AI</span><span>Machine Learning</span><span>Python</span>
+        </div>
+      </article>
 
-    <article class="skill-card reveal">
-      <div class="skill-icon">◈</div>
-      <h3>HTML</h3>
-      <p>Building the structure and foundation of web experiences.</p>
-    </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">▤</div>
+        <h3>Database</h3>
+        <p>Working with structured data and database fundamentals.</p>
+        <div class="skill-tags">
+          <span>SQL</span><span>Database Concepts</span>
+        </div>
+      </article>
 
-    <article class="skill-card reveal">
-      <div class="skill-icon">▤</div>
-      <h3>SQL</h3>
-      <p>Working with relational data and database concepts.</p>
-    </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">◈</div>
+        <h3>Creative Design</h3>
+        <p>Interested in visual storytelling, editing and digital aesthetics.</p>
+        <div class="skill-tags">
+          <span>Photography</span><span>Video Editing</span><span>UI Design</span>
+        </div>
+      </article>
 
-    <article class="skill-card reveal">
-      <div class="skill-icon">✧</div>
-      <h3>AI & Machine Learning</h3>
-      <p>Exploring intelligent systems, data-driven solutions and ML concepts.</p>
-    </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">◎</div>
+        <h3>Continuous Learning</h3>
+        <p>Experimenting with emerging technologies and new ideas.</p>
+        <div class="skill-tags">
+          <span>Research</span><span>Innovation</span>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 
 <section id="projects">
-  <div class="section-heading reveal">
-    <div class="section-kicker">03 / SELECTED WORK</div>
-    <h2 class="section-title">Ideas becoming <span>projects.</span></h2>
-    <p class="section-description">
-      A collection of projects and concepts from my learning journey.
+  <div class="container">
+    <div class="section-label reveal">03 / Selected Work</div>
+    <h2 class="section-title reveal">Projects & <span>Experiments.</span></h2>
+    <p class="section-description reveal">
+      A collection of ideas, experiments and projects from my learning journey.
     </p>
-  </div>
 
-  <div class="project-grid">
-
-    <article class="project-card reveal">
-      <div class="project-image">⌂</div>
-      <div class="project-content">
-        <div class="project-number">PROJECT 01</div>
+    <div class="projects-grid">
+      <article class="project-card reveal">
+        <div class="project-number">01</div>
         <h3>House Price Predictor</h3>
         <p>
-          A machine learning project designed to estimate property prices
-          using features such as location and property characteristics.
+          An exploratory machine learning project using Linear Regression
+          to estimate house prices from selected property features.
+          Planned as an interactive Streamlit application.
         </p>
-        <div class="project-tags">
-          <span>Python</span><span>Machine Learning</span>
-          <span>Linear Regression</span><span>Streamlit</span>
-        </div>
-      </div>
-    </article>
+        <div class="project-tech">PYTHON · MACHINE LEARNING · STREAMLIT</div>
+      </article>
 
-    <article class="project-card reveal">
-      <div class="project-image">✧</div>
-      <div class="project-content">
-        <div class="project-number">PROJECT 02</div>
+      <article class="project-card reveal">
+        <div class="project-number">02</div>
         <h3>NISHI AI</h3>
         <p>
-          A personal AI assistant concept integrated into a portfolio,
-          featuring conversational interaction, voice input and
-          a custom command interface.
+          An AI assistant concept designed to provide conversational
+          interaction through a personal website, with voice features
+          and a connected AI backend.
         </p>
-        <div class="project-tags">
-          <span>AI</span><span>JavaScript</span>
-          <span>Cloudflare Workers</span><span>Voice</span>
-        </div>
-      </div>
-    </article>
+        <div class="project-tech">AI · JAVASCRIPT · CLOUDFLARE WORKERS</div>
+      </article>
 
+      <article class="project-card reveal">
+        <div class="project-number">03</div>
+        <h3>Personal Portfolio</h3>
+        <p>
+          A personal digital space combining elegant design,
+          interactive elements, responsive layouts and a custom
+          AI assistant.
+        </p>
+        <div class="project-tech">HTML · CSS · JAVASCRIPT</div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-number">04</div>
+        <h3>Future Experiments</h3>
+        <p>
+          Exploring new possibilities in AI, machine learning,
+          software development and interactive technology.
+        </p>
+        <div class="project-tech">RESEARCH · DEVELOPMENT · INNOVATION</div>
+      </article>
+    </div>
   </div>
 </section>
 
 <!-- EDUCATION -->
 
 <section id="education">
-  <div class="section-heading reveal">
-    <div class="section-kicker">04 / ACADEMIC JOURNEY</div>
-    <h2 class="section-title">Education & <span>learning.</span></h2>
-  </div>
+  <div class="container">
+    <div class="section-label reveal">04 / Academic Journey</div>
+    <h2 class="section-title reveal">Education & <span>Learning.</span></h2>
 
-  <div class="education-card reveal">
-    <div class="education-year">CURRENT · B.TECH</div>
-    <h3>Sri Sri University</h3>
-    <p>
-      Bachelor of Technology — Computer Science and Engineering,
-      specialization in Artificial Intelligence and Machine Learning.
-      Cuttack, Odisha, India.
-    </p>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="year">CURRENT</div>
+        <h3>B.Tech — Computer Science & Engineering</h3>
+        <p>
+          Specialization: Artificial Intelligence & Machine Learning<br>
+          Sri Sri University, Cuttack, Odisha
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year">PREVIOUS</div>
+        <h3>Higher Secondary Education</h3>
+        <p>Class XII — CBSE</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- INTERESTS -->
 
 <section id="interests">
-  <div class="section-heading reveal">
-    <div class="section-kicker">05 / BEYOND THE CODE</div>
-    <h2 class="section-title">Things that <span>inspire me.</span></h2>
-  </div>
+  <div class="container">
+    <div class="section-label reveal">05 / Beyond Technology</div>
+    <h2 class="section-title reveal">Things I <span>Love.</span></h2>
 
-  <div class="interest-grid">
-    <div class="interest reveal"><span>◈</span><strong>Artificial Intelligence</strong></div>
-    <div class="interest reveal"><span>⌘</span><strong>Technology</strong></div>
-    <div class="interest reveal"><span>◎</span><strong>Photography</strong></div>
-    <div class="interest reveal"><span>✧</span><strong>Visual Design</strong></div>
-    <div class="interest reveal"><span>▣</span><strong>Gaming</strong></div>
-    <div class="interest reveal"><span>♫</span><strong>Music</strong></div>
-    <div class="interest reveal"><span>◉</span><strong>Video Editing</strong></div>
-    <div class="interest reveal"><span>∞</span><strong>Learning</strong></div>
+    <div class="interests-grid">
+      <div class="interest reveal"><span>◈</span><h3>Photography</h3></div>
+      <div class="interest reveal"><span>♫</span><h3>Music</h3></div>
+      <div class="interest reveal"><span>✧</span><h3>Video Editing</h3></div>
+      <div class="interest reveal"><span>⌘</span><h3>Technology</h3></div>
+      <div class="interest reveal"><span>◎</span><h3>Gaming</h3></div>
+      <div class="interest reveal"><span>✳</span><h3>Creative Design</h3></div>
+      <div class="interest reveal"><span>◉</span><h3>AI Exploration</h3></div>
+      <div class="interest reveal"><span>↗</span><h3>Learning</h3></div>
+    </div>
   </div>
 </section>
 
 <!-- VISION -->
 
 <section id="vision">
-  <div class="section-kicker reveal">06 / THE BIGGER PICTURE</div>
-  <div class="vision-quote reveal">
-    "Technology is not just about what we can build.
-    It's about <span>what we can make possible.</span>"
-  </div>
-  <div class="vision-caption reveal">
-    THINK BEYOND LIMITS · BUILD WITH PURPOSE
+  <div class="container">
+    <div class="vision-box reveal">
+      <div class="section-label">06 / My Philosophy</div>
+      <blockquote>
+        "The future belongs to those who
+        <span>create</span> it, not simply those
+        who imagine it."
+      </blockquote>
+      <div class="gold-line" style="margin:30px auto;"></div>
+      <p class="section-description" style="margin:auto;">
+        Stay curious. Keep creating. Never stop learning.
+      </p>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 
 <section id="contact">
-  <div class="section-heading reveal">
-    <div class="section-kicker">07 / LET'S CONNECT</div>
-    <h2 class="section-title">Have an idea? <span>Let's talk.</span></h2>
-  </div>
+  <div class="container">
+    <div class="section-label reveal">07 / Let's Connect</div>
+    <h2 class="section-title reveal">Have an idea? <span>Let's talk.</span></h2>
 
-  <div class="contact-grid">
-    <div class="contact-info reveal">
-      <h3>Let's create something <span>meaningful.</span></h3>
-      <p>
-        Interested in technology, projects, collaborations or
-        exchanging ideas? I'd be happy to connect.
-      </p>
-      <p style="margin-top:20px;color:var(--gold)">
-        Use the contact form to get in touch.
-      </p>
-    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p>
+          Interested in technology, creative collaborations,
+          interesting projects or simply having a conversation?
+          Feel free to reach out.
+        </p>
 
-    <form class="contact-form reveal" id="contact-form">
-      <input type="text" id="contact-name" placeholder="Your name" required>
-      <input type="email" id="contact-email" placeholder="Your email" required>
-      <textarea id="contact-message" placeholder="Tell me about your idea..." required></textarea>
-      <button class="gold-button" type="submit">Prepare Email ↗</button>
-      <div class="form-note" id="contact-status">
-        Your email application will open with your message prepared.
+        <div class="contact-detail">
+          <small>EMAIL</small>
+          <a href="mailto:mrswastik372@gmail.com">mrswastik372@gmail.com</a>
+        </div>
+
+        <div class="contact-detail">
+          <small>LOCATION</small>
+          <a href="#contact">Odisha, India</a>
+        </div>
       </div>
-    </form>
+
+      <form class="contact-form reveal" id="contact-form">
+        <input id="contact-name" type="text" placeholder="Your name" required>
+        <input id="contact-email" type="email" placeholder="Your email" required>
+        <textarea id="contact-message" placeholder="Your message..." required></textarea>
+        <button type="submit" class="btn">Send Message ↗</button>
+      </form>
+    </div>
   </div>
 </section>
 
 </main>
 
 <footer>
-  <div>© 2026 <span>SWASTIK NAYAK</span>. ALL RIGHTS RESERVED.</div>
-  <div>DESIGNED WITH INTENTION <span>✧</span></div>
+  <div class="footer-logo">Swastik Nayak.</div>
+  <p>Designed with curiosity and creativity.</p>
+  <p>© <span id="year"></span> Swastik Nayak. All rights reserved.</p>
 </footer>
 
-<!-- NISHI CHAT BUTTON -->
+<!-- NISHI AI -->
 
-<button id="nishi-launcher" aria-label="Open NISHI assistant">N</button>
-
-<!-- NISHI CHAT PANEL -->
+<button id="nishi-launcher" aria-label="Talk to NISHI">N</button>
 
 <div id="nishi-panel">
   <div class="nishi-header">
-    <div class="nishi-brand">
-      <div class="nishi-avatar">N</div>
-      <div>
-        <strong>NISHI</strong>
-        <small>YOUR PERSONAL AI ASSISTANT</small>
-      </div>
+    <div>
+      <strong>NISHI</strong>
+      <small>Your personal AI assistant</small>
     </div>
-    <button id="nishi-close" aria-label="Close assistant">×</button>
+    <button id="nishi-close" aria-label="Close chat">×</button>
   </div>
 
   <div id="nishi-messages">
-    <div class="nishi-message bot">
-      Hey! I'm NISHI. Welcome to Swastik's digital space. What would you like to explore?
+    <div class="message bot">
+      Hello! I'm NISHI. How can I help you today?
     </div>
   </div>
 
-  <div class="nishi-input-area">
-    <form id="nishi-form">
-      <input id="nishi-input" placeholder="Message NISHI..." autocomplete="off" required>
-      <button type="submit" aria-label="Send message">➤</button>
-    </form>
-
-    <div class="nishi-tools">
-      <small>AI ASSISTANT · CONNECTION REQUIRED</small>
-      <div style="display:flex;gap:7px">
-        <button class="nishi-tool" id="nishi-voice" type="button" title="Voice input">🎙</button>
-        <button class="nishi-tool" id="nishi-speak" type="button" title="Toggle spoken replies">🔊</button>
-      </div>
-    </div>
-  </div>
+  <form id="nishi-form" class="nishi-input-row">
+    <input id="nishi-input" type="text" placeholder="Ask NISHI anything..." autocomplete="off" required>
+    <button type="submit">➤</button>
+  </form>
 </div>
 
-<!-- COMMAND CENTRE BUTTON -->
+<!-- COMMAND CENTRE -->
 
-<button id="nishi-command-launcher" type="button">
-  <span>✧</span><span>COMMAND CENTRE</span><span>⌘ K</span>
-</button>
+<div id="command-centre">
+  <div class="command-box">
+    <input id="command-search" type="text"
+           placeholder="Search or jump to a section...">
 
-<!-- COMMAND CENTRE PANEL -->
+    <div class="command-heading">QUICK NAVIGATION</div>
 
-<div id="nishi-command-overlay" role="dialog" aria-modal="true" aria-label="NISHI Command Centre">
-  <div id="nishi-command-box">
-
-    <div class="ncc-header">
-      <div class="ncc-brand">
-        <div class="ncc-symbol">N</div>
-        <div>
-          <div class="ncc-title">NISHI COMMAND</div>
-          <div class="ncc-subtitle">YOUR PERSONAL INTERFACE</div>
-        </div>
-      </div>
-      <button id="ncc-close" type="button">ESC ✕</button>
+    <div class="command-list" id="command-list">
+      <button class="command-item" data-target="home">Home <small>01</small></button>
+      <button class="command-item" data-target="about">About <small>02</small></button>
+      <button class="command-item" data-target="skills">Skills <small>03</small></button>
+      <button class="command-item" data-target="projects">Projects <small>04</small></button>
+      <button class="command-item" data-target="education">Education <small>05</small></button>
+      <button class="command-item" data-target="interests">Interests <small>06</small></button>
+      <button class="command-item" data-target="vision">Vision <small>07</small></button>
+      <button class="command-item" data-target="contact">Contact <small>08</small></button>
+      <button class="command-item" data-action="nishi">Talk to NISHI <small>AI</small></button>
     </div>
 
-    <div class="ncc-search-wrap">
-      <span class="ncc-search-icon">⌕</span>
-      <input id="ncc-search" placeholder="Search commands..." autocomplete="off">
+    <div class="command-footer">
+      ENTER to select · ESC to close · CTRL + K to open
     </div>
-
-    <div class="ncc-section-label">QUICK ACCESS</div>
-    <div id="ncc-results"></div>
-    <div id="ncc-empty">No matching commands found.</div>
-
-    <div class="ncc-footer">
-      <span><strong>↑ ↓</strong> Navigate</span>
-      <span><strong>ENTER</strong> Select</span>
-      <span><strong>ESC</strong> Close</span>
-      <span id="ncc-clock">--:--</span>
-    </div>
-
   </div>
 </div>
 
 <script>
-/* ======================================
-   CONFIGURATION
-====================================== */
+/* =====================================
+   GENERAL SETTINGS
+===================================== */
 
-const NISHI_API = "https://nishi-ai.mrswastik372.workers.dev/";
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
 
-/* ======================================
+$("#year").textContent = new Date().getFullYear();
+
+/* =====================================
    PRELOADER
-====================================== */
+===================================== */
 
 window.addEventListener("load", () => {
   setTimeout(() => {
-    document.getElementById("preloader").classList.add("hide");
-  }, 500);
+    $("#preloader").classList.add("hide");
+  }, 400);
 });
 
-/* ======================================
-   WELCOME VIDEO PERFORMANCE MANAGER
-====================================== */
+/* =====================================
+   WELCOME VIDEO OPTIMIZATION
+===================================== */
 
-const welcomeScreen = document.getElementById("welcome");
-const welcomeVideo = document.getElementById("welcome-video");
-const enterButton = document.getElementById("enter-site");
+const welcome = $("#welcome");
+const welcomeVideo = $("#welcome-video");
+const enterButton = $("#enter-btn");
 
-const isMobileDevice = window.matchMedia("(max-width: 768px)").matches;
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function stopWelcomeVideo() {
+  if (!welcomeVideo) return;
 
-let welcomeEntered = false;
+  welcomeVideo.pause();
 
-if(welcomeVideo){
-  if(isMobileDevice || prefersReducedMotion){
-    welcomeVideo.pause();
-    welcomeVideo.removeAttribute("autoplay");
-  }else{
-    welcomeVideo.play().catch(() => {
-      console.log("Welcome video autoplay unavailable.");
-    });
-  }
+  const source = welcomeVideo.querySelector("source");
+  if (source) source.removeAttribute("src");
+
+  welcomeVideo.removeAttribute("src");
+  welcomeVideo.load();
 }
 
-enterButton.addEventListener("click", () => {
-  if(welcomeEntered) return;
+function enterExperience() {
+  welcome.classList.add("exit");
 
-  welcomeEntered = true;
+  stopWelcomeVideo();
 
-  if(welcomeVideo){
-    welcomeVideo.pause();
-    welcomeVideo.removeAttribute("src");
+  setTimeout(() => {
+    welcome.style.display = "none";
+  }, 1100);
+}
 
-    const source = welcomeVideo.querySelector("source");
-    if(source) source.removeAttribute("src");
-
-    welcomeVideo.load();
-  }
-
-  welcomeScreen.classList.add("hide");
-});
+enterButton.addEventListener("click", enterExperience);
 
 document.addEventListener("visibilitychange", () => {
-  if(!welcomeVideo || welcomeEntered) return;
+  if (!welcomeVideo) return;
 
-  if(document.hidden){
+  if (document.hidden) {
     welcomeVideo.pause();
-  }else if(!isMobileDevice && !prefersReducedMotion){
+  } else if (
+    !document.hidden &&
+    !welcome.classList.contains("exit") &&
+    window.innerWidth > 768
+  ) {
     welcomeVideo.play().catch(() => {});
   }
 });
 
-/* ======================================
+if (window.innerWidth <= 768) {
+  stopWelcomeVideo();
+}
+
+/* =====================================
    NAVIGATION
-====================================== */
+===================================== */
 
-const navbar = document.getElementById("navbar");
-const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
+const menuButton = $("#menu-btn");
+const navLinks = $("#nav-links");
 
-window.addEventListener("scroll", () => {
-  navbar.classList.toggle("scrolled",window.scrollY > 40);
-},{passive:true});
-
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
+menuButton.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
 });
 
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click",() => navLinks.classList.remove("show"));
+$$(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+  });
 });
 
-/* ======================================
-   REVEAL ANIMATIONS
-====================================== */
+const sections = $$("main section");
 
-if("IntersectionObserver" in window){
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },{threshold:0.12});
+function updateActiveLink() {
+  let current = "home";
 
-  document.querySelectorAll(".reveal").forEach(el => {
-    revealObserver.observe(el);
-  });
-}else{
-  document.querySelectorAll(".reveal").forEach(el => {
-    el.classList.add("visible");
-  });
-}
-
-/* ======================================
-   ACTIVE NAVIGATION
-====================================== */
-
-const sections = document.querySelectorAll("main section[id]");
-const navItems = document.querySelectorAll(".nav-links a");
-
-if("IntersectionObserver" in window){
-  const activeObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        navItems.forEach(link => {
-          link.classList.toggle(
-            "active",
-            link.getAttribute("href") === "#" + entry.target.id
-          );
-        });
-      }
-    });
-  },{rootMargin:"-35% 0px -55% 0px"});
-
-  sections.forEach(section => activeObserver.observe(section));
-}
-
-/* ======================================
-   LIGHTWEIGHT PARTICLE BACKGROUND
-====================================== */
-
-(() => {
-  const canvas = document.getElementById("particles");
-  const ctx = canvas.getContext("2d");
-
-  let width=0,height=0,particles=[];
-  let animationId=null;
-
-  const count = window.innerWidth < 600 ? 22 : 40;
-
-  function resize(){
-    const dpr = Math.min(window.devicePixelRatio || 1,1.5);
-
-    width=window.innerWidth;
-    height=window.innerHeight;
-
-    canvas.width=width*dpr;
-    canvas.height=height*dpr;
-    canvas.style.width=width+"px";
-    canvas.style.height=height+"px";
-
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-  }
-
-  function createParticles(){
-    particles=Array.from({length:count},()=>({
-      x:Math.random()*width,
-      y:Math.random()*height,
-      r:Math.random()*1.2+.4,
-      speed:Math.random()*.2+.06,
-      alpha:Math.random()*.35+.1
-    }));
-  }
-
-  function animate(){
-    ctx.clearRect(0,0,width,height);
-
-    particles.forEach(p=>{
-      p.y-=p.speed;
-
-      if(p.y < -5){
-        p.y=height+5;
-        p.x=Math.random()*width;
-      }
-
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(201,166,107,${p.alpha})`;
-      ctx.fill();
-    });
-
-    animationId=requestAnimationFrame(animate);
-  }
-
-  function start(){
-    if(!animationId) animate();
-  }
-
-  function stop(){
-    if(animationId){
-      cancelAnimationFrame(animationId);
-      animationId=null;
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 180) {
+      current = section.id;
     }
+  });
+
+  $$(".nav-links a").forEach(link => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === "#" + current
+    );
+  });
+}
+
+window.addEventListener("scroll", updateActiveLink, { passive: true });
+updateActiveLink();
+
+/* =====================================
+   SCROLL REVEAL
+===================================== */
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+$$(".reveal").forEach(element => revealObserver.observe(element));
+
+/* =====================================
+   LIGHTWEIGHT PARTICLE BACKGROUND
+===================================== */
+
+const canvas = $("#particles");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+let animationFrame = null;
+let particleWidth = 0;
+let particleHeight = 0;
+
+function resizeCanvas() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+  particleWidth = window.innerWidth;
+  particleHeight = window.innerHeight;
+
+  canvas.width = particleWidth * dpr;
+  canvas.height = particleHeight * dpr;
+
+  canvas.style.width = particleWidth + "px";
+  canvas.style.height = particleHeight + "px";
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const count = particleWidth < 768 ? 22 : 40;
+
+  particles = Array.from({ length: count }, () => ({
+    x: Math.random() * particleWidth,
+    y: Math.random() * particleHeight,
+    radius: Math.random() * 1.5 + .3,
+    speed: Math.random() * .25 + .08,
+    alpha: Math.random() * .45 + .1
+  }));
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, particleWidth, particleHeight);
+
+  particles.forEach(p => {
+    p.y -= p.speed;
+
+    if (p.y < -5) {
+      p.y = particleHeight + 5;
+      p.x = Math.random() * particleWidth;
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(214,184,121,${p.alpha})`;
+    ctx.fill();
+  });
+
+  animationFrame = requestAnimationFrame(drawParticles);
+}
+
+function startParticles() {
+  if (!animationFrame && !document.hidden) {
+    animationFrame = requestAnimationFrame(drawParticles);
   }
+}
 
-  resize();
-  createParticles();
-  start();
+function stopParticles() {
+  if (animationFrame) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+  }
+}
 
-  window.addEventListener("resize",()=>{
-    resize();
-    createParticles();
-  });
+resizeCanvas();
+startParticles();
 
-  document.addEventListener("visibilitychange",()=>{
-    if(document.hidden) stop();
-    else start();
-  });
-})();
+let resizeTimer;
 
-/* ======================================
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(resizeCanvas, 150);
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    stopParticles();
+  } else {
+    startParticles();
+  }
+});
+
+/* =====================================
    CONTACT FORM
-====================================== */
+===================================== */
 
-document.getElementById("contact-form").addEventListener("submit",event=>{
+const YOUR_EMAIL = "mrswastik372@gmail.com";
+
+$("#contact-form").addEventListener("submit", event => {
   event.preventDefault();
 
-  const name=document.getElementById("contact-name").value.trim();
-  const email=document.getElementById("contact-email").value.trim();
-  const message=document.getElementById("contact-message").value.trim();
+  const name = $("#contact-name").value.trim();
+  const email = $("#contact-email").value.trim();
+  const message = $("#contact-message").value.trim();
 
-  const subject=encodeURIComponent("Portfolio enquiry from "+name);
-  const body=encodeURIComponent(
-    "Name: "+name+"\nEmail: "+email+"\n\n"+message
+  if (!name || !email || !message) return;
+
+  const subject = encodeURIComponent(
+    "Portfolio enquiry from " + name
   );
 
-  // Replace with your actual email address.
-  const YOUR_EMAIL="YOUR_EMAIL@example.com";
+  const body = encodeURIComponent(
+    "Hello Swastik,\n\n" +
+    message +
+    "\n\nRegards,\n" +
+    name +
+    "\nEmail: " + email
+  );
 
-  if(YOUR_EMAIL==="YOUR_EMAIL@example.com"){
-    document.getElementById("contact-status").textContent=
-      "Please add your email address in the contact form script.";
-    return;
-  }
-
-  window.location.href=
+  const mailto =
     `mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`;
+
+  window.location.href = mailto;
 });
 
-/* ======================================
-   NISHI CHAT
-====================================== */
+/* =====================================
+   NISHI AI CHAT
+===================================== */
 
-const nishiPanel=document.getElementById("nishi-panel");
-const nishiLauncher=document.getElementById("nishi-launcher");
-const nishiClose=document.getElementById("nishi-close");
-const nishiForm=document.getElementById("nishi-form");
-const nishiInput=document.getElementById("nishi-input");
-const nishiMessages=document.getElementById("nishi-messages");
+const NISHI_API =
+  "https://nishi-ai.mrswastik372.workers.dev/";
 
-let nishiHistory=[];
-let nishiBusy=false;
-let voiceReplies=false;
+const nishiPanel = $("#nishi-panel");
+const nishiLauncher = $("#nishi-launcher");
+const nishiMessages = $("#nishi-messages");
+const nishiInput = $("#nishi-input");
 
-function openNishi(){
+let nishiHistory = [];
+
+function openNishi() {
   nishiPanel.classList.add("open");
-  setTimeout(()=>nishiInput.focus(),100);
+  nishiInput.focus();
 }
 
-function closeNishi(){
+function closeNishi() {
   nishiPanel.classList.remove("open");
 }
 
-nishiLauncher.addEventListener("click",openNishi);
-nishiClose.addEventListener("click",closeNishi);
+function addMessage(text, type) {
+  const message = document.createElement("div");
 
-function addNishiMessage(text,type){
-  const message=document.createElement("div");
-  message.className="nishi-message "+type;
-  message.textContent=text;
+  message.className = "message " + type;
+  message.textContent = text;
 
   nishiMessages.appendChild(message);
-  nishiMessages.scrollTop=nishiMessages.scrollHeight;
+  nishiMessages.scrollTop = nishiMessages.scrollHeight;
 
   return message;
 }
 
-function speakNishi(text){
-  if(!voiceReplies || !("speechSynthesis" in window)) return;
+nishiLauncher.addEventListener("click", () => {
+  if (nishiPanel.classList.contains("open")) {
+    closeNishi();
+  } else {
+    openNishi();
+  }
+});
 
-  window.speechSynthesis.cancel();
+$("#nishi-close").addEventListener("click", closeNishi);
 
-  const utterance=new SpeechSynthesisUtterance(text);
-  utterance.rate=1;
-  utterance.pitch=1.05;
-  utterance.lang="en-IN";
+$("#nishi-form").addEventListener("submit", async event => {
+  event.preventDefault();
 
-  window.speechSynthesis.speak(utterance);
-}
+  const message = nishiInput.value.trim();
 
-function extractNishiResponse(data){
-  if(typeof data==="string") return data;
+  if (!message) return;
 
-  return data?.response ||
-    data?.message ||
-    data?.reply ||
-    data?.text ||
-    data?.result ||
-    data?.output ||
-    data?.choices?.[0]?.message?.content ||
-    "I received a response, but couldn't identify its text.";
-}
+  addMessage(message, "user");
+  nishiInput.value = "";
+  nishiInput.disabled = true;
 
-async function askNishi(message){
-  if(nishiBusy) return;
+  const loadingMessage = addMessage("NISHI is thinking...", "bot");
 
-  nishiBusy=true;
-
-  const typing=addNishiMessage("NISHI is thinking...","bot");
-  nishiInput.disabled=true;
-
-  try{
-    const response=await fetch(NISHI_API,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        message:message,
-        history:nishiHistory
+  try {
+    const response = await fetch(NISHI_API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message,
+        history: nishiHistory
       })
     });
 
-    if(!response.ok){
-      throw new Error("Server returned status "+response.status);
+    if (!response.ok) {
+      throw new Error("Server returned " + response.status);
     }
 
-    const data=await response.json();
-    const answer=extractNishiResponse(data);
+    const data = await response.json();
 
-    typing.textContent=answer;
+    const reply =
+      data.reply ||
+      data.response ||
+      data.message ||
+      data.result ||
+      "I received your message, but couldn't find a reply.";
+
+    loadingMessage.textContent = reply;
 
     nishiHistory.push(
-      {role:"user",content:message},
-      {role:"assistant",content:answer}
+      { role: "user", content: message },
+      { role: "assistant", content: reply }
     );
 
-    if(nishiHistory.length>20){
-      nishiHistory=nishiHistory.slice(-20);
+    if (nishiHistory.length > 20) {
+      nishiHistory = nishiHistory.slice(-20);
     }
 
-    speakNishi(answer);
+  } catch (error) {
+    loadingMessage.textContent =
+      "I'm having trouble connecting right now. Please try again in a moment.";
+    console.error("NISHI connection error:", error);
 
-  }catch(error){
-    typing.textContent=
-      "I'm having trouble connecting right now. Please check the NISHI server connection and try again.";
-
-    console.error("NISHI connection error:",error);
-
-  }finally{
-    nishiBusy=false;
-    nishiInput.disabled=false;
+  } finally {
+    nishiInput.disabled = false;
     nishiInput.focus();
-    nishiMessages.scrollTop=nishiMessages.scrollHeight;
+    nishiMessages.scrollTop = nishiMessages.scrollHeight;
   }
-}
-
-nishiForm.addEventListener("submit",event=>{
-  event.preventDefault();
-
-  const message=nishiInput.value.trim();
-  if(!message || nishiBusy) return;
-
-  addNishiMessage(message,"user");
-  nishiInput.value="";
-
-  askNishi(message);
 });
 
-/* ======================================
+/* =====================================
    NISHI VOICE INPUT
-====================================== */
+   Uses browser speech recognition when supported.
+===================================== */
 
-const voiceButton=document.getElementById("nishi-voice");
-const speakButton=document.getElementById("nishi-speak");
+const SpeechRecognition =
+  window.SpeechRecognition ||
+  window.webkitSpeechRecognition;
 
-const SpeechRecognition=
-  window.SpeechRecognition || window.webkitSpeechRecognition;
+if (SpeechRecognition) {
+  const recognition = new SpeechRecognition();
 
-let recognition=null;
+  recognition.lang = "en-IN";
+  recognition.interimResults = false;
 
-if(SpeechRecognition){
-  recognition=new SpeechRecognition();
-  recognition.lang="en-IN";
-  recognition.interimResults=false;
-  recognition.continuous=false;
+  // Voice input can be enabled from the browser console:
+  // window.startNishiVoice()
 
-  recognition.onresult=event=>{
-    const transcript=event.results[0][0].transcript;
-    nishiInput.value=transcript;
-    nishiForm.requestSubmit();
-  };
+  window.startNishiVoice = () => {
+    openNishi();
 
-  recognition.onerror=()=>{
-    voiceButton.classList.remove("active");
-  };
+    recognition.start();
 
-  recognition.onend=()=>{
-    voiceButton.classList.remove("active");
+    recognition.onresult = event => {
+      nishiInput.value =
+        event.results[0][0].transcript;
+    };
+
+    recognition.onerror = error => {
+      console.error("Voice recognition error:", error);
+    };
   };
 }
 
-voiceButton.addEventListener("click",()=>{
-  if(!recognition){
-    addNishiMessage(
-      "Voice recognition is not supported in this browser. Try a supported browser.",
-      "bot"
-    );
-    return;
-  }
+/* =====================================
+   NISHI TEXT-TO-SPEECH
+===================================== */
 
-  try{
-    voiceButton.classList.add("active");
-    recognition.start();
-  }catch(error){
-    voiceButton.classList.remove("active");
+window.speakNishi = function(text) {
+  if (!("speechSynthesis" in window)) return;
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "en-IN";
+  utterance.rate = 0.95;
+  utterance.pitch = 1.08;
+
+  window.speechSynthesis.speak(utterance);
+};
+
+/* =====================================
+   COMMAND CENTRE
+===================================== */
+
+const commandCentre = $("#command-centre");
+const commandSearch = $("#command-search");
+
+function openCommandCentre() {
+  commandCentre.classList.add("open");
+  commandSearch.value = "";
+  filterCommands("");
+  commandSearch.focus();
+}
+
+function closeCommandCentre() {
+  commandCentre.classList.remove("open");
+}
+
+function filterCommands(query) {
+  const value = query.toLowerCase();
+
+  $$(".command-item").forEach(item => {
+    item.style.display =
+      item.textContent.toLowerCase().includes(value)
+        ? "flex"
+        : "none";
+  });
+}
+
+commandSearch.addEventListener("input", event => {
+  filterCommands(event.target.value);
+});
+
+commandCentre.addEventListener("click", event => {
+  if (event.target === commandCentre) {
+    closeCommandCentre();
   }
 });
 
-speakButton.addEventListener("click",()=>{
-  voiceReplies=!voiceReplies;
-  speakButton.classList.toggle("active",voiceReplies);
+$$(".command-item").forEach(item => {
+  item.addEventListener("click", () => {
+    const target = item.dataset.target;
+    const action = item.dataset.action;
 
-  if(!voiceReplies && "speechSynthesis" in window){
-    window.speechSynthesis.cancel();
-  }
-});
+    closeCommandCentre();
 
-/* ======================================
-   NISHI COMMAND CENTRE
-====================================== */
-
-(() => {
-  const overlay=document.getElementById("nishi-command-overlay");
-  const launcher=document.getElementById("nishi-command-launcher");
-  const search=document.getElementById("ncc-search");
-  const results=document.getElementById("ncc-results");
-  const closeButton=document.getElementById("ncc-close");
-  const empty=document.getElementById("ncc-empty");
-  const clock=document.getElementById("ncc-clock");
-
-  let selectedIndex=0;
-  let visibleCommands=[];
-
-  const commands=[
-    {
-      title:"Home",
-      description:"Return to the main introduction",
-      icon:"⌂",
-      keywords:"home introduction start",
-      action:()=>navigateTo("home")
-    },
-    {
-      title:"About Me",
-      description:"Discover my background and story",
-      icon:"◈",
-      keywords:"about profile story",
-      action:()=>navigateTo("about")
-    },
-    {
-      title:"Skills",
-      description:"Explore my technical skills",
-      icon:"⌘",
-      keywords:"skills technologies programming",
-      action:()=>navigateTo("skills")
-    },
-    {
-      title:"Projects",
-      description:"Explore my work and projects",
-      icon:"▣",
-      keywords:"projects portfolio work",
-      action:()=>navigateTo("projects")
-    },
-    {
-      title:"Education",
-      description:"View my academic journey",
-      icon:"◇",
-      keywords:"education university college",
-      action:()=>navigateTo("education")
-    },
-    {
-      title:"Interests",
-      description:"Explore my interests and passions",
-      icon:"✧",
-      keywords:"interests hobbies passions",
-      action:()=>navigateTo("interests")
-    },
-    {
-      title:"Vision",
-      description:"Discover my goals and ambitions",
-      icon:"◎",
-      keywords:"vision goals future",
-      action:()=>navigateTo("vision")
-    },
-    {
-      title:"Contact",
-      description:"Get in touch with me",
-      icon:"✉",
-      keywords:"contact email message",
-      action:()=>navigateTo("contact")
-    },
-    {
-      title:"Talk to NISHI",
-      description:"Open your personal AI assistant",
-      icon:"✦",
-      keywords:"nishi ai assistant chat talk",
-      action:()=>{
-        closeCommand();
-        openNishi();
-      }
-    }
-  ];
-
-  function navigateTo(id){
-    closeCommand();
-
-    const target=document.getElementById(id);
-
-    if(target){
-      target.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+    if (target) {
+      document.getElementById(target).scrollIntoView({
+        behavior: "smooth"
       });
-
-      history.replaceState(null,"","#"+id);
-    }
-  }
-
-  function openCommand(){
-    overlay.style.display="flex";
-
-    requestAnimationFrame(()=>{
-      overlay.classList.add("active");
-      search.focus();
-    });
-
-    renderCommands(search.value);
-  }
-
-  function closeCommand(){
-    overlay.classList.remove("active");
-
-    setTimeout(()=>{
-      if(!overlay.classList.contains("active")){
-        overlay.style.display="none";
-      }
-    },260);
-  }
-
-  function renderCommands(query){
-    const q=query.trim().toLowerCase();
-
-    visibleCommands=commands.filter(command=>
-      (
-        command.title+" "+
-        command.description+" "+
-        command.keywords
-      ).toLowerCase().includes(q)
-    );
-
-    selectedIndex=0;
-    results.innerHTML="";
-
-    visibleCommands.forEach((command,index)=>{
-      const button=document.createElement("button");
-      button.type="button";
-      button.className="ncc-item"+
-        (index===selectedIndex?" selected":"");
-
-      const icon=document.createElement("span");
-      icon.className="ncc-item-icon";
-      icon.textContent=command.icon;
-
-      const textWrap=document.createElement("span");
-      textWrap.className="ncc-item-text";
-
-      const title=document.createElement("span");
-      title.className="ncc-item-title";
-      title.textContent=command.title;
-
-      const description=document.createElement("span");
-      description.className="ncc-item-description";
-      description.textContent=command.description;
-
-      textWrap.append(title,description);
-
-      const enter=document.createElement("span");
-      enter.className="ncc-enter";
-      enter.textContent="↵";
-
-      button.append(icon,textWrap,enter);
-      button.addEventListener("click",command.action);
-      results.appendChild(button);
-    });
-
-    empty.style.display=visibleCommands.length?"none":"block";
-  }
-
-  function updateSelection(){
-    const items=results.querySelectorAll(".ncc-item");
-
-    items.forEach((item,index)=>{
-      item.classList.toggle("selected",index===selectedIndex);
-    });
-
-    items[selectedIndex]?.scrollIntoView({block:"nearest"});
-  }
-
-  launcher.addEventListener("click",openCommand);
-
-  document.getElementById("nav-command")
-    .addEventListener("click",openCommand);
-
-  closeButton.addEventListener("click",closeCommand);
-
-  overlay.addEventListener("click",event=>{
-    if(event.target===overlay) closeCommand();
-  });
-
-  search.addEventListener("input",()=>{
-    renderCommands(search.value);
-  });
-
-  search.addEventListener("keydown",event=>{
-    if(event.key==="ArrowDown"){
-      event.preventDefault();
-      selectedIndex=Math.min(
-        selectedIndex+1,
-        visibleCommands.length-1
-      );
-      updateSelection();
     }
 
-    if(event.key==="ArrowUp"){
-      event.preventDefault();
-      selectedIndex=Math.max(selectedIndex-1,0);
-      updateSelection();
-    }
-
-    if(event.key==="Enter"){
-      event.preventDefault();
-      visibleCommands[selectedIndex]?.action();
+    if (action === "nishi") {
+      openNishi();
     }
   });
+});
 
-  document.addEventListener("keydown",event=>{
-    const shortcut=
-      (event.ctrlKey || event.metaKey) &&
-      event.key.toLowerCase()==="k";
+document.addEventListener("keydown", event => {
+  const isCommand =
+    (event.ctrlKey || event.metaKey) &&
+    event.key.toLowerCase() === "k";
 
-    if(shortcut){
-      event.preventDefault();
+  if (isCommand) {
+    event.preventDefault();
 
-      if(overlay.classList.contains("active")){
-        closeCommand();
-      }else{
-        openCommand();
-      }
+    if (commandCentre.classList.contains("open")) {
+      closeCommandCentre();
+    } else {
+      openCommandCentre();
     }
-
-    if(
-      event.key==="Escape" &&
-      overlay.classList.contains("active")
-    ){
-      closeCommand();
-    }
-  });
-
-  function updateClock(){
-    clock.textContent=new Intl.DateTimeFormat("en-IN",{
-      hour:"2-digit",
-      minute:"2-digit",
-      hour12:true
-    }).format(new Date());
   }
 
-  updateClock();
-  setInterval(updateClock,30000);
-  renderCommands("");
-})();
-
-/* ======================================
-   ESCAPE TO CLOSE NISHI CHAT
-====================================== */
-
-document.addEventListener("keydown",event=>{
-  if(
-    event.key==="Escape" &&
-    document.getElementById("nishi-panel").classList.contains("open")
-  ){
+  if (event.key === "Escape") {
+    closeCommandCentre();
     closeNishi();
   }
 });
+
+/* =====================================
+   END
+===================================== */
+
+console.log(
+  "%cWelcome to Swastik's Portfolio",
+  "color:#d6b879;font-size:16px;font-weight:bold;"
+);
 </script>
 
 </body>
