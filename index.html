@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090909">
-<meta name="description" content="Swastik Nayak — AI & ML Developer, Creative Technologist and Computer Science Student.">
-<title>Swastik Nayak | Creative Technologist</title>
+<meta name="description" content="Swastik Nayak — Creative Technologist, AI & ML Developer">
+<title>Swastik Nayak — Creative Technologist</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,56 +38,91 @@ button,input,textarea{font:inherit}
 button{cursor:pointer}
 ::selection{background:var(--gold);color:#090909}
 
+/* PRELOADER */
+
 #preloader{
   position:fixed;inset:0;z-index:100000;
   display:grid;place-items:center;
   background:#090909;
-  transition:opacity .8s,visibility .8s;
+  transition:opacity .7s,visibility .7s;
 }
 #preloader.hide{opacity:0;visibility:hidden}
 .preloader-content{text-align:center}
 .preloader-logo{
-  font:60px var(--serif);color:var(--gold);
+  font:60px var(--serif);
+  color:var(--gold);
   animation:pulse 1.5s infinite alternate;
 }
 .preloader-line{
-  width:120px;height:1px;background:#30291e;
-  margin:20px auto;overflow:hidden;
+  width:120px;height:1px;
+  background:#30291e;margin:20px auto;
+  overflow:hidden;
 }
 .preloader-line:after{
   content:"";display:block;width:40%;height:100%;
-  background:var(--gold);animation:loading 1.2s infinite;
+  background:var(--gold);
+  animation:loading 1.2s infinite;
 }
-@keyframes loading{from{transform:translateX(-100%)}to{transform:translateX(300%)}}
-@keyframes pulse{to{text-shadow:0 0 35px #c9a66b}}
+@keyframes loading{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(300%)}
+}
+@keyframes pulse{
+  to{text-shadow:0 0 35px #c9a66b}
+}
+
+/* OPTIMIZED CINEMATIC WELCOME */
 
 #welcome{
   position:fixed;inset:0;z-index:9999;
   display:flex;align-items:center;justify-content:center;
   flex-direction:column;text-align:center;
+  overflow:hidden;isolation:isolate;
   background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),
-    url("background.mp4");
-  background-color:#090909;
-  overflow:hidden;
-  transition:opacity 1s,visibility 1s;
+    radial-gradient(ellipse at center,#242017 0%,#11100d 48%,#080808 100%);
+  transition:opacity .8s ease,visibility .8s ease;
 }
-#welcome.hide{opacity:0;visibility:hidden;pointer-events:none}
+#welcome.hide{
+  opacity:0;visibility:hidden;pointer-events:none;
+}
 #welcome-video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;opacity:.25;z-index:-1;
+  position:absolute;inset:0;z-index:-2;
+  width:100%;height:100%;
+  object-fit:cover;opacity:.28;
+  pointer-events:none;background:#090909;
+}
+.welcome-overlay{
+  position:absolute;inset:0;z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.48),
+    rgba(0,0,0,.65) 55%,
+    rgba(0,0,0,.88)
+  );
+}
+.welcome-content{
+  position:relative;z-index:2;padding:20px;
+  animation:welcomeEntrance 1.1s ease both;
+}
+@keyframes welcomeEntrance{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
 }
 .welcome-orb{
-  position:absolute;width:500px;height:500px;
+  position:absolute;z-index:0;
+  width:min(500px,85vw);aspect-ratio:1;
   border:1px solid rgba(201,166,107,.13);
-  border-radius:50%;animation:rotate 35s linear infinite;
+  border-radius:50%;pointer-events:none;
+  animation:welcomeRotate 50s linear infinite;
 }
 .welcome-orb:before,.welcome-orb:after{
-  content:"";position:absolute;border:1px solid rgba(201,166,107,.1);
-  border-radius:50%;inset:35px;
+  content:"";position:absolute;inset:35px;
+  border:1px solid rgba(201,166,107,.1);
+  border-radius:50%;
 }
 .welcome-orb:after{inset:80px}
-@keyframes rotate{to{transform:rotate(360deg)}}
+@keyframes welcomeRotate{to{transform:rotate(360deg)}}
 .welcome-kicker{
   color:var(--gold);font-size:10px;
   letter-spacing:5px;margin-bottom:25px;
@@ -99,11 +134,17 @@ button{cursor:pointer}
 .welcome-title span{color:var(--gold)}
 .welcome-description{
   color:#aaa49a;max-width:440px;
-  line-height:1.9;font-size:13px;margin:20px;
+  line-height:1.9;font-size:13px;
+  margin:20px auto 28px;
+}
+.welcome-bottom{
+  position:absolute;bottom:35px;z-index:2;
+  color:#777;font-size:9px;letter-spacing:3px;
 }
 .gold-button{
-  padding:15px 30px;background:var(--gold);
-  color:#100e0a;border:1px solid var(--gold);
+  display:inline-block;padding:15px 30px;
+  background:var(--gold);color:#100e0a;
+  border:1px solid var(--gold);
   font-size:10px;letter-spacing:2px;
   text-transform:uppercase;transition:.3s;
 }
@@ -113,24 +154,53 @@ button{cursor:pointer}
   transform:translateY(-3px);
 }
 
-#particles{
-  position:fixed;inset:0;width:100%;height:100%;
-  z-index:-1;pointer-events:none;opacity:.55;
+/* MOBILE VIDEO OPTIMIZATION */
+
+@media(max-width:768px){
+  #welcome-video{display:none}
+  #welcome{
+    background:radial-gradient(
+      ellipse at 50% 42%,
+      #30271b 0%,#17130e 42%,#080808 100%
+    );
+  }
+  .welcome-orb{
+    animation:none;
+    width:85vw;
+  }
 }
+@media(prefers-reduced-motion:reduce){
+  #welcome-video{display:none}
+  .welcome-orb,.welcome-content{animation:none}
+}
+
+/* BACKGROUND PARTICLES */
+
+#particles{
+  position:fixed;inset:0;
+  width:100%;height:100%;
+  z-index:-1;pointer-events:none;opacity:.5;
+}
+
+/* NAVIGATION */
 
 .navbar{
   position:fixed;top:0;left:0;width:100%;
   z-index:1000;padding:22px 6%;
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;align-items:center;
+  justify-content:space-between;
   background:rgba(9,9,9,.75);
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(15px);
   border-bottom:1px solid rgba(255,255,255,.035);
   transition:.3s;
 }
-.navbar.scrolled{padding:14px 6%;background:rgba(9,9,9,.94)}
+.navbar.scrolled{
+  padding:14px 6%;
+  background:rgba(9,9,9,.94);
+}
 .logo{
-  font:25px var(--serif);color:var(--gold);
-  letter-spacing:1px;
+  font:25px var(--serif);
+  color:var(--gold);letter-spacing:1px;
 }
 .logo small{
   font:9px var(--sans);color:#aaa;
@@ -144,8 +214,9 @@ button{cursor:pointer}
 .nav-links a:hover,.nav-links a.active{color:var(--gold)}
 .nav-actions{display:flex;align-items:center;gap:12px}
 .nav-command{
-  border:1px solid var(--line);background:transparent;
-  color:var(--gold);padding:9px 12px;font-size:10px;
+  border:1px solid var(--line);
+  background:transparent;color:var(--gold);
+  padding:9px 12px;font-size:10px;
   letter-spacing:1px;border-radius:5px;
 }
 .menu-toggle{
@@ -153,7 +224,12 @@ button{cursor:pointer}
   color:var(--gold);font-size:25px;
 }
 
-section{padding:120px 9%;position:relative}
+/* GENERAL SECTIONS */
+
+section{
+  padding:120px 9%;
+  position:relative;
+}
 .section-kicker{
   color:var(--gold);font-size:10px;
   letter-spacing:4px;text-transform:uppercase;
@@ -170,6 +246,8 @@ section{padding:120px 9%;position:relative}
 }
 .section-heading{margin-bottom:55px}
 
+/* HERO */
+
 #home{
   min-height:100vh;display:flex;
   align-items:center;padding-top:140px;
@@ -185,10 +263,12 @@ section{padding:120px 9%;position:relative}
 }
 .hero-title{
   font:clamp(55px,8vw,105px) var(--serif);
-  font-weight:400;line-height:1.04;letter-spacing:-3px;
+  font-weight:400;line-height:1.04;
+  letter-spacing:-3px;
 }
 .hero-title span{
-  display:block;color:var(--gold);font-style:italic;
+  display:block;color:var(--gold);
+  font-style:italic;
 }
 .hero-description{
   max-width:480px;color:var(--muted);
@@ -196,7 +276,8 @@ section{padding:120px 9%;position:relative}
 }
 .hero-buttons{display:flex;gap:13px;flex-wrap:wrap}
 .outline-button{
-  padding:15px 25px;border:1px solid var(--line);
+  display:inline-block;padding:15px 25px;
+  border:1px solid var(--line);
   color:var(--gold-light);font-size:10px;
   letter-spacing:2px;text-transform:uppercase;
   background:transparent;transition:.3s;
@@ -206,11 +287,12 @@ section{padding:120px 9%;position:relative}
   border-color:var(--gold);
 }
 .hero-meta{
-  display:flex;gap:35px;margin-top:55px;
-  flex-wrap:wrap;
+  display:flex;gap:35px;
+  margin-top:55px;flex-wrap:wrap;
 }
 .hero-meta-item strong{
-  display:block;font:25px var(--serif);color:var(--gold);
+  display:block;font:25px var(--serif);
+  color:var(--gold);
 }
 .hero-meta-item span{
   display:block;color:var(--muted);
@@ -224,19 +306,24 @@ section{padding:120px 9%;position:relative}
   transform:rotate(2deg);
 }
 .profile-frame:before{
-  content:"";position:absolute;inset:22px -15px -15px 22px;
-  border:1px solid rgba(201,166,107,.23);z-index:-1;
+  content:"";position:absolute;
+  inset:22px -15px -15px 22px;
+  border:1px solid rgba(201,166,107,.23);
+  z-index:-1;
 }
 .profile-frame img{
-  width:100%;height:100%;object-fit:cover;
-  filter:grayscale(30%);background:#171614;
+  width:100%;height:100%;
+  object-fit:cover;filter:grayscale(30%);
+  background:#171614;
 }
 .profile-caption{
   position:absolute;bottom:28px;left:28px;
-  padding:12px 16px;background:rgba(9,9,9,.8);
-  backdrop-filter:blur(10px);
+  padding:12px 16px;
+  background:rgba(9,9,9,.8);
   font-size:10px;letter-spacing:2px;color:var(--gold);
 }
+
+/* ABOUT */
 
 #about{background:linear-gradient(180deg,#0b0b0a,#10100e)}
 .about-grid{
@@ -270,9 +357,12 @@ section{padding:120px 9%;position:relative}
 }
 .detail strong{font-size:12px;font-weight:400}
 
+/* SKILLS */
+
 #skills{background:#090909}
 .skills-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
 .skill-card{
   border:1px solid var(--line);padding:28px;
@@ -285,12 +375,10 @@ section{padding:120px 9%;position:relative}
   box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 .skill-icon{font-size:24px;color:var(--gold);margin-bottom:22px}
-.skill-card h3{
-  font:21px var(--serif);margin-bottom:10px;
-}
-.skill-card p{
-  color:var(--muted);font-size:11px;line-height:1.8;
-}
+.skill-card h3{font:21px var(--serif);margin-bottom:10px}
+.skill-card p{color:var(--muted);font-size:11px;line-height:1.8}
+
+/* PROJECTS */
 
 #projects{background:#10100e}
 .project-grid{
@@ -301,33 +389,24 @@ section{padding:120px 9%;position:relative}
   background:#0b0b0a;overflow:hidden;transition:.35s;
 }
 .project-card:hover{
-  transform:translateY(-6px);
-  border-color:var(--gold);
+  transform:translateY(-6px);border-color:var(--gold);
 }
 .project-image{
   height:210px;display:grid;place-items:center;
-  background:
-    radial-gradient(circle at 50% 40%,rgba(201,166,107,.17),transparent 65%),
-    #151411;
+  background:radial-gradient(circle at 50% 40%,rgba(201,166,107,.17),transparent 65%),#151411;
   font:65px var(--serif);color:var(--gold);
 }
 .project-content{padding:27px}
-.project-number{
-  color:var(--gold);font-size:9px;letter-spacing:3px;
-}
-.project-content h3{
-  font:25px var(--serif);margin:12px 0;
-}
-.project-content p{
-  font-size:12px;color:var(--muted);line-height:1.9;
-}
-.project-tags{
-  display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;
-}
+.project-number{color:var(--gold);font-size:9px;letter-spacing:3px}
+.project-content h3{font:25px var(--serif);margin:12px 0}
+.project-content p{font-size:12px;color:var(--muted);line-height:1.9}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .project-tags span{
-  border:1px solid var(--line);padding:6px 10px;
-  font-size:9px;color:#c6b28e;
+  border:1px solid var(--line);
+  padding:6px 10px;font-size:9px;color:#c6b28e;
 }
+
+/* EDUCATION */
 
 #education{background:#090909}
 .education-card{
@@ -339,15 +418,11 @@ section{padding:120px 9%;position:relative}
   width:9px;height:9px;border-radius:50%;
   background:var(--gold);box-shadow:0 0 18px var(--gold);
 }
-.education-year{
-  color:var(--gold);font-size:10px;letter-spacing:2px;
-}
-.education-card h3{
-  font:27px var(--serif);margin:14px 0 8px;
-}
-.education-card p{
-  color:var(--muted);font-size:12px;line-height:1.9;
-}
+.education-year{color:var(--gold);font-size:10px;letter-spacing:2px}
+.education-card h3{font:27px var(--serif);margin:14px 0 8px}
+.education-card p{color:var(--muted);font-size:12px;line-height:1.9}
+
+/* INTERESTS */
 
 #interests{background:#10100e}
 .interest-grid{
@@ -362,6 +437,8 @@ section{padding:120px 9%;position:relative}
 .interest:hover{background:#191711;transform:translateY(-5px)}
 .interest span{font-size:24px;color:var(--gold)}
 .interest strong{font:18px var(--serif);font-weight:400}
+
+/* VISION */
 
 #vision{
   text-align:center;
@@ -378,6 +455,8 @@ section{padding:120px 9%;position:relative}
   letter-spacing:3px;margin-top:35px;
 }
 
+/* CONTACT */
+
 #contact{background:#10100e}
 .contact-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:65px;
@@ -386,21 +465,19 @@ section{padding:120px 9%;position:relative}
   font:38px var(--serif);line-height:1.3;margin-bottom:20px;
 }
 .contact-info h3 span{color:var(--gold)}
-.contact-info p{
-  color:var(--muted);font-size:13px;line-height:2;
-}
+.contact-info p{color:var(--muted);font-size:13px;line-height:2}
 .contact-form{display:flex;flex-direction:column;gap:15px}
 .contact-form input,.contact-form textarea{
-  width:100%;padding:16px;
-  background:#090909;border:1px solid var(--line);
-  outline:none;color:white;font-size:12px;
+  width:100%;padding:16px;background:#090909;
+  border:1px solid var(--line);outline:none;
+  color:white;font-size:12px;
 }
-.contact-form input:focus,.contact-form textarea:focus{
-  border-color:var(--gold);
-}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--gold)}
 .contact-form textarea{min-height:130px;resize:vertical}
 .contact-form button{align-self:flex-start}
 .form-note{font-size:11px;color:var(--muted)}
+
+/* FOOTER */
 
 footer{
   padding:35px 8%;display:flex;
@@ -411,14 +488,16 @@ footer{
 }
 footer span{color:var(--gold)}
 
-/* Reveal animations */
+/* REVEAL */
+
 .reveal{
-  opacity:0;transform:translateY(35px);
-  transition:opacity .8s ease,transform .8s ease;
+  opacity:0;transform:translateY(30px);
+  transition:opacity .7s ease,transform .7s ease;
 }
 .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* NISHI assistant */
+/* NISHI CHAT */
+
 #nishi-launcher{
   position:fixed;right:25px;bottom:25px;z-index:5000;
   width:62px;height:62px;border-radius:50%;
@@ -428,31 +507,40 @@ footer span{color:var(--gold)}
   box-shadow:0 0 30px rgba(201,166,107,.25);
   transition:.3s;
 }
-#nishi-launcher:hover{transform:scale(1.09);box-shadow:0 0 40px rgba(201,166,107,.4)}
+#nishi-launcher:hover{transform:scale(1.08)}
 #nishi-panel{
   position:fixed;right:25px;bottom:100px;z-index:5001;
-  width:min(390px,calc(100vw - 30px));height:530px;
-  max-height:75vh;display:none;flex-direction:column;
+  width:min(390px,calc(100vw - 30px));
+  height:530px;max-height:75vh;
+  display:none;flex-direction:column;
   background:#11110f;border:1px solid var(--line);
   border-radius:15px;overflow:hidden;
   box-shadow:0 20px 80px rgba(0,0,0,.65);
 }
 #nishi-panel.open{display:flex;animation:panelIn .3s ease}
-@keyframes panelIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
 .nishi-header{
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;align-items:center;
+  justify-content:space-between;
   padding:17px;border-bottom:1px solid var(--line);
 }
 .nishi-brand{display:flex;align-items:center;gap:10px}
 .nishi-avatar{
-  width:36px;height:36px;display:grid;place-items:center;
-  background:var(--gold);color:#111;border-radius:50%;
-  font:20px var(--serif);
+  width:36px;height:36px;display:grid;
+  place-items:center;background:var(--gold);
+  color:#111;border-radius:50%;font:20px var(--serif);
 }
 .nishi-brand strong{
-  display:block;font-size:12px;letter-spacing:2px;color:var(--gold-light);
+  display:block;font-size:12px;
+  letter-spacing:2px;color:var(--gold-light);
 }
-.nishi-brand small{display:block;color:var(--muted);font-size:9px;margin-top:4px}
+.nishi-brand small{
+  display:block;color:var(--muted);
+  font-size:9px;margin-top:4px;
+}
 .nishi-header button{
   background:none;border:0;color:#aaa;font-size:20px;
 }
@@ -466,16 +554,13 @@ footer span{color:var(--gold)}
   white-space:pre-wrap;overflow-wrap:anywhere;
 }
 .nishi-message.bot{
-  align-self:flex-start;background:#1c1a16;color:#ddd2bd;
-  border:1px solid rgba(201,166,107,.1);
+  align-self:flex-start;background:#1c1a16;
+  color:#ddd2bd;border:1px solid rgba(201,166,107,.1);
 }
 .nishi-message.user{
   align-self:flex-end;background:#c9a66b;color:#17130c;
 }
-.nishi-typing{color:var(--gold);font-size:11px;padding:5px}
-.nishi-input-area{
-  padding:13px;border-top:1px solid var(--line);
-}
+.nishi-input-area{padding:13px;border-top:1px solid var(--line)}
 #nishi-form{display:flex;gap:7px}
 #nishi-input{
   flex:1;min-width:0;padding:13px;
@@ -486,18 +571,21 @@ footer span{color:var(--gold)}
   border:1px solid var(--line);background:#201c14;
   color:var(--gold);padding:0 12px;border-radius:7px;
 }
-.nishi-tools{display:flex;justify-content:space-between;margin-top:9px}
+.nishi-tools{
+  display:flex;justify-content:space-between;margin-top:9px;
+}
 .nishi-tools small{font-size:9px;color:#777}
 .nishi-tool{font-size:11px;padding:7px 11px}
 .nishi-tool.active{background:var(--gold);color:#111}
 
-/* Command centre */
+/* COMMAND CENTRE */
+
 #nishi-command-launcher{
   position:fixed;right:25px;bottom:103px;z-index:4999;
   padding:11px 15px;display:flex;align-items:center;gap:9px;
   color:var(--gold-light);background:rgba(15,15,17,.88);
   border:1px solid rgba(201,166,107,.4);
-  border-radius:30px;backdrop-filter:blur(15px);
+  border-radius:30px;backdrop-filter:blur(12px);
   box-shadow:0 0 25px rgba(201,166,107,.1);
   font-size:10px;letter-spacing:1.5px;transition:.3s;
 }
@@ -507,25 +595,28 @@ footer span{color:var(--gold)}
 }
 #nishi-command-overlay{
   position:fixed;inset:0;z-index:10000;
-  display:none;align-items:flex-start;justify-content:center;
-  padding:13vh 15px 25px;
-  background:rgba(0,0,0,.76);backdrop-filter:blur(13px);
-  opacity:0;transition:opacity .25s;
+  display:none;align-items:flex-start;
+  justify-content:center;padding:13vh 15px 25px;
+  background:rgba(0,0,0,.76);
+  backdrop-filter:blur(10px);opacity:0;
+  transition:opacity .25s;
 }
 #nishi-command-overlay.active{display:flex;opacity:1}
 #nishi-command-box{
   width:min(610px,100%);max-height:75vh;overflow:hidden;
-  border:1px solid rgba(201,166,107,.4);border-radius:17px;
+  border:1px solid rgba(201,166,107,.4);
+  border-radius:17px;
   background:radial-gradient(ellipse at 50% 0%,rgba(201,166,107,.13),transparent 55%),#101010;
   box-shadow:0 25px 100px #000;
-  transform:translateY(15px) scale(.98);transition:.3s;
+  transform:translateY(15px) scale(.98);
+  transition:.3s;
 }
 #nishi-command-overlay.active #nishi-command-box{
   transform:translateY(0) scale(1);
 }
 .ncc-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 22px 15px;
+  display:flex;align-items:center;
+  justify-content:space-between;padding:20px 22px 15px;
 }
 .ncc-brand{display:flex;align-items:center;gap:11px}
 .ncc-symbol{
@@ -548,7 +639,10 @@ footer span{color:var(--gold)}
 }
 #ncc-search:focus{border-color:var(--gold)}
 #ncc-search::placeholder{color:#777}
-.ncc-search-icon{position:absolute;left:15px;top:14px;color:var(--gold);font-size:17px}
+.ncc-search-icon{
+  position:absolute;left:15px;top:14px;
+  color:var(--gold);font-size:17px;
+}
 .ncc-section-label{
   padding:5px 22px 10px;color:#81796d;
   font-size:9px;letter-spacing:2px;
@@ -565,15 +659,21 @@ footer span{color:var(--gold)}
   border-color:rgba(201,166,107,.2);
 }
 .ncc-item-icon{
-  width:32px;height:32px;display:grid;place-items:center;
-  flex-shrink:0;color:var(--gold);
-  background:rgba(201,166,107,.08);border-radius:8px;
+  width:32px;height:32px;display:grid;
+  place-items:center;flex-shrink:0;
+  color:var(--gold);background:rgba(201,166,107,.08);
+  border-radius:8px;
 }
 .ncc-item-text{flex:1}
 .ncc-item-title{display:block;font-size:12px}
-.ncc-item-description{display:block;margin-top:4px;color:#817b71;font-size:10px}
+.ncc-item-description{
+  display:block;margin-top:4px;color:#817b71;font-size:10px;
+}
 .ncc-enter{color:#837c70;font-size:11px}
-#ncc-empty{display:none;padding:25px;text-align:center;color:#898176;font-size:12px}
+#ncc-empty{
+  display:none;padding:25px;text-align:center;
+  color:#898176;font-size:12px;
+}
 .ncc-footer{
   display:flex;justify-content:space-between;gap:8px;
   padding:13px 20px;color:#777167;
@@ -582,6 +682,8 @@ footer span{color:var(--gold)}
 }
 .ncc-footer strong{color:var(--gold);font-weight:500}
 
+/* RESPONSIVE */
+
 @media(max-width:900px){
   .nav-links{
     position:absolute;top:100%;left:0;width:100%;
@@ -589,7 +691,10 @@ footer span{color:var(--gold)}
     background:#0d0d0c;border-bottom:1px solid var(--line);
   }
   .nav-links.show{display:flex}
-  .nav-links a{width:100%;padding:17px 7%;border-top:1px solid #1d1b17}
+  .nav-links a{
+    width:100%;padding:17px 7%;
+    border-top:1px solid #1d1b17;
+  }
   .menu-toggle{display:block}
   .hero-grid{grid-template-columns:1fr;gap:55px}
   .hero-visual{max-width:350px}
@@ -627,35 +732,55 @@ footer span{color:var(--gold)}
 
 <body>
 
+<!-- PRELOADER -->
+
 <div id="preloader">
   <div class="preloader-content">
     <div class="preloader-logo">S.</div>
     <div class="preloader-line"></div>
-    <div style="font-size:9px;letter-spacing:4px;color:#a69a84">INITIALIZING EXPERIENCE</div>
+    <div style="font-size:9px;letter-spacing:4px;color:#a69a84">
+      INITIALIZING EXPERIENCE
+    </div>
   </div>
 </div>
 
-<!-- Welcome screen -->
+<!-- CINEMATIC WELCOME -->
+
 <div id="welcome">
-  <video id="welcome-video" autoplay muted loop playsinline>
+
+  <video id="welcome-video"
+    autoplay muted loop playsinline
+    preload="auto" disablepictureinpicture>
     <source src="background.mp4" type="video/mp4">
   </video>
+
+  <div class="welcome-overlay"></div>
   <div class="welcome-orb"></div>
-  <div class="welcome-kicker">A PERSONAL DIGITAL EXPERIENCE</div>
-  <h1 class="welcome-title">Swastik <span>Nayak.</span></h1>
-  <p class="welcome-description">
-    Exploring technology, intelligence and creativity.
-    Welcome to my digital space.
-  </p>
-  <button class="gold-button" id="enter-site">Enter Experience &nbsp; ↗</button>
-  <div style="position:absolute;bottom:35px;color:#777;font-size:9px;letter-spacing:3px">
-    DESIGNED WITH INTENTION
+
+  <div class="welcome-content">
+    <div class="welcome-kicker">A PERSONAL DIGITAL EXPERIENCE</div>
+
+    <h1 class="welcome-title">
+      Swastik <span>Nayak.</span>
+    </h1>
+
+    <p class="welcome-description">
+      Exploring technology, intelligence and creativity.
+      Welcome to my digital space.
+    </p>
+
+    <button class="gold-button" id="enter-site">
+      Enter Experience &nbsp; ↗
+    </button>
   </div>
+
+  <div class="welcome-bottom">DESIGNED WITH INTENTION</div>
 </div>
 
 <canvas id="particles"></canvas>
 
-<!-- Navigation -->
+<!-- NAVIGATION -->
+
 <header class="navbar" id="navbar">
   <a class="logo" href="#home">S.<small>SWASTIK NAYAK</small></a>
 
@@ -677,20 +802,28 @@ footer span{color:var(--gold)}
 <main>
 
 <!-- HOME -->
+
 <section id="home">
   <div class="hero-grid">
+
     <div class="reveal">
       <div class="hero-label">CREATIVE TECHNOLOGIST · AI & ML</div>
-      <h1 class="hero-title">Building<br>Ideas Into <span>Reality.</span></h1>
+
+      <h1 class="hero-title">
+        Building<br>Ideas Into <span>Reality.</span>
+      </h1>
+
       <p class="hero-description">
         Hello, I'm Swastik Nayak. A Computer Science student
         passionate about Artificial Intelligence, Machine Learning,
         software development and creating meaningful digital experiences.
       </p>
+
       <div class="hero-buttons">
         <a href="#projects" class="gold-button">Explore My Work ↗</a>
         <a href="#contact" class="outline-button">Let's Connect</a>
       </div>
+
       <div class="hero-meta">
         <div class="hero-meta-item">
           <strong>AI/ML</strong><span>FOCUS AREA</span>
@@ -706,15 +839,16 @@ footer span{color:var(--gold)}
 
     <div class="hero-visual reveal">
       <div class="profile-frame">
-        <img src="profile.jpg" alt="Swastik Nayak"
-             onerror="this.style.opacity='.12'">
+        <img src="profile.jpg" alt="Swastik Nayak">
         <div class="profile-caption">SWASTIK NAYAK · 2026</div>
       </div>
     </div>
+
   </div>
 </section>
 
 <!-- ABOUT -->
+
 <section id="about">
   <div class="section-heading reveal">
     <div class="section-kicker">01 / THE PERSON</div>
@@ -733,11 +867,13 @@ footer span{color:var(--gold)}
         student specializing in Artificial Intelligence and Machine Learning
         at Sri Sri University.
       </p>
+
       <p>
         I enjoy understanding how technology works, experimenting with
         new ideas, building projects and exploring the possibilities
         of intelligent systems.
       </p>
+
       <p>
         My goal is to grow into a developer who combines technical
         knowledge, creativity and thoughtful problem-solving to build
@@ -767,6 +903,7 @@ footer span{color:var(--gold)}
 </section>
 
 <!-- SKILLS -->
+
 <section id="skills">
   <div class="section-heading reveal">
     <div class="section-kicker">02 / WHAT I WORK WITH</div>
@@ -817,6 +954,7 @@ footer span{color:var(--gold)}
 </section>
 
 <!-- PROJECTS -->
+
 <section id="projects">
   <div class="section-heading reveal">
     <div class="section-kicker">03 / SELECTED WORK</div>
@@ -827,15 +965,15 @@ footer span{color:var(--gold)}
   </div>
 
   <div class="project-grid">
+
     <article class="project-card reveal">
       <div class="project-image">⌂</div>
       <div class="project-content">
         <div class="project-number">PROJECT 01</div>
         <h3>House Price Predictor</h3>
         <p>
-          A machine learning project concept designed to estimate
-          property prices using features such as location and
-          property characteristics.
+          A machine learning project designed to estimate property prices
+          using features such as location and property characteristics.
         </p>
         <div class="project-tags">
           <span>Python</span><span>Machine Learning</span>
@@ -860,10 +998,12 @@ footer span{color:var(--gold)}
         </div>
       </div>
     </article>
+
   </div>
 </section>
 
 <!-- EDUCATION -->
+
 <section id="education">
   <div class="section-heading reveal">
     <div class="section-kicker">04 / ACADEMIC JOURNEY</div>
@@ -882,6 +1022,7 @@ footer span{color:var(--gold)}
 </section>
 
 <!-- INTERESTS -->
+
 <section id="interests">
   <div class="section-heading reveal">
     <div class="section-kicker">05 / BEYOND THE CODE</div>
@@ -901,16 +1042,20 @@ footer span{color:var(--gold)}
 </section>
 
 <!-- VISION -->
+
 <section id="vision">
   <div class="section-kicker reveal">06 / THE BIGGER PICTURE</div>
   <div class="vision-quote reveal">
     "Technology is not just about what we can build.
     It's about <span>what we can make possible.</span>"
   </div>
-  <div class="vision-caption reveal">THINK BEYOND LIMITS · BUILD WITH PURPOSE</div>
+  <div class="vision-caption reveal">
+    THINK BEYOND LIMITS · BUILD WITH PURPOSE
+  </div>
 </section>
 
 <!-- CONTACT -->
+
 <section id="contact">
   <div class="section-heading reveal">
     <div class="section-kicker">07 / LET'S CONNECT</div>
@@ -925,7 +1070,7 @@ footer span{color:var(--gold)}
         exchanging ideas? I'd be happy to connect.
       </p>
       <p style="margin-top:20px;color:var(--gold)">
-        Use the contact form or connect through your preferred channel.
+        Use the contact form to get in touch.
       </p>
     </div>
 
@@ -948,8 +1093,11 @@ footer span{color:var(--gold)}
   <div>DESIGNED WITH INTENTION <span>✧</span></div>
 </footer>
 
-<!-- NISHI assistant launcher -->
+<!-- NISHI CHAT BUTTON -->
+
 <button id="nishi-launcher" aria-label="Open NISHI assistant">N</button>
+
+<!-- NISHI CHAT PANEL -->
 
 <div id="nishi-panel">
   <div class="nishi-header">
@@ -974,8 +1122,9 @@ footer span{color:var(--gold)}
       <input id="nishi-input" placeholder="Message NISHI..." autocomplete="off" required>
       <button type="submit" aria-label="Send message">➤</button>
     </form>
+
     <div class="nishi-tools">
-      <small>AI ASSISTANT · ONLINE WHEN CONNECTED</small>
+      <small>AI ASSISTANT · CONNECTION REQUIRED</small>
       <div style="display:flex;gap:7px">
         <button class="nishi-tool" id="nishi-voice" type="button" title="Voice input">🎙</button>
         <button class="nishi-tool" id="nishi-speak" type="button" title="Toggle spoken replies">🔊</button>
@@ -984,14 +1133,17 @@ footer span{color:var(--gold)}
   </div>
 </div>
 
-<!-- NISHI Command Centre launcher -->
+<!-- COMMAND CENTRE BUTTON -->
+
 <button id="nishi-command-launcher" type="button">
   <span>✧</span><span>COMMAND CENTRE</span><span>⌘ K</span>
 </button>
 
-<!-- NISHI Command Centre -->
+<!-- COMMAND CENTRE PANEL -->
+
 <div id="nishi-command-overlay" role="dialog" aria-modal="true" aria-label="NISHI Command Centre">
   <div id="nishi-command-box">
+
     <div class="ncc-header">
       <div class="ncc-brand">
         <div class="ncc-symbol">N</div>
@@ -1005,7 +1157,7 @@ footer span{color:var(--gold)}
 
     <div class="ncc-search-wrap">
       <span class="ncc-search-icon">⌕</span>
-      <input id="ncc-search" placeholder="Search commands or ask NISHI..." autocomplete="off">
+      <input id="ncc-search" placeholder="Search commands..." autocomplete="off">
     </div>
 
     <div class="ncc-section-label">QUICK ACCESS</div>
@@ -1018,6 +1170,7 @@ footer span{color:var(--gold)}
       <span><strong>ESC</strong> Close</span>
       <span id="ncc-clock">--:--</span>
     </div>
+
   </div>
 </div>
 
@@ -1029,18 +1182,65 @@ footer span{color:var(--gold)}
 const NISHI_API = "https://nishi-ai.mrswastik372.workers.dev/";
 
 /* ======================================
-   PRELOADER AND WELCOME SCREEN
+   PRELOADER
 ====================================== */
 
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("preloader").classList.add("hide");
-  }, 700);
+  }, 500);
 });
 
-document.getElementById("enter-site").addEventListener("click", () => {
-  document.getElementById("welcome").classList.add("hide");
-  document.body.style.overflowX = "hidden";
+/* ======================================
+   WELCOME VIDEO PERFORMANCE MANAGER
+====================================== */
+
+const welcomeScreen = document.getElementById("welcome");
+const welcomeVideo = document.getElementById("welcome-video");
+const enterButton = document.getElementById("enter-site");
+
+const isMobileDevice = window.matchMedia("(max-width: 768px)").matches;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let welcomeEntered = false;
+
+if(welcomeVideo){
+  if(isMobileDevice || prefersReducedMotion){
+    welcomeVideo.pause();
+    welcomeVideo.removeAttribute("autoplay");
+  }else{
+    welcomeVideo.play().catch(() => {
+      console.log("Welcome video autoplay unavailable.");
+    });
+  }
+}
+
+enterButton.addEventListener("click", () => {
+  if(welcomeEntered) return;
+
+  welcomeEntered = true;
+
+  if(welcomeVideo){
+    welcomeVideo.pause();
+    welcomeVideo.removeAttribute("src");
+
+    const source = welcomeVideo.querySelector("source");
+    if(source) source.removeAttribute("src");
+
+    welcomeVideo.load();
+  }
+
+  welcomeScreen.classList.add("hide");
+});
+
+document.addEventListener("visibilitychange", () => {
+  if(!welcomeVideo || welcomeEntered) return;
+
+  if(document.hidden){
+    welcomeVideo.pause();
+  }else if(!isMobileDevice && !prefersReducedMotion){
+    welcomeVideo.play().catch(() => {});
+  }
 });
 
 /* ======================================
@@ -1052,33 +1252,39 @@ const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 
 window.addEventListener("scroll", () => {
-  navbar.classList.toggle("scrolled", window.scrollY > 40);
-});
+  navbar.classList.toggle("scrolled",window.scrollY > 40);
+},{passive:true});
 
 menuToggle.addEventListener("click", () => {
   navLinks.classList.toggle("show");
 });
 
 document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => navLinks.classList.remove("show"));
+  link.addEventListener("click",() => navLinks.classList.remove("show"));
 });
 
 /* ======================================
-   SECTION REVEAL ANIMATIONS
+   REVEAL ANIMATIONS
 ====================================== */
 
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {threshold:0.12});
+if("IntersectionObserver" in window){
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12});
 
-document.querySelectorAll(".reveal").forEach(el => {
-  revealObserver.observe(el);
-});
+  document.querySelectorAll(".reveal").forEach(el => {
+    revealObserver.observe(el);
+  });
+}else{
+  document.querySelectorAll(".reveal").forEach(el => {
+    el.classList.add("visible");
+  });
+}
 
 /* ======================================
    ACTIVE NAVIGATION
@@ -1087,74 +1293,103 @@ document.querySelectorAll(".reveal").forEach(el => {
 const sections = document.querySelectorAll("main section[id]");
 const navItems = document.querySelectorAll(".nav-links a");
 
-const activeObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navItems.forEach(link => {
-        link.classList.toggle(
-          "active",
-          link.getAttribute("href") === "#" + entry.target.id
-        );
-      });
-    }
-  });
-}, {rootMargin:"-35% 0px -55% 0px"});
+if("IntersectionObserver" in window){
+  const activeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navItems.forEach(link => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + entry.target.id
+          );
+        });
+      }
+    });
+  },{rootMargin:"-35% 0px -55% 0px"});
 
-sections.forEach(section => activeObserver.observe(section));
+  sections.forEach(section => activeObserver.observe(section));
+}
 
 /* ======================================
-   PARTICLE BACKGROUND
+   LIGHTWEIGHT PARTICLE BACKGROUND
 ====================================== */
 
 (() => {
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
-  let width, height, particles = [];
-  const count = window.innerWidth < 600 ? 35 : 65;
 
-  function resize() {
-    width = canvas.width = window.innerWidth * devicePixelRatio;
-    height = canvas.height = window.innerHeight * devicePixelRatio;
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
-    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  let width=0,height=0,particles=[];
+  let animationId=null;
+
+  const count = window.innerWidth < 600 ? 22 : 40;
+
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio || 1,1.5);
+
+    width=window.innerWidth;
+    height=window.innerHeight;
+
+    canvas.width=width*dpr;
+    canvas.height=height*dpr;
+    canvas.style.width=width+"px";
+    canvas.style.height=height+"px";
+
+    ctx.setTransform(dpr,0,0,dpr,0,0);
   }
 
-  function createParticles() {
-    particles = Array.from({length:count}, () => ({
-      x:Math.random()*window.innerWidth,
-      y:Math.random()*window.innerHeight,
-      r:Math.random()*1.5+.4,
-      speed:Math.random()*.25+.08,
-      alpha:Math.random()*.45+.1
+  function createParticles(){
+    particles=Array.from({length:count},()=>({
+      x:Math.random()*width,
+      y:Math.random()*height,
+      r:Math.random()*1.2+.4,
+      speed:Math.random()*.2+.06,
+      alpha:Math.random()*.35+.1
     }));
   }
 
-  function animate() {
-    ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+  function animate(){
+    ctx.clearRect(0,0,width,height);
 
-    particles.forEach(p => {
-      p.y -= p.speed;
-      if(p.y < -5) {
-        p.y = window.innerHeight + 5;
-        p.x = Math.random()*window.innerWidth;
+    particles.forEach(p=>{
+      p.y-=p.speed;
+
+      if(p.y < -5){
+        p.y=height+5;
+        p.x=Math.random()*width;
       }
 
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle = `rgba(201,166,107,${p.alpha})`;
+      ctx.fillStyle=`rgba(201,166,107,${p.alpha})`;
       ctx.fill();
     });
 
-    requestAnimationFrame(animate);
+    animationId=requestAnimationFrame(animate);
+  }
+
+  function start(){
+    if(!animationId) animate();
+  }
+
+  function stop(){
+    if(animationId){
+      cancelAnimationFrame(animationId);
+      animationId=null;
+    }
   }
 
   resize();
   createParticles();
-  animate();
-  window.addEventListener("resize", () => {
+  start();
+
+  window.addEventListener("resize",()=>{
     resize();
     createParticles();
+  });
+
+  document.addEventListener("visibilitychange",()=>{
+    if(document.hidden) stop();
+    else start();
   });
 })();
 
@@ -1162,102 +1397,105 @@ sections.forEach(section => activeObserver.observe(section));
    CONTACT FORM
 ====================================== */
 
-document.getElementById("contact-form").addEventListener("submit", event => {
+document.getElementById("contact-form").addEventListener("submit",event=>{
   event.preventDefault();
 
-  const name = document.getElementById("contact-name").value.trim();
-  const email = document.getElementById("contact-email").value.trim();
-  const message = document.getElementById("contact-message").value.trim();
+  const name=document.getElementById("contact-name").value.trim();
+  const email=document.getElementById("contact-email").value.trim();
+  const message=document.getElementById("contact-message").value.trim();
 
-  const subject = encodeURIComponent("Portfolio enquiry from " + name);
-  const body = encodeURIComponent(
-    "Name: " + name + "\nEmail: " + email + "\n\n" + message
+  const subject=encodeURIComponent("Portfolio enquiry from "+name);
+  const body=encodeURIComponent(
+    "Name: "+name+"\nEmail: "+email+"\n\n"+message
   );
 
-  // Add your real email address below.
-  const YOUR_EMAIL = "YOUR_EMAIL@example.com";
+  // Replace with your actual email address.
+  const YOUR_EMAIL="YOUR_EMAIL@example.com";
 
-  if(YOUR_EMAIL === "YOUR_EMAIL@example.com") {
-    document.getElementById("contact-status").textContent =
-      "Add your email address in the contact form script to activate email sending.";
+  if(YOUR_EMAIL==="YOUR_EMAIL@example.com"){
+    document.getElementById("contact-status").textContent=
+      "Please add your email address in the contact form script.";
     return;
   }
 
-  window.location.href = `mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`;
+  window.location.href=
+    `mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`;
 });
 
 /* ======================================
-   NISHI CHAT INTERFACE
+   NISHI CHAT
 ====================================== */
 
-const nishiPanel = document.getElementById("nishi-panel");
-const nishiLauncher = document.getElementById("nishi-launcher");
-const nishiClose = document.getElementById("nishi-close");
-const nishiForm = document.getElementById("nishi-form");
-const nishiInput = document.getElementById("nishi-input");
-const nishiMessages = document.getElementById("nishi-messages");
+const nishiPanel=document.getElementById("nishi-panel");
+const nishiLauncher=document.getElementById("nishi-launcher");
+const nishiClose=document.getElementById("nishi-close");
+const nishiForm=document.getElementById("nishi-form");
+const nishiInput=document.getElementById("nishi-input");
+const nishiMessages=document.getElementById("nishi-messages");
 
-let nishiHistory = [];
-let nishiBusy = false;
-let voiceReplies = false;
+let nishiHistory=[];
+let nishiBusy=false;
+let voiceReplies=false;
 
-function openNishi() {
+function openNishi(){
   nishiPanel.classList.add("open");
-  setTimeout(() => nishiInput.focus(),100);
+  setTimeout(()=>nishiInput.focus(),100);
 }
 
-function closeNishi() {
+function closeNishi(){
   nishiPanel.classList.remove("open");
 }
 
 nishiLauncher.addEventListener("click",openNishi);
 nishiClose.addEventListener("click",closeNishi);
 
-function addNishiMessage(text, type) {
-  const message = document.createElement("div");
-  message.className = "nishi-message " + type;
-  message.textContent = text;
+function addNishiMessage(text,type){
+  const message=document.createElement("div");
+  message.className="nishi-message "+type;
+  message.textContent=text;
+
   nishiMessages.appendChild(message);
-  nishiMessages.scrollTop = nishiMessages.scrollHeight;
+  nishiMessages.scrollTop=nishiMessages.scrollHeight;
+
   return message;
 }
 
-function speakNishi(text) {
+function speakNishi(text){
   if(!voiceReplies || !("speechSynthesis" in window)) return;
 
   window.speechSynthesis.cancel();
 
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = 1;
-  utterance.pitch = 1.05;
-  utterance.lang = "en-IN";
+  const utterance=new SpeechSynthesisUtterance(text);
+  utterance.rate=1;
+  utterance.pitch=1.05;
+  utterance.lang="en-IN";
 
   window.speechSynthesis.speak(utterance);
 }
 
-function extractNishiResponse(data) {
-  if(typeof data === "string") return data;
+function extractNishiResponse(data){
+  if(typeof data==="string") return data;
 
   return data?.response ||
-         data?.message ||
-         data?.reply ||
-         data?.text ||
-         data?.result ||
-         data?.output ||
-         data?.choices?.[0]?.message?.content ||
-         "I received a response, but couldn't identify its text.";
+    data?.message ||
+    data?.reply ||
+    data?.text ||
+    data?.result ||
+    data?.output ||
+    data?.choices?.[0]?.message?.content ||
+    "I received a response, but couldn't identify its text.";
 }
 
-async function askNishi(message) {
+async function askNishi(message){
   if(nishiBusy) return;
 
-  nishiBusy = true;
+  nishiBusy=true;
 
-  const typing = addNishiMessage("NISHI is thinking...", "bot");
-  nishiInput.disabled = true;
+  const typing=addNishiMessage("NISHI is thinking...","bot");
+  nishiInput.disabled=true;
 
-  try {
-    const response = await fetch(NISHI_API, {
+  try{
+    const response=await fetch(NISHI_API,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
@@ -1266,48 +1504,48 @@ async function askNishi(message) {
       })
     });
 
-    if(!response.ok) {
-      throw new Error("Server returned status " + response.status);
+    if(!response.ok){
+      throw new Error("Server returned status "+response.status);
     }
 
-    const data = await response.json();
-    const answer = extractNishiResponse(data);
+    const data=await response.json();
+    const answer=extractNishiResponse(data);
 
-    typing.textContent = answer;
+    typing.textContent=answer;
 
     nishiHistory.push(
       {role:"user",content:message},
       {role:"assistant",content:answer}
     );
 
-    if(nishiHistory.length > 20) {
-      nishiHistory = nishiHistory.slice(-20);
+    if(nishiHistory.length>20){
+      nishiHistory=nishiHistory.slice(-20);
     }
 
     speakNishi(answer);
 
-  } catch(error) {
-    typing.textContent =
+  }catch(error){
+    typing.textContent=
       "I'm having trouble connecting right now. Please check the NISHI server connection and try again.";
 
     console.error("NISHI connection error:",error);
 
-  } finally {
-    nishiBusy = false;
-    nishiInput.disabled = false;
+  }finally{
+    nishiBusy=false;
+    nishiInput.disabled=false;
     nishiInput.focus();
-    nishiMessages.scrollTop = nishiMessages.scrollHeight;
+    nishiMessages.scrollTop=nishiMessages.scrollHeight;
   }
 }
 
-nishiForm.addEventListener("submit", event => {
+nishiForm.addEventListener("submit",event=>{
   event.preventDefault();
 
-  const message = nishiInput.value.trim();
+  const message=nishiInput.value.trim();
   if(!message || nishiBusy) return;
 
   addNishiMessage(message,"user");
-  nishiInput.value = "";
+  nishiInput.value="";
 
   askNishi(message);
 });
@@ -1316,37 +1554,37 @@ nishiForm.addEventListener("submit", event => {
    NISHI VOICE INPUT
 ====================================== */
 
-const voiceButton = document.getElementById("nishi-voice");
-const speakButton = document.getElementById("nishi-speak");
+const voiceButton=document.getElementById("nishi-voice");
+const speakButton=document.getElementById("nishi-speak");
 
-const SpeechRecognition =
+const SpeechRecognition=
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
-let recognition = null;
+let recognition=null;
 
-if(SpeechRecognition) {
-  recognition = new SpeechRecognition();
-  recognition.lang = "en-IN";
-  recognition.interimResults = false;
-  recognition.continuous = false;
+if(SpeechRecognition){
+  recognition=new SpeechRecognition();
+  recognition.lang="en-IN";
+  recognition.interimResults=false;
+  recognition.continuous=false;
 
-  recognition.onresult = event => {
-    const transcript = event.results[0][0].transcript;
-    nishiInput.value = transcript;
+  recognition.onresult=event=>{
+    const transcript=event.results[0][0].transcript;
+    nishiInput.value=transcript;
     nishiForm.requestSubmit();
   };
 
-  recognition.onerror = () => {
+  recognition.onerror=()=>{
     voiceButton.classList.remove("active");
   };
 
-  recognition.onend = () => {
+  recognition.onend=()=>{
     voiceButton.classList.remove("active");
   };
 }
 
-voiceButton.addEventListener("click", () => {
-  if(!recognition) {
+voiceButton.addEventListener("click",()=>{
+  if(!recognition){
     addNishiMessage(
       "Voice recognition is not supported in this browser. Try a supported browser.",
       "bot"
@@ -1354,19 +1592,19 @@ voiceButton.addEventListener("click", () => {
     return;
   }
 
-  try {
+  try{
     voiceButton.classList.add("active");
     recognition.start();
-  } catch(error) {
+  }catch(error){
     voiceButton.classList.remove("active");
   }
 });
 
-speakButton.addEventListener("click", () => {
-  voiceReplies = !voiceReplies;
+speakButton.addEventListener("click",()=>{
+  voiceReplies=!voiceReplies;
   speakButton.classList.toggle("active",voiceReplies);
 
-  if(!voiceReplies && "speechSynthesis" in window) {
+  if(!voiceReplies && "speechSynthesis" in window){
     window.speechSynthesis.cancel();
   }
 });
@@ -1376,100 +1614,105 @@ speakButton.addEventListener("click", () => {
 ====================================== */
 
 (() => {
-  const overlay = document.getElementById("nishi-command-overlay");
-  const launcher = document.getElementById("nishi-command-launcher");
-  const search = document.getElementById("ncc-search");
-  const results = document.getElementById("ncc-results");
-  const closeButton = document.getElementById("ncc-close");
-  const empty = document.getElementById("ncc-empty");
-  const clock = document.getElementById("ncc-clock");
+  const overlay=document.getElementById("nishi-command-overlay");
+  const launcher=document.getElementById("nishi-command-launcher");
+  const search=document.getElementById("ncc-search");
+  const results=document.getElementById("ncc-results");
+  const closeButton=document.getElementById("ncc-close");
+  const empty=document.getElementById("ncc-empty");
+  const clock=document.getElementById("ncc-clock");
 
-  let selectedIndex = 0;
-  let visibleCommands = [];
+  let selectedIndex=0;
+  let visibleCommands=[];
 
-  const commands = [
+  const commands=[
     {
       title:"Home",
       description:"Return to the main introduction",
       icon:"⌂",
       keywords:"home introduction start",
-      action:() => navigateTo("home")
+      action:()=>navigateTo("home")
     },
     {
       title:"About Me",
       description:"Discover my background and story",
       icon:"◈",
       keywords:"about profile story",
-      action:() => navigateTo("about")
+      action:()=>navigateTo("about")
     },
     {
       title:"Skills",
       description:"Explore my technical skills",
       icon:"⌘",
       keywords:"skills technologies programming",
-      action:() => navigateTo("skills")
+      action:()=>navigateTo("skills")
     },
     {
       title:"Projects",
       description:"Explore my work and projects",
       icon:"▣",
       keywords:"projects portfolio work",
-      action:() => navigateTo("projects")
+      action:()=>navigateTo("projects")
     },
     {
       title:"Education",
       description:"View my academic journey",
       icon:"◇",
       keywords:"education university college",
-      action:() => navigateTo("education")
+      action:()=>navigateTo("education")
     },
     {
       title:"Interests",
       description:"Explore my interests and passions",
       icon:"✧",
       keywords:"interests hobbies passions",
-      action:() => navigateTo("interests")
+      action:()=>navigateTo("interests")
     },
     {
       title:"Vision",
       description:"Discover my goals and ambitions",
       icon:"◎",
       keywords:"vision goals future",
-      action:() => navigateTo("vision")
+      action:()=>navigateTo("vision")
     },
     {
       title:"Contact",
       description:"Get in touch with me",
       icon:"✉",
       keywords:"contact email message",
-      action:() => navigateTo("contact")
+      action:()=>navigateTo("contact")
     },
     {
       title:"Talk to NISHI",
       description:"Open your personal AI assistant",
       icon:"✦",
       keywords:"nishi ai assistant chat talk",
-      action:() => {
+      action:()=>{
         closeCommand();
         openNishi();
       }
     }
   ];
 
-  function navigateTo(id) {
+  function navigateTo(id){
     closeCommand();
 
-    const target = document.getElementById(id);
-    if(target) {
-      target.scrollIntoView({behavior:"smooth",block:"start"});
+    const target=document.getElementById(id);
+
+    if(target){
+      target.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
       history.replaceState(null,"","#"+id);
     }
   }
 
-  function openCommand() {
-    overlay.style.display = "flex";
+  function openCommand(){
+    overlay.style.display="flex";
 
-    requestAnimationFrame(() => {
+    requestAnimationFrame(()=>{
       overlay.classList.add("active");
       search.focus();
     });
@@ -1477,124 +1720,137 @@ speakButton.addEventListener("click", () => {
     renderCommands(search.value);
   }
 
-  function closeCommand() {
+  function closeCommand(){
     overlay.classList.remove("active");
 
-    setTimeout(() => {
-      if(!overlay.classList.contains("active")) {
-        overlay.style.display = "none";
+    setTimeout(()=>{
+      if(!overlay.classList.contains("active")){
+        overlay.style.display="none";
       }
     },260);
   }
 
-  function renderCommands(query) {
-    const q = query.trim().toLowerCase();
+  function renderCommands(query){
+    const q=query.trim().toLowerCase();
 
-    visibleCommands = commands.filter(command =>
-      (command.title + " " + command.description + " " +
-       command.keywords).toLowerCase().includes(q)
+    visibleCommands=commands.filter(command=>
+      (
+        command.title+" "+
+        command.description+" "+
+        command.keywords
+      ).toLowerCase().includes(q)
     );
 
-    selectedIndex = 0;
-    results.innerHTML = "";
+    selectedIndex=0;
+    results.innerHTML="";
 
-    visibleCommands.forEach((command,index) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "ncc-item" +
-        (index === selectedIndex ? " selected" : "");
+    visibleCommands.forEach((command,index)=>{
+      const button=document.createElement("button");
+      button.type="button";
+      button.className="ncc-item"+
+        (index===selectedIndex?" selected":"");
 
-      const icon = document.createElement("span");
-      icon.className = "ncc-item-icon";
-      icon.textContent = command.icon;
+      const icon=document.createElement("span");
+      icon.className="ncc-item-icon";
+      icon.textContent=command.icon;
 
-      const textWrap = document.createElement("span");
-      textWrap.className = "ncc-item-text";
+      const textWrap=document.createElement("span");
+      textWrap.className="ncc-item-text";
 
-      const title = document.createElement("span");
-      title.className = "ncc-item-title";
-      title.textContent = command.title;
+      const title=document.createElement("span");
+      title.className="ncc-item-title";
+      title.textContent=command.title;
 
-      const description = document.createElement("span");
-      description.className = "ncc-item-description";
-      description.textContent = command.description;
+      const description=document.createElement("span");
+      description.className="ncc-item-description";
+      description.textContent=command.description;
 
       textWrap.append(title,description);
 
-      const enter = document.createElement("span");
-      enter.className = "ncc-enter";
-      enter.textContent = "↵";
+      const enter=document.createElement("span");
+      enter.className="ncc-enter";
+      enter.textContent="↵";
 
       button.append(icon,textWrap,enter);
       button.addEventListener("click",command.action);
       results.appendChild(button);
     });
 
-    empty.style.display = visibleCommands.length ? "none" : "block";
+    empty.style.display=visibleCommands.length?"none":"block";
   }
 
-  function updateSelection() {
-    const items = results.querySelectorAll(".ncc-item");
+  function updateSelection(){
+    const items=results.querySelectorAll(".ncc-item");
 
-    items.forEach((item,index) => {
-      item.classList.toggle("selected",index === selectedIndex);
+    items.forEach((item,index)=>{
+      item.classList.toggle("selected",index===selectedIndex);
     });
 
     items[selectedIndex]?.scrollIntoView({block:"nearest"});
   }
 
   launcher.addEventListener("click",openCommand);
-  document.getElementById("nav-command").addEventListener("click",openCommand);
+
+  document.getElementById("nav-command")
+    .addEventListener("click",openCommand);
+
   closeButton.addEventListener("click",closeCommand);
 
-  overlay.addEventListener("click",event => {
-    if(event.target === overlay) closeCommand();
+  overlay.addEventListener("click",event=>{
+    if(event.target===overlay) closeCommand();
   });
 
-  search.addEventListener("input",() => {
+  search.addEventListener("input",()=>{
     renderCommands(search.value);
   });
 
-  search.addEventListener("keydown",event => {
-    if(event.key === "ArrowDown") {
+  search.addEventListener("keydown",event=>{
+    if(event.key==="ArrowDown"){
       event.preventDefault();
-      selectedIndex = Math.min(selectedIndex+1,visibleCommands.length-1);
+      selectedIndex=Math.min(
+        selectedIndex+1,
+        visibleCommands.length-1
+      );
       updateSelection();
     }
 
-    if(event.key === "ArrowUp") {
+    if(event.key==="ArrowUp"){
       event.preventDefault();
-      selectedIndex = Math.max(selectedIndex-1,0);
+      selectedIndex=Math.max(selectedIndex-1,0);
       updateSelection();
     }
 
-    if(event.key === "Enter") {
+    if(event.key==="Enter"){
       event.preventDefault();
       visibleCommands[selectedIndex]?.action();
     }
   });
 
-  document.addEventListener("keydown",event => {
-    const shortcut = (event.ctrlKey || event.metaKey) &&
-                     event.key.toLowerCase() === "k";
+  document.addEventListener("keydown",event=>{
+    const shortcut=
+      (event.ctrlKey || event.metaKey) &&
+      event.key.toLowerCase()==="k";
 
-    if(shortcut) {
+    if(shortcut){
       event.preventDefault();
 
-      if(overlay.classList.contains("active")) {
+      if(overlay.classList.contains("active")){
         closeCommand();
-      } else {
+      }else{
         openCommand();
       }
     }
 
-    if(event.key === "Escape" && overlay.classList.contains("active")) {
+    if(
+      event.key==="Escape" &&
+      overlay.classList.contains("active")
+    ){
       closeCommand();
     }
   });
 
-  function updateClock() {
-    clock.textContent = new Intl.DateTimeFormat("en-IN",{
+  function updateClock(){
+    clock.textContent=new Intl.DateTimeFormat("en-IN",{
       hour:"2-digit",
       minute:"2-digit",
       hour12:true
@@ -1607,12 +1863,14 @@ speakButton.addEventListener("click", () => {
 })();
 
 /* ======================================
-   NISHI OPTIONAL KEYBOARD CHAT SHORTCUT
+   ESCAPE TO CLOSE NISHI CHAT
 ====================================== */
 
-document.addEventListener("keydown",event => {
-  if(event.key === "Escape" &&
-     document.getElementById("nishi-panel").classList.contains("open")) {
+document.addEventListener("keydown",event=>{
+  if(
+    event.key==="Escape" &&
+    document.getElementById("nishi-panel").classList.contains("open")
+  ){
     closeNishi();
   }
 });
