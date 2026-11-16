@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#090a0d">
 <meta name="description" content="Swastik Nayak | Creative Technologist, AI & ML Developer">
 <title>Swastik Nayak — Creative Technologist</title>
@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 
 <style>
-:root{
+:root {
   --bg:#090a0d;
   --text:#f2efe9;
   --muted:#92939b;
@@ -21,640 +21,276 @@
   --light:#ead4ae;
   --max:1240px;
 }
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth;scroll-padding-top:90px}
+body {background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+a {color:inherit;text-decoration:none}
+button {font:inherit;cursor:pointer}
+.container {width:min(88%,var(--max));margin:auto}
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:"DM Sans",sans-serif;
-  overflow-x:hidden
-}
-a{color:inherit;text-decoration:none}
-button{font:inherit;cursor:pointer}
-.container{width:min(88%,var(--max));margin:auto}
+.ambient {position:fixed;inset:0;z-index:0;pointer-events:none;background:#090a0d}
+.ambient video {width:100%;height:100%;object-fit:cover;opacity:.28;filter:brightness(.65) saturate(.7)}
+.overlay {position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#090a0d77,#090a0dbd 50%,#090a0df2),radial-gradient(ellipse at 75% 35%,#c6a77a20,transparent 55%)}
 
-.ambient{
-  position:fixed;inset:0;z-index:0;
-  pointer-events:none;background:#090a0d
-}
-.ambient video{
-  width:100%;height:100%;object-fit:cover;
-  opacity:.28;filter:brightness(.65) saturate(.7)
-}
-.overlay{
-  position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:
-  linear-gradient(180deg,#090a0d77,#090a0dbd 50%,#090a0df2),
-  radial-gradient(ellipse at 75% 35%,#c6a77a20,transparent 55%)
-}
+.nav {position:fixed;inset:0 0 auto;z-index:20;transition:.3s}
+.nav.scrolled {background:#090a0ddd;backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.navin {height:78px;display:flex;align-items:center;justify-content:space-between}
+.brand {font:800 24px Manrope;letter-spacing:-1px}
+.brand span {color:var(--gold)}
+.links {display:flex;gap:28px}
+.links a,.navcta {font-size:11px;color:#bbb}
+.navcta {border:1px solid #c6a77a88;padding:12px 18px;border-radius:30px}
+.menu {display:none;background:none;border:0;color:white;font-size:24px}
 
-.nav{
-  position:fixed;inset:0 0 auto;z-index:20;
-  transition:.3s
-}
-.nav.scrolled{
-  background:#090a0ddd;
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line)
-}
-.navin{
-  height:78px;display:flex;
-  align-items:center;justify-content:space-between
-}
-.brand{
-  font:800 24px Manrope;letter-spacing:-1px
-}
-.brand span{color:var(--gold)}
-.links{display:flex;gap:28px}
-.links a,.navcta{font-size:11px;color:#bbb}
-.navcta{
-  border:1px solid #c6a77a88;
-  padding:12px 18px;border-radius:30px
-}
-.menu{
-  display:none;background:none;border:0;
-  color:white;font-size:24px
-}
+.hero {min-height:100svh;position:relative;display:flex;align-items:center;padding:135px 0 80px;overflow:hidden}
+.heroGrid {position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px}
+#scene {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+h1 {font:500 clamp(56px,8vw,108px)/.98 Manrope;letter-spacing:-6px}
+h1 em,.sectionTitle em,.vision em,.contact h2 em {font:italic 500 1em "Playfair Display";color:var(--gold)}
+.eyebrow {display:inline-flex;gap:9px;align-items:center;border:1px solid var(--line);border-radius:30px;padding:9px 13px;font-size:10px;letter-spacing:1px;color:#c5c4c5;margin-bottom:28px}
+.dot {width:7px;height:7px;background:#91a98b;border-radius:50%}
+.lead {max-width:530px;color:#aaa;font-size:14px;line-height:2;margin-top:25px}
+.role {font-size:13px;margin-top:20px;color:#ddd}
+.role span {color:var(--light)}
+.actions {display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn {display:inline-flex;padding:15px 21px;border-radius:30px;font-size:11px;font-weight:700}
+.primary {background:var(--gold);color:#111}
+.ghost {border:1px solid var(--line)}
+.note {margin-top:50px;color:#777;font-size:10px;letter-spacing:1.5px}
 
-.hero{
-  min-height:100svh;position:relative;
-  display:flex;align-items:center;
-  padding:135px 0 80px;overflow:hidden
-}
-.heroGrid{
-  position:relative;z-index:2;
-  display:grid;grid-template-columns:1.1fr .9fr;
-  align-items:center;gap:30px
-}
-#scene{
-  position:absolute;inset:0;width:100%;height:100%;
-  pointer-events:none;z-index:1
-}
-h1{
-  font:500 clamp(56px,8vw,108px)/.98 Manrope;
-  letter-spacing:-6px
-}
-h1 em,.sectionTitle em,.vision em,.contact h2 em{
-  font:italic 500 1em "Playfair Display";
-  color:var(--gold)
-}
-.eyebrow{
-  display:inline-flex;gap:9px;align-items:center;
-  border:1px solid var(--line);border-radius:30px;
-  padding:9px 13px;font-size:10px;
-  letter-spacing:1px;color:#c5c4c5;margin-bottom:28px
-}
-.dot{
-  width:7px;height:7px;background:#91a98b;
-  border-radius:50%
-}
-.lead{
-  max-width:530px;color:#aaa;
-  font-size:14px;line-height:2;margin-top:25px
-}
-.role{font-size:13px;margin-top:20px;color:#ddd}
-.role span{color:var(--light)}
-.actions{
-  display:flex;gap:12px;flex-wrap:wrap;margin-top:32px
-}
-.btn{
-  display:inline-flex;padding:15px 21px;
-  border-radius:30px;font-size:11px;font-weight:700
-}
-.primary{background:var(--gold);color:#111}
-.ghost{border:1px solid var(--line)}
-.note{
-  margin-top:50px;color:#777;
-  font-size:10px;letter-spacing:1.5px
-}
-.portraitWrap{
-  min-height:490px;display:grid;
-  place-items:center;position:relative
-}
-.portrait{
-  width:min(340px,80%);height:440px;padding:9px;
-  border:1px solid #c6a77a66;
-  border-radius:180px 180px 16px 16px;
-  background:#c6a77a18;transform:rotate(3deg);
-  box-shadow:0 30px 90px #0008
-}
-.portrait div{
-  height:100%;overflow:hidden;
-  border-radius:170px 170px 10px 10px;
-  background:#25211c
-}
-.portrait img{width:100%;height:100%;object-fit:cover}
-.float{
-  position:absolute;padding:14px 17px;
-  border:1px solid var(--line);border-radius:12px;
-  background:#111216dd;backdrop-filter:blur(12px);
-  font-size:11px
-}
-.float small{
-  display:block;color:#888;font-size:9px;
-  letter-spacing:1px;margin-bottom:6px
-}
-.f1{left:0;bottom:60px}
-.f2{right:0;top:55px}
+.portraitWrap {min-height:490px;display:grid;place-items:center;position:relative}
+.portrait {width:min(340px,80%);height:440px;padding:9px;border:1px solid #c6a77a66;border-radius:180px 180px 16px 16px;background:#c6a77a18;transform:rotate(3deg);box-shadow:0 30px 90px #0008}
+.portrait div {height:100%;overflow:hidden;border-radius:170px 170px 10px 10px;background:#25211c}
+.portrait img {width:100%;height:100%;object-fit:cover}
+.float {position:absolute;padding:14px 17px;border:1px solid var(--line);border-radius:12px;background:#111216dd;backdrop-filter:blur(12px);font-size:11px}
+.float small {display:block;color:#888;font-size:9px;letter-spacing:1px;margin-bottom:6px}
+.f1 {left:0;bottom:60px}
+.f2 {right:0;top:55px}
 
-section{
-  position:relative;z-index:2;
-  padding:110px 0;border-top:1px solid #ffffff10
-}
-.num{
-  color:var(--gold);font-size:10px;
-  letter-spacing:3px;margin-bottom:16px
-}
-.sectionTitle{
-  font:500 clamp(38px,5vw,64px)/1.08 Manrope;
-  letter-spacing:-3px;margin-bottom:35px
-}
-.intro{
-  color:var(--muted);font-size:13px;
-  line-height:2;max-width:570px;
-  margin-top:-18px;margin-bottom:38px
-}
-.aboutGrid{
-  display:grid;grid-template-columns:1.2fr .8fr;gap:60px
-}
-.copy p{
-  color:#b7b5b8;font-size:14px;
-  line-height:2.1;margin-bottom:20px
-}
-.card,.skill,.project,.interest{
-  border:1px solid var(--line);
-  background:#ffffff09;border-radius:15px;
-  padding:28px;backdrop-filter:blur(12px)
-}
-.card h3,.skill h3,.project h3,.interest h3{
-  font:500 24px "Playfair Display";margin-bottom:15px
-}
-.detail{padding:13px 0;border-bottom:1px solid var(--line)}
-.detail:last-child{border:0}
-.detail small{
-  display:block;color:#888;font-size:9px;
-  letter-spacing:2px;margin-bottom:6px
-}
-.detail strong{font-size:12px}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.skill{min-height:175px}
-.skill small{color:var(--gold);font-size:9px;letter-spacing:2px}
-.tags{display:flex;flex-wrap:wrap;gap:8px}
-.tag{
-  font-size:10px;color:#aaa;border:1px solid var(--line);
-  padding:8px 11px;border-radius:25px
-}
-.project{padding:0;overflow:hidden}
-.art{
-  height:220px;display:grid;place-items:center;
-  background:radial-gradient(circle,#373027,#15161b 70%);
-  font:italic 60px "Playfair Display";color:var(--light)
-}
-.projectBody{padding:26px}
-.projectBody p,.interest p{
-  color:var(--muted);font-size:12px;line-height:1.9
-}
-.meta{margin-top:20px;color:var(--gold);font-size:10px}
-.timeline{
-  border-left:1px solid #c6a77a88;
-  padding-left:30px;margin-left:8px
-}
-.timeline article{padding-bottom:35px;position:relative}
-.timeline article:before{
-  content:"";position:absolute;left:-36px;top:4px;
-  width:10px;height:10px;background:var(--gold);
-  border-radius:50%
-}
-.timeline small{color:var(--gold);font-size:10px;letter-spacing:2px}
-.timeline h3{font:25px "Playfair Display";margin:12px 0}
-.timeline p{color:var(--muted);font-size:13px;line-height:1.9}
-.interest .symbol{color:var(--gold);font-size:22px;margin-bottom:20px}
-.vision{
-  padding:65px;border:1px solid #c6a77a66;
-  border-radius:20px;
-  background:radial-gradient(ellipse at 85% 15%,#3a3024,#17171a 55%,#111216)
-}
-.vision h2,.contact h2{
-  font:500 clamp(38px,5vw,64px)/1.1 Manrope;
-  letter-spacing:-3px;margin:20px 0
-}
-.vision p,.contact p{
-  color:#aaa;font-size:13px;line-height:2;max-width:680px
-}
-.contact{
-  text-align:center;padding:75px 25px;
-  border:1px solid #c6a77a55;border-radius:20px;
-  background:radial-gradient(ellipse at 50% 0%,#30271e,#15161a 65%)
-}
-.contact p{margin:0 auto 25px}
-.socials{
-  display:flex;justify-content:center;gap:25px;
-  flex-wrap:wrap;margin-top:30px;font-size:11px;color:#aaa
-}
-footer{
-  position:relative;z-index:2;border-top:1px solid var(--line);
-  padding:25px 0;color:#888;font-size:10px
-}
-.footerin{display:flex;justify-content:space-between;gap:15px}
-.reveal{opacity:0;transform:translateY(24px);transition:.8s}
-.reveal.visible{opacity:1;transform:none}
-.glow{
-  position:fixed;width:260px;height:260px;
-  border-radius:50%;pointer-events:none;z-index:4;
-  background:radial-gradient(circle,#c6a77a18,transparent 70%);
-  transform:translate(-50%,-50%)
-}
+section {position:relative;z-index:2;padding:110px 0;border-top:1px solid #ffffff10}
+.num {color:var(--gold);font-size:10px;letter-spacing:3px;margin-bottom:16px}
+.sectionTitle {font:500 clamp(38px,5vw,64px)/1.08 Manrope;letter-spacing:-3px;margin-bottom:35px}
+.intro {color:var(--muted);font-size:13px;line-height:2;max-width:570px;margin-top:-18px;margin-bottom:38px}
+.aboutGrid {display:grid;grid-template-columns:1.2fr .8fr;gap:60px}
+.copy p {color:#b7b5b8;font-size:14px;line-height:2.1;margin-bottom:20px}
+.card,.skill,.project,.interest {border:1px solid var(--line);background:#ffffff09;border-radius:15px;padding:28px;backdrop-filter:blur(12px)}
+.card h3,.skill h3,.project h3,.interest h3 {font:500 24px "Playfair Display";margin-bottom:15px}
+.detail {padding:13px 0;border-bottom:1px solid var(--line)}
+.detail:last-child {border:0}
+.detail small {display:block;color:#888;font-size:9px;letter-spacing:2px;margin-bottom:6px}
+.detail strong {font-size:12px}
+.grid2 {display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.grid3 {display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.skill {min-height:175px}
+.skill small {color:var(--gold);font-size:9px;letter-spacing:2px}
+.tags {display:flex;flex-wrap:wrap;gap:8px}
+.tag {font-size:10px;color:#aaa;border:1px solid var(--line);padding:8px 11px;border-radius:25px}
+.project {padding:0;overflow:hidden}
+.art {height:220px;display:grid;place-items:center;background:radial-gradient(circle,#373027,#15161b 70%);font:italic 60px "Playfair Display";color:var(--light)}
+.projectBody {padding:26px}
+.projectBody p,.interest p {color:var(--muted);font-size:12px;line-height:1.9}
+.meta {margin-top:20px;color:var(--gold);font-size:10px}
+.timeline {border-left:1px solid #c6a77a88;padding-left:30px;margin-left:8px}
+.timeline article {padding-bottom:35px;position:relative}
+.timeline article:before {content:"";position:absolute;left:-36px;top:4px;width:10px;height:10px;background:var(--gold);border-radius:50%}
+.timeline small {color:var(--gold);font-size:10px;letter-spacing:2px}
+.timeline h3 {font:25px "Playfair Display";margin:12px 0}
+.timeline p {color:var(--muted);font-size:13px;line-height:1.9}
+.interest .symbol {color:var(--gold);font-size:22px;margin-bottom:20px}
+.vision {padding:65px;border:1px solid #c6a77a66;border-radius:20px;background:radial-gradient(ellipse at 85% 15%,#3a3024,#17171a 55%,#111216)}
+.vision h2,.contact h2 {font:500 clamp(38px,5vw,64px)/1.1 Manrope;letter-spacing:-3px;margin:20px 0}
+.vision p,.contact p {color:#aaa;font-size:13px;line-height:2;max-width:680px}
+.contact {text-align:center;padding:75px 25px;border:1px solid #c6a77a55;border-radius:20px;background:radial-gradient(ellipse at 50% 0%,#30271e,#15161a 65%)}
+.contact p {margin:0 auto 25px}
+.socials {display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin-top:30px;font-size:11px;color:#aaa}
+footer {position:relative;z-index:2;border-top:1px solid var(--line);padding:25px 0;color:#888;font-size:10px}
+.footerin {display:flex;justify-content:space-between;gap:15px}
+
+.reveal {opacity:0;transform:translateY(24px);transition:.8s}
+.reveal.visible {opacity:1;transform:none}
+.glow {position:fixed;width:260px;height:260px;border-radius:50%;pointer-events:none;z-index:4;background:radial-gradient(circle,#c6a77a18,transparent 70%);transform:translate(-50%,-50%)}
 
 /* NISHI AI */
-#nishi-launcher{
-  position:fixed;right:24px;bottom:24px;z-index:99999;
-  width:64px;height:64px;border-radius:50%;
-  border:1px solid var(--light);
-  background:linear-gradient(145deg,var(--light),#a7834f);
-  color:#15120e;font-size:27px;
-  box-shadow:0 0 35px #c6a77a66;
-  animation:pulse 3s infinite
-}
-@keyframes pulse{
-  0%,100%{box-shadow:0 0 20px #c6a77a44}
-  50%{box-shadow:0 0 40px #c6a77a99}
-}
-#nishi-panel{
-  display:none;position:fixed;right:24px;bottom:100px;
-  z-index:99999;width:min(390px,calc(100vw - 24px));
-  height:570px;max-height:calc(100dvh - 115px);
-  flex-direction:column;overflow:hidden;
-  background:#101115f7;border:1px solid #c6a77a99;
-  border-radius:18px;box-shadow:0 20px 80px #000b;
-  backdrop-filter:blur(22px)
-}
-#nishi-panel.open{display:flex;animation:appear .25s ease}
-@keyframes appear{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:none}
-}
-.nHead{
-  display:flex;justify-content:space-between;
-  align-items:center;padding:16px 18px;
-  background:linear-gradient(120deg,#252019,#151518);
-  border-bottom:1px solid #c6a77a44
-}
-.nBrand{display:flex;align-items:center;gap:11px}
-.nAvatar{
-  width:40px;height:40px;border-radius:50%;
-  display:grid;place-items:center;
-  background:linear-gradient(145deg,var(--light),#a7834f);
-  color:#111
-}
-.nName{
-  font:800 15px Manrope;color:var(--light);
-  letter-spacing:1px
-}
-.nStatus{font-size:10px;color:#91a98b;margin-top:4px}
-#nishi-close{
-  background:none;border:0;color:var(--light);font-size:26px
-}
-#nishi-messages{
-  flex:1;min-height:0;overflow:auto;padding:16px;
-  display:flex;flex-direction:column;gap:12px
-}
-.nMessage{
-  max-width:90%;padding:12px 14px;
-  border-radius:14px;font-size:12px;line-height:1.7;
-  white-space:pre-wrap;overflow-wrap:anywhere
-}
-.nBot{
-  align-self:flex-start;background:#25231f;color:#e8dfd1;
-  border:1px solid #c6a77a22;border-bottom-left-radius:4px
-}
-.nUser{
-  align-self:flex-end;background:var(--gold);
-  color:#17130d;border-bottom-right-radius:4px
-}
-#nishi-form{
-  display:flex;gap:7px;padding:11px;
-  background:#17171a;border-top:1px solid #c6a77a33
-}
-#nishi-input{
-  flex:1;min-width:0;padding:12px;
-  background:#242329;color:white;
-  border:1px solid #504332;border-radius:10px;
-  outline:none;font:12px "DM Sans"
-}
-#nishi-input:focus{border-color:var(--gold)}
-#nishi-send,.voiceBtn,#voiceToggle{
-  border:1px solid #c6a77a66;border-radius:10px;
-  background:#c6a77a;color:#15120e;
-  font-weight:700;font-size:11px;padding:0 13px
-}
-.voiceBtn{
-  background:#25231f;color:var(--light);
-  font-size:17px;min-width:42px
-}
-.voiceBtn.listening{
-  background:#8e3e38;color:white;
-  animation:pulse 1s infinite
-}
-.voiceSettings{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:10px;padding:8px 12px;
-  background:#17171a;color:#999;font-size:10px
-}
-#voiceToggle{
-  background:#25231f;color:var(--light);padding:7px 10px
-}
-#voiceStatus{
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap
-}
-.nFoot{
-  text-align:center;padding:8px;background:#17171a;
-  color:#666;font-size:8px;letter-spacing:1px
-}
+#nishi-launcher {position:fixed;right:24px;bottom:24px;z-index:99999;width:64px;height:64px;border-radius:50%;border:1px solid var(--light);background:linear-gradient(145deg,var(--light),#a7834f);color:#15120e;font-size:27px;box-shadow:0 0 35px #c6a77a66;animation:pulse 3s infinite}
+#nishi-panel {display:none;position:fixed;right:24px;bottom:100px;z-index:99999;width:min(390px,calc(100vw - 24px));height:570px;max-height:calc(100dvh - 115px);flex-direction:column;overflow:hidden;background:#101115f7;border:1px solid #c6a77a99;border-radius:18px;box-shadow:0 20px 80px #000b;backdrop-filter:blur(22px)}
+#nishi-panel.open {display:flex;animation:appear .25s ease}
+@keyframes appear {from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.nHead {display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:linear-gradient(120deg,#252019,#151518);border-bottom:1px solid #c6a77a44}
+.nBrand {display:flex;align-items:center;gap:11px}
+.nAvatar {width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,var(--light),#a7834f);color:#111}
+.nName {font:800 15px Manrope;color:var(--light);letter-spacing:1px}
+.nStatus {font-size:10px;color:#91a98b;margin-top:4px}
+#nishi-close {background:none;border:0;color:var(--light);font-size:26px}
+#nishi-messages {flex:1;min-height:0;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.nMessage {max-width:90%;padding:12px 14px;border-radius:14px;font-size:12px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
+.nBot {align-self:flex-start;background:#25231f;color:#e8dfd1;border:1px solid #c6a77a22;border-bottom-left-radius:4px}
+.nUser {align-self:flex-end;background:var(--gold);color:#17130d;border-bottom-right-radius:4px}
+#nishi-form {display:flex;gap:7px;padding:11px;background:#17171a;border-top:1px solid #c6a77a33}
+#nishi-input {flex:1;min-width:0;padding:12px;background:#242329;color:white;border:1px solid #504332;border-radius:10px;outline:none;font:12px "DM Sans"}
+#nishi-input:focus {border-color:var(--gold)}
+#nishi-send,.voiceBtn,#voiceToggle {border:1px solid #c6a77a66;border-radius:10px;background:#c6a77a;color:#15120e;font-weight:700;font-size:11px;padding:0 13px}
+.voiceBtn {background:#25231f;color:var(--light);font-size:17px;min-width:42px}
+.voiceBtn.listening {background:#8e3e38;color:white;animation:pulse 1s infinite}
+.voiceSettings {display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 12px;background:#17171a;color:#999;font-size:10px}
+#voiceToggle {background:#25231f;color:var(--light);padding:7px 10px}
+#voiceStatus {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nFoot {text-align:center;padding:8px;background:#17171a;color:#777;font-size:9px;letter-spacing:1px}
+@keyframes pulse {0%,100%{box-shadow:0 0 20px #c6a77a44}50%{box-shadow:0 0 40px #c6a77a99}}
 
-@media(max-width:850px){
-  .links{
-    display:none;position:absolute;top:78px;left:0;right:0;
-    padding:25px 6%;background:#101115;
-    flex-direction:column;gap:22px;
-    border-bottom:1px solid var(--line)
-  }
-  .links.open{display:flex}
-  .menu{display:block}
-  .navcta{display:none}
-  .heroGrid{grid-template-columns:1fr}
-  .heroCopy{text-align:center}
-  .lead{margin-left:auto;margin-right:auto}
-  .actions{justify-content:center}
-  .portraitWrap{min-height:430px}
-  .portrait{height:380px}
-  .aboutGrid{grid-template-columns:1fr;gap:30px}
-  .grid3{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px) {
+  .heroGrid {grid-template-columns:1fr;gap:30px}
+  .portraitWrap {min-height:440px}
 }
-@media(max-width:560px){
-  h1{font-size:58px;letter-spacing:-4px}
-  section{padding:75px 0}
-  .grid2,.grid3{grid-template-columns:1fr}
-  .vision{padding:30px}
-  .float{font-size:9px;padding:10px}
-  .f1{left:-5px}
-  .f2{right:-5px}
-  .footerin{flex-direction:column}
-  #nishi-launcher{width:56px;height:56px;right:15px;bottom:15px}
-  #nishi-panel{right:12px;bottom:82px;width:calc(100vw - 24px)}
+@media(max-width:650px) {
+  .container {width:89%}
+  .navin {height:70px}
+  .menu {display:block}
+  .navcta {display:none}
+  .links {display:none;position:absolute;top:70px;left:5.5%;width:89%;padding:22px;background:#101116f7;border:1px solid var(--line);border-radius:14px;flex-direction:column}
+  .links.open {display:flex}
+  .hero {padding:120px 0 60px}
+  h1 {font-size:clamp(52px,14vw,75px);letter-spacing:-4px}
+  .portrait {height:360px;width:255px}
+  .portraitWrap {min-height:410px}
+  .f1 {left:0;bottom:35px}
+  .f2 {right:0;top:30px}
+  .float {padding:11px}
+  section {padding:82px 0}
+  .grid2,.grid3 {grid-template-columns:1fr}
+  .vision {padding:35px 24px}
+  .contact {padding:55px 18px}
+  .footerin {flex-direction:column;text-align:center}
+  .glow {display:none}
+  #nishi-launcher {right:16px;bottom:16px}
+  #nishi-panel {right:8px;bottom:88px;width:calc(100vw - 16px)}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal {opacity:1;transform:none}
+  .ambient video {display:none}
 }
 </style>
 </head>
 
 <body>
-
 <div class="ambient">
-  <video id="ambientVideo" autoplay muted loop playsinline>
+  <video id="ambientVideo" autoplay muted loop playsinline preload="auto">
     <source src="background.mp4" type="video/mp4">
   </video>
 </div>
 <div class="overlay"></div>
 <div class="glow" id="glow"></div>
 
-<header class="nav" id="nav">
+<nav class="nav" id="nav">
   <div class="container navin">
-    <a class="brand" href="#home">SWASTIK<span>.</span></a>
+    <a class="brand" href="#home">Swastik<span>.</span></a>
+    <div class="links" id="links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Expertise</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="navcta" href="mailto:mrswastik372@gmail.com">LET'S CONNECT ↗</a>
+    <button class="menu" id="menu" aria-label="Open navigation">☰</button>
+  </div>
+</nav>
 
-    <nav class="links" id="links">
-      <a href="#home">HOME</a>
-      <a href="#about">ABOUT</a>
-      <a href="#skills">SKILLS</a>
-      <a href="#projects">PROJECTS</a>
-      <a href="#education">EDUCATION</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
-
-    <a class="navcta" href="#contact">LET'S CONNECT ↗</a>
-    <button class="menu" id="menu" aria-label="Open menu">☰</button>
+<header class="hero" id="home">
+  <canvas id="scene"></canvas>
+  <div class="container heroGrid">
+    <div class="heroCopy">
+      <div class="eyebrow"><span class="dot"></span>Computer Science · AI &amp; ML</div>
+      <h1>Creating<br><em>with purpose.</em></h1>
+      <p class="lead">I'm Swastik Nayak, a Computer Science Engineering student passionate about technology, thoughtful design and building digital experiences that make a difference.</p>
+      <div class="role">Currently exploring <span id="role">Artificial Intelligence</span> _</div>
+      <div class="actions">
+        <a class="btn primary" href="#projects">EXPLORE MY WORK ↗</a>
+        <a class="btn ghost" href="#contact">LET'S TALK ↗</a>
+      </div>
+      <div class="note">Curiosity driven. Future focused.</div>
+    </div>
+    <div class="portraitWrap">
+      <div class="portrait">
+        <div>
+          <img src="profile.jpg" alt="Portrait of Swastik Nayak" onerror="this.parentElement.innerHTML='<div style=&quot;display:grid;place-items:center;height:100%;color:#ead4ae;font:italic 24px Playfair Display&quot;>Your portrait</div>'">
+        </div>
+      </div>
+      <div class="float f1"><small>BASED IN</small>Odisha, India</div>
+      <div class="float f2"><small>FOCUSING ON</small>AI · Development · Design</div>
+    </div>
   </div>
 </header>
 
 <main>
-
-<section class="hero" id="home">
-  <canvas id="scene"></canvas>
-
-  <div class="container heroGrid">
-    <div class="heroCopy">
-      <div class="eyebrow">
-        <span class="dot"></span>
-        CREATIVE TECHNOLOGIST · AI & ML
-      </div>
-
-      <h1>Swastik<br><em>Nayak.</em></h1>
-
-      <p class="lead">
-        I explore the intersection of technology, intelligence and creativity.
-        Building digital experiences, learning emerging technologies and
-        turning ideas into meaningful projects.
-      </p>
-
-      <div class="role">
-        Exploring <span id="role">Artificial Intelligence</span>
-      </div>
-
-      <div class="actions">
-        <a class="btn primary" href="#projects">EXPLORE MY WORK ↗</a>
-        <a class="btn ghost" href="#contact">GET IN TOUCH</a>
-      </div>
-
-      <div class="note">CURIOUS MIND. CREATIVE THINKING. CONSTANT EVOLUTION.</div>
-    </div>
-
-    <div class="portraitWrap">
-      <div class="portrait">
-        <div>
-          <img src="profile.jpg" alt="Portrait of Swastik Nayak">
-        </div>
-      </div>
-
-      <div class="float f1">
-        <small>FOCUS AREA</small>
-        AI · MACHINE LEARNING
-      </div>
-
-      <div class="float f2">
-        <small>BASED IN</small>
-        ODISHA, INDIA
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="about">
   <div class="container">
-    <div class="num">01 / ABOUT ME</div>
-    <h2 class="sectionTitle">A little about <em>myself.</em></h2>
-
+    <div class="num">01 — THE INTRODUCTION</div>
+    <h2 class="sectionTitle">Behind the <em>pixels.</em></h2>
     <div class="aboutGrid">
       <div class="copy">
-        <p>
-          I'm Swastik Nayak, a Computer Science Engineering student
-          specializing in Artificial Intelligence and Machine Learning.
-          I'm interested in building technology that solves problems
-          and creates useful experiences.
-        </p>
-
-        <p>
-          My interests span programming, AI, machine learning,
-          full-stack development and creative digital experiences.
-          I enjoy experimenting, learning new tools and improving
-          through practical projects.
-        </p>
-
-        <p>
-          Beyond code, I enjoy photography, cinematic editing,
-          gaming and exploring creative ways to tell stories.
-        </p>
+        <p>I am pursuing a B.Tech in Computer Science Engineering with a specialization in Artificial Intelligence and Machine Learning at Sri Sri University.</p>
+        <p>My journey revolves around understanding technology, writing code and transforming creative ideas into useful digital products. I enjoy the space where engineering meets thoughtful design.</p>
+        <p>I am currently exploring full-stack development, programming and artificial intelligence while continuously improving my problem-solving skills.</p>
       </div>
-
-      <div class="card">
-        <h3>Quick Overview</h3>
-
-        <div class="detail">
-          <small>NAME</small>
-          <strong>Swastik Nayak</strong>
-        </div>
-
-        <div class="detail">
-          <small>EDUCATION</small>
-          <strong>B.Tech — Computer Science Engineering</strong>
-        </div>
-
-        <div class="detail">
-          <small>SPECIALIZATION</small>
-          <strong>Artificial Intelligence & Machine Learning</strong>
-        </div>
-
-        <div class="detail">
-          <small>UNIVERSITY</small>
-          <strong>Sri Sri University, Cuttack</strong>
-        </div>
-
-        <div class="detail">
-          <small>CAREER INTEREST</small>
-          <strong>AI/ML Engineer · Full Stack Developer</strong>
-        </div>
-      </div>
+      <aside class="card">
+        <h3>A little about me</h3>
+        <div class="detail"><small>NAME</small><strong>Swastik Nayak</strong></div>
+        <div class="detail"><small>EDUCATION</small><strong>B.Tech CSE — AI &amp; ML</strong></div>
+        <div class="detail"><small>UNIVERSITY</small><strong>Sri Sri University</strong></div>
+        <div class="detail"><small>FOCUS</small><strong>Development &amp; Artificial Intelligence</strong></div>
+      </aside>
     </div>
   </div>
 </section>
 
 <section id="skills">
   <div class="container">
-    <div class="num">02 / EXPERTISE</div>
-    <h2 class="sectionTitle">Things I'm <em>exploring.</em></h2>
-
-    <p class="intro">
-      Technologies and creative disciplines I'm learning,
-      practising and developing through hands-on experience.
-    </p>
-
-    <div class="grid3">
-      <div class="skill">
-        <small>01 / PROGRAMMING</small>
-        <h3>Languages</h3>
-        <div class="tags">
-          <span class="tag">Python</span>
-          <span class="tag">C</span>
-          <span class="tag">C++</span>
-          <span class="tag">JavaScript</span>
-        </div>
-      </div>
-
-      <div class="skill">
-        <small>02 / DEVELOPMENT</small>
-        <h3>Web</h3>
-        <div class="tags">
-          <span class="tag">HTML5</span>
-          <span class="tag">CSS3</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">Git</span>
-          <span class="tag">GitHub</span>
-        </div>
-      </div>
-
-      <div class="skill">
-        <small>03 / DATA</small>
-        <h3>AI & ML</h3>
-        <div class="tags">
-          <span class="tag">Machine Learning</span>
-          <span class="tag">Data Science</span>
-          <span class="tag">Python</span>
-        </div>
-      </div>
-
-      <div class="skill">
-        <small>04 / CREATIVE</small>
-        <h3>Visual Arts</h3>
-        <div class="tags">
-          <span class="tag">Photography</span>
-          <span class="tag">Video Editing</span>
-          <span class="tag">Color Grading</span>
-        </div>
-      </div>
-
-      <div class="skill">
-        <small>05 / TOOLS</small>
-        <h3>Workflow</h3>
-        <div class="tags">
-          <span class="tag">VS Code</span>
-          <span class="tag">GitHub</span>
-          <span class="tag">AI Tools</span>
-        </div>
-      </div>
-
-      <div class="skill">
-        <small>06 / MINDSET</small>
-        <h3>Approach</h3>
-        <div class="tags">
-          <span class="tag">Problem Solving</span>
-          <span class="tag">Curiosity</span>
-          <span class="tag">Experimentation</span>
-        </div>
-      </div>
+    <div class="num">02 — CAPABILITIES</div>
+    <h2 class="sectionTitle">Tools of <em>my craft.</em></h2>
+    <p class="intro">A growing toolkit, shaped by curiosity, experimentation and the desire to build things that work beautifully.</p>
+    <div class="grid2">
+      <article class="skill">
+        <small>01 / PROGRAMMING</small><h3>Languages</h3>
+        <div class="tags"><span class="tag">C</span><span class="tag">Python · Learning</span><span class="tag">JavaScript · Learning</span></div>
+      </article>
+      <article class="skill">
+        <small>02 / DIGITAL CRAFT</small><h3>Development</h3>
+        <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Responsive Design</span></div>
+      </article>
+      <article class="skill">
+        <small>03 / WORKFLOW</small><h3>Tools</h3>
+        <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span></div>
+      </article>
+      <article class="skill">
+        <small>04 / EXPLORATION</small><h3>Interests</h3>
+        <div class="tags"><span class="tag">Artificial Intelligence</span><span class="tag">Machine Learning</span><span class="tag">Full Stack Development</span></div>
+      </article>
     </div>
   </div>
 </section>
 
 <section id="projects">
   <div class="container">
-    <div class="num">03 / SELECTED WORK</div>
+    <div class="num">03 — SELECTED WORK</div>
     <h2 class="sectionTitle">Ideas into <em>reality.</em></h2>
-
-    <p class="intro">
-      A growing collection of experiments and projects.
-      More work will be added as I continue learning and building.
-    </p>
-
+    <p class="intro">A selection of personal projects and experiments. The beginning of a much bigger journey.</p>
     <div class="grid2">
       <article class="project">
-        <div class="art">01</div>
+        <div class="art">01.</div>
         <div class="projectBody">
-          <h3>House Price Predictor</h3>
-          <p>
-            A machine learning project exploring house price prediction
-            using regression techniques and location-based inputs.
-          </p>
-          <div class="meta">PYTHON · MACHINE LEARNING · STREAMLIT</div>
+          <h3>Personal Portfolio</h3>
+          <p>A personal digital space designed to present my technical interests, education and development journey through a considered visual experience.</p>
+          <div class="meta">HTML · CSS · JAVASCRIPT · <a href="https://swastik51.github.io" target="_blank" rel="noopener">VIEW PROJECT ↗</a></div>
         </div>
       </article>
-
       <article class="project">
-        <div class="art">02</div>
+        <div class="art">02.</div>
         <div class="projectBody">
-          <h3>Personal AI Portfolio</h3>
-          <p>
-            An interactive portfolio featuring a custom AI assistant,
-            voice interaction and immersive visual elements.
-          </p>
-          <div class="meta">HTML · CSS · JAVASCRIPT · AI</div>
+          <h3>AI / ML Exploration</h3>
+          <p>Exploring machine learning concepts and planning practical applications that can solve meaningful real-world problems.</p>
+          <div class="meta">PYTHON · AI · ML · IN DEVELOPMENT</div>
         </div>
       </article>
     </div>
@@ -663,26 +299,13 @@ footer{
 
 <section id="education">
   <div class="container">
-    <div class="num">04 / EDUCATION</div>
-    <h2 class="sectionTitle">The learning <em>journey.</em></h2>
-
+    <div class="num">04 — THE JOURNEY</div>
+    <h2 class="sectionTitle">Learning <em>never stops.</em></h2>
     <div class="timeline">
       <article>
-        <small>CURRENT · B.TECH</small>
-        <h3>Sri Sri University</h3>
-        <p>
-          Computer Science and Engineering,
-          specializing in Artificial Intelligence and Machine Learning.
-        </p>
-      </article>
-
-      <article>
-        <small>PREVIOUS · SCHOOL</small>
-        <h3>Carmel Public School</h3>
-        <p>
-          Completed school education with a science-focused academic
-          background.
-        </p>
+        <small>2025 — PRESENT</small>
+        <h3>Bachelor of Technology</h3>
+        <p>Computer Science Engineering<br>Specialization: Artificial Intelligence &amp; Machine Learning<br>Sri Sri University</p>
       </article>
     </div>
   </div>
@@ -690,27 +313,12 @@ footer{
 
 <section id="interests">
   <div class="container">
-    <div class="num">05 / BEYOND TECHNOLOGY</div>
-    <h2 class="sectionTitle">More than <em>just code.</em></h2>
-
+    <div class="num">05 — BEYOND THE SCREEN</div>
+    <h2 class="sectionTitle">A world of <em>curiosity.</em></h2>
     <div class="grid3">
-      <div class="interest">
-        <div class="symbol">✳</div>
-        <h3>Photography</h3>
-        <p>Capturing moments, details and visual stories.</p>
-      </div>
-
-      <div class="interest">
-        <div class="symbol">◈</div>
-        <h3>Visual Editing</h3>
-        <p>Exploring cinematic edits, color and storytelling.</p>
-      </div>
-
-      <div class="interest">
-        <div class="symbol">⌘</div>
-        <h3>Gaming</h3>
-        <p>Enjoying interactive worlds, strategy and game design.</p>
-      </div>
+      <article class="interest"><div class="symbol">✳</div><h3>Creative pursuits</h3><p>Photography, cinematic editing and exploring creative visual storytelling.</p></article>
+      <article class="interest"><div class="symbol">⌘</div><h3>Technology</h3><p>Exploring emerging technologies, AI, programming and game development.</p></article>
+      <article class="interest"><div class="symbol">↗</div><h3>Personal growth</h3><p>Gaming, learning new things and continuously challenging myself to grow.</p></article>
     </div>
   </div>
 </section>
@@ -718,13 +326,9 @@ footer{
 <section id="vision">
   <div class="container">
     <div class="vision">
-      <div class="num">06 / THE VISION</div>
-      <h2>Building today.<br><em>Imagining tomorrow.</em></h2>
-      <p>
-        My goal is to become an engineer who combines technical
-        understanding with creative thinking — building intelligent,
-        useful and meaningful digital experiences.
-      </p>
+      <small style="color:var(--gold);letter-spacing:3px">06 — THE DIRECTION</small>
+      <h2>Building today.<br><em>Innovating tomorrow.</em></h2>
+      <p>My ambition is to become a skilled Full Stack Developer and AI Engineer, building innovative products that combine intelligent technology, creativity and meaningful user experiences.</p>
     </div>
   </div>
 </section>
@@ -732,19 +336,12 @@ footer{
 <section id="contact">
   <div class="container">
     <div class="contact">
-      <div class="num">07 / CONTACT</div>
-      <h2>Have an idea?<br><em>Let's connect.</em></h2>
-
-      <p>
-        Interested in technology, collaboration or simply having
-        a conversation? Feel free to reach out.
-      </p>
-
-      <a class="btn primary" href="mailto:mrswastik372@gmail.com">
-        SAY HELLO ↗
-      </a>
-
+      <div style="color:var(--gold);letter-spacing:3px;font-size:10px">HAVE A PROJECT IN MIND?</div>
+      <h2>Let's create<br><em>something meaningful.</em></h2>
+      <p>I'm always open to thoughtful conversations, creative collaborations and opportunities to learn, build and grow.</p>
+      <a class="btn primary" href="mailto:mrswastik372@gmail.com">GET IN TOUCH ↗</a>
       <div class="socials">
+        <a href="mailto:mrswastik372@gmail.com">EMAIL ↗</a>
         <a href="https://github.com/swastik51" target="_blank" rel="noopener">GITHUB ↗</a>
         <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LINKEDIN ↗</a>
         <a href="https://www.instagram.com/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
@@ -752,7 +349,6 @@ footer{
     </div>
   </div>
 </section>
-
 </main>
 
 <footer>
@@ -762,7 +358,7 @@ footer{
   </div>
 </footer>
 
-<!-- NISHI AI -->
+<!-- NISHI AI ASSISTANT -->
 <button id="nishi-launcher" aria-label="Talk to NISHI">✦</button>
 
 <div id="nishi-panel" role="dialog" aria-label="NISHI AI assistant">
@@ -778,549 +374,609 @@ footer{
   </div>
 
   <div id="nishi-messages" aria-live="polite">
-    <div class="nMessage nBot">
-      Hi there! ✨ I'm NISHI, Swastik's personal AI assistant.
-      Welcome to his website. I can introduce you to Swastik,
-      answer questions about his skills and projects, explain
-      technology, help you brainstorm ideas, or simply have a
-      fun conversation. What can I help you with today?
-    </div>
+    <div class="nMessage nBot">Hiii! ✨ I'm NISHI, Swastik's personal AI assistant. A very warm welcome to his website! You can ask me about Swastik, his projects, technology, or anything you're curious about. What can I help you with today?</div>
   </div>
 
   <form id="nishi-form">
-    <button type="button" id="nishi-mic" class="voiceBtn" aria-label="Speak to NISHI">🎙</button>
-    <input id="nishi-input" placeholder="Ask me anything..." maxlength="2000" autocomplete="off" required>
+    <button type="button" id="nishi-mic" class="voiceBtn" aria-label="Start voice conversation">🎙</button>
+    <input id="nishi-input" placeholder="Ask me anything..." maxlength="2000" autocomplete="off">
     <button id="nishi-send" type="submit">SEND</button>
   </form>
 
   <div class="voiceSettings">
     <button type="button" id="voiceToggle">🔊 Voice ON</button>
-    <span id="voiceStatus">Welcome! Enable voice if needed</span>
+    <span id="voiceStatus">Tap the microphone to talk</span>
   </div>
-
-  <div class="nFoot">POWERED BY CLOUDFLARE WORKERS AI · DEVICE VOICE</div>
+  <div class="nFoot">POWERED BY CLOUDFLARE AI · ELEVENLABS VOICE</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 
 <script>
-/* WEBSITE INTERACTIONS */
+/* SITE INTERACTIONS */
+const nav=document.getElementById('nav');
+const links=document.getElementById('links');
+const menu=document.getElementById('menu');
 
-const nav = document.getElementById('nav');
-const links = document.getElementById('links');
-const menu = document.getElementById('menu');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>30);
+},{passive:true});
 
-addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', scrollY > 30);
-}, {passive:true});
-
-menu.onclick = () => {
+menu.onclick=()=>{
   links.classList.toggle('open');
-  menu.textContent = links.classList.contains('open') ? '×' : '☰';
+  menu.textContent=links.classList.contains('open')?'×':'☰';
 };
 
-links.querySelectorAll('a').forEach(a => {
-  a.onclick = () => links.classList.remove('open');
-});
-
-document.getElementById('year').textContent = new Date().getFullYear();
-
-const video = document.getElementById('ambientVideo');
-video.play().catch(() => {});
-
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) video.pause();
-  else video.play().catch(() => {});
-});
-
-const glow = document.getElementById('glow');
-
-addEventListener('pointermove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
-}, {passive:true});
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
+links.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    links.classList.remove('open');
+    menu.textContent='☰';
   });
-}, {threshold:.12});
-
-document.querySelectorAll('section,.heroCopy,.portraitWrap').forEach(el => {
-  el.classList.add('reveal');
-  observer.observe(el);
 });
 
-const roleList = [
+document.getElementById('year').textContent=new Date().getFullYear();
+
+const video=document.getElementById('ambientVideo');
+video.play().catch(()=>{});
+
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden) video.pause();
+  else video.play().catch(()=>{});
+});
+
+const glow=document.getElementById('glow');
+window.addEventListener('pointermove',e=>{
+  glow.style.left=e.clientX+'px';
+  glow.style.top=e.clientY+'px';
+},{passive:true});
+
+if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12});
+
+  document.querySelectorAll('section,.heroCopy,.portraitWrap').forEach(el=>{
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+}
+
+const roleList=[
   'Artificial Intelligence',
   'Machine Learning',
   'Full Stack Development',
   'Creative Technology'
 ];
 
-let roleIndex = 0;
+let roleIndex=0;
+setInterval(()=>{
+  roleIndex=(roleIndex+1)%roleList.length;
+  document.getElementById('role').textContent=roleList[roleIndex];
+},2400);
 
-setInterval(() => {
-  roleIndex = (roleIndex + 1) % roleList.length;
-  document.getElementById('role').textContent = roleList[roleIndex];
-}, 2400);
 
+/* THREE.JS BACKGROUND */
+(()=>{
+  if(!window.THREE) return;
 
-/* THREE.JS ANIMATION */
+  try{
+    const canvas=document.getElementById('scene');
+    const renderer=new THREE.WebGLRenderer({
+      canvas,alpha:true,antialias:true
+    });
 
-(() => {
-  if (!window.THREE) return;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.6));
 
-  const canvas = document.getElementById('scene');
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(
+      42,window.innerWidth/window.innerHeight,.1,100
+    );
+    camera.position.z=12;
 
-  const renderer = new THREE.WebGLRenderer({
-    canvas,
-    alpha:true,
-    antialias:true
-  });
+    const group=new THREE.Group();
+    group.position.set(3,.2,-1);
+    scene.add(group);
 
-  renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));
+    const sculpture=new THREE.Mesh(
+      new THREE.IcosahedronGeometry(2.3,2),
+      new THREE.MeshBasicMaterial({
+        color:0xc6a77a,
+        wireframe:true,
+        transparent:true,
+        opacity:.2
+      })
+    );
+    group.add(sculpture);
 
-  const scene = new THREE.Scene();
+    const ring=new THREE.Mesh(
+      new THREE.TorusGeometry(3,.006,8,160),
+      new THREE.MeshBasicMaterial({
+        color:0xe4c99e,
+        transparent:true,
+        opacity:.2
+      })
+    );
+    ring.rotation.x=1.1;
+    group.add(ring);
 
-  const camera = new THREE.PerspectiveCamera(
-    42,
-    innerWidth / innerHeight,
-    .1,
-    100
-  );
+    const points=new Float32Array(850*3);
 
-  camera.position.z = 12;
+    for(let i=0;i<850;i++){
+      const radius=3+Math.random()*7;
+      const theta=Math.random()*6.28;
+      const phi=Math.acos(2*Math.random()-1);
 
-  const group = new THREE.Group();
-  group.position.set(3,.2,-1);
-  scene.add(group);
+      points[i*3]=radius*Math.sin(phi)*Math.cos(theta);
+      points[i*3+1]=radius*Math.sin(phi)*Math.sin(theta);
+      points[i*3+2]=radius*Math.cos(phi)-2;
+    }
 
-  const sculpture = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(2.3,2),
-    new THREE.MeshBasicMaterial({
-      color:0xc6a77a,
-      wireframe:true,
-      transparent:true,
-      opacity:.2
-    })
-  );
+    const geometry=new THREE.BufferGeometry();
+    geometry.setAttribute('position',new THREE.BufferAttribute(points,3));
 
-  group.add(sculpture);
+    scene.add(new THREE.Points(
+      geometry,
+      new THREE.PointsMaterial({
+        color:0xd6bd98,
+        size:.018,
+        transparent:true,
+        opacity:.6
+      })
+    ));
 
-  const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(3,.006,8,160),
-    new THREE.MeshBasicMaterial({
-      color:0xe4c99e,
-      transparent:true,
-      opacity:.2
-    })
-  );
+    function resize(){
+      renderer.setSize(window.innerWidth,window.innerHeight);
+      camera.aspect=window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+    }
 
-  ring.rotation.x = 1.1;
-  group.add(ring);
+    resize();
+    window.addEventListener('resize',resize);
 
-  const points = new Float32Array(850 * 3);
+    let time=0;
 
-  for (let i = 0; i < 850; i++) {
-    const radius = 3 + Math.random() * 7;
-    const theta = Math.random() * 6.28;
-    const phi = Math.acos(2 * Math.random() - 1);
+    function animate(){
+      requestAnimationFrame(animate);
+      time+=.003;
+      group.rotation.y+=.0015;
+      group.rotation.x=Math.sin(time)*.1;
+      renderer.render(scene,camera);
+    }
 
-    points[i*3] = radius * Math.sin(phi) * Math.cos(theta);
-    points[i*3+1] = radius * Math.sin(phi) * Math.sin(theta);
-    points[i*3+2] = radius * Math.cos(phi) - 2;
+    animate();
+  }catch(error){
+    console.warn('Three.js unavailable:',error);
   }
-
-  const geometry = new THREE.BufferGeometry();
-
-  geometry.setAttribute(
-    'position',
-    new THREE.BufferAttribute(points,3)
-  );
-
-  scene.add(new THREE.Points(
-    geometry,
-    new THREE.PointsMaterial({
-      color:0xd6bd98,
-      size:.018,
-      transparent:true,
-      opacity:.6
-    })
-  ));
-
-  function resize() {
-    renderer.setSize(innerWidth,innerHeight);
-    camera.aspect = innerWidth / innerHeight;
-    camera.updateProjectionMatrix();
-  }
-
-  resize();
-  addEventListener('resize',resize);
-
-  let time = 0;
-
-  function animate() {
-    requestAnimationFrame(animate);
-    time += .003;
-    group.rotation.y += .0015;
-    group.rotation.x = Math.sin(time) * .1;
-    renderer.render(scene,camera);
-  }
-
-  animate();
 })();
 
 
-/* NISHI AI ASSISTANT */
+/* NISHI AI: CLOUDFLARE + ELEVENLABS */
+(()=>{
+  'use strict';
 
-(() => {
-  const API = 'https://nishi-ai.mrswastik372.workers.dev/';
+  const API='https://nishi-ai.mrswastik372.workers.dev/';
+  const CHAT_URL=API;
+  const TTS_URL=API+'tts';
 
-  const el = id => document.getElementById(id);
+  const el=id=>document.getElementById(id);
 
-  const launcher = el('nishi-launcher');
-  const panel = el('nishi-panel');
-  const messages = el('nishi-messages');
-  const form = el('nishi-form');
-  const input = el('nishi-input');
-  const send = el('nishi-send');
-  const mic = el('nishi-mic');
-  const toggle = el('voiceToggle');
-  const status = el('voiceStatus');
-  const presence = el('nishi-presence');
+  const launcher=el('nishi-launcher');
+  const panel=el('nishi-panel');
+  const messages=el('nishi-messages');
+  const form=el('nishi-form');
+  const input=el('nishi-input');
+  const send=el('nishi-send');
+  const mic=el('nishi-mic');
+  const toggle=el('voiceToggle');
+  const status=el('voiceStatus');
+  const presence=el('nishi-presence');
 
-  let history = [];
-  let voiceOn = true;
-  let voices = [];
-  let recognition = null;
-  let listening = false;
-  let opened = false;
-  let busy = false;
+  let history=[];
+  let voiceOn=true;
+  let recognition=null;
+  let listening=false;
+  let opened=false;
+  let busy=false;
+  let voiceMode=false;
+  let currentAudio=null;
+  let restartTimer=null;
+  let speaking=false;
 
-  const synth = window.speechSynthesis;
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 
-  function getVoices() {
-    voices = synth ? synth.getVoices() : [];
+  function add(text,isUser=false){
+    const div=document.createElement('div');
+    div.className='nMessage '+(isUser?'nUser':'nBot');
+    div.textContent=text;
+    messages.appendChild(div);
+    messages.scrollTop=messages.scrollHeight;
+    return div;
   }
 
-  if (synth) {
-    getVoices();
-    synth.onvoiceschanged = getVoices;
+  function stopAudio(){
+    if(currentAudio){
+      currentAudio.pause();
+      currentAudio.currentTime=0;
+      currentAudio=null;
+    }
+    speaking=false;
+
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
   }
 
-  function pickVoice() {
-    if (!voices.length) getVoices();
-
-    const indian = voices.filter(v => /^en-IN$/i.test(v.lang));
-    const english = voices.filter(v => /^en/i.test(v.lang));
-    const pool = [...indian,...english];
-
-    return pool.find(v =>
-      /female|woman|zira|heera|samantha|karen|veena|priya|neerja|raveena/i.test(v.name)
-    ) || indian[0] || english[0] || voices[0] || null;
+  function scheduleListening(){
+    clearTimeout(restartTimer);
+    if(voiceMode&&!busy&&!speaking){
+      restartTimer=setTimeout(startListening,700);
+    }
   }
 
-  function speak(text) {
-    if (!voiceOn || !synth) return;
+  function afterSpeech(){
+    speaking=false;
 
+    if(voiceMode){
+      status.textContent='Your turn — I am listening…';
+      presence.textContent='● Listening';
+      scheduleListening();
+    }else{
+      status.textContent='Ready to chat';
+      presence.textContent='● Here to help';
+    }
+  }
+
+  function fallbackSpeak(text){
+    if(!voiceOn||!window.speechSynthesis){
+      afterSpeech();
+      return;
+    }
+
+    const synth=window.speechSynthesis;
     synth.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(
-      text
-        .replace(/https?:\/\/\S+/g,'link')
-        .replace(/[`*_#>|]/g,'')
-        .slice(0,3500)
+    const utterance=new SpeechSynthesisUtterance(
+      String(text).slice(0,2500)
     );
 
-    const voice = pickVoice();
+    const voices=synth.getVoices();
+    const english=voices.filter(v=>/^en/i.test(v.lang));
+    const indian=english.filter(v=>/^en-IN/i.test(v.lang));
+    const preferred=[...indian,...english];
 
-    utterance.lang = voice?.lang || 'en-IN';
+    utterance.voice=
+      preferred.find(v=>/female|woman|zira|heera|samantha|karen|veena|priya|neerja|raveena/i.test(v.name))
+      ||preferred[0]
+      ||null;
 
-    if (voice) utterance.voice = voice;
+    utterance.lang=utterance.voice?.lang||'en-IN';
+    utterance.rate=.98;
+    utterance.pitch=1.14;
+    utterance.volume=1;
 
-    utterance.rate = .96;
-    utterance.pitch = 1.08;
-    utterance.volume = 1;
+    speaking=true;
 
-    utterance.onstart = () => {
-      status.textContent = 'NISHI is speaking…';
+    utterance.onstart=()=>{
+      status.textContent='NISHI is speaking…';
+      presence.textContent='● Speaking';
     };
 
-    utterance.onend = () => {
-      status.textContent = listening ? 'Listening…' : 'Ready to chat';
-    };
-
-    utterance.onerror = () => {
-      status.textContent = 'Voice unavailable on this device';
-    };
+    utterance.onend=afterSpeech;
+    utterance.onerror=afterSpeech;
 
     synth.speak(utterance);
   }
 
-  function stopSpeech() {
-    if (synth) synth.cancel();
-  }
+  async function speak(text){
+    if(!voiceOn){
+      afterSpeech();
+      return;
+    }
 
-  function addMessage(text,isUser) {
-    const div = document.createElement('div');
+    stopAudio();
 
-    div.className = 'nMessage ' + (isUser ? 'nUser' : 'nBot');
-    div.textContent = text;
+    const clean=String(text)
+      .replace(/https?:\/\/\S+/g,'link')
+      .replace(/[`*_#>|]/g,'')
+      .slice(0,2500);
 
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
+    speaking=true;
+    status.textContent='NISHI is preparing her voice…';
+    presence.textContent='● Speaking';
 
-  function open(autoIntro = false) {
-    panel.classList.add('open');
-    launcher.style.display = 'none';
-    presence.textContent = '● Here to help';
+    try{
+      const response=await fetch(TTS_URL,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({text:clean})
+      });
 
-    if (!opened) {
-      opened = true;
-
-      const intro =
-        "Hi there! I'm NISHI, Swastik's personal AI assistant. " +
-        "Welcome to his website. I can tell you about Swastik, " +
-        "answer questions, help with technology and ideas, or " +
-        "just have a fun conversation. What can I do for you today?";
-
-      if (autoIntro) {
-        setTimeout(() => speak(intro),500);
-      } else {
-        speak(intro);
+      if(!response.ok){
+        const detail=await response.text().catch(()=>'');
+        throw new Error('ElevenLabs error '+response.status+': '+detail);
       }
+
+      const blob=await response.blob();
+      if(!blob.size) throw new Error('Empty audio response');
+
+      const audioUrl=URL.createObjectURL(blob);
+      const audio=new Audio(audioUrl);
+
+      currentAudio=audio;
+      audio.preload='auto';
+
+      audio.onended=()=>{
+        URL.revokeObjectURL(audioUrl);
+        if(currentAudio===audio) currentAudio=null;
+        afterSpeech();
+      };
+
+      audio.onerror=()=>{
+        URL.revokeObjectURL(audioUrl);
+        if(currentAudio===audio) currentAudio=null;
+        speaking=false;
+        status.textContent='Audio playback failed';
+        afterSpeech();
+      };
+
+      await audio.play();
+      status.textContent='NISHI is speaking…';
+
+    }catch(error){
+      console.error('ElevenLabs:',error);
+      speaking=false;
+      status.textContent='Using device voice fallback';
+      fallbackSpeak(clean);
     }
   }
 
-  function closePanel() {
-    if (recognition && listening) recognition.stop();
+  function openPanel(){
+    panel.classList.add('open');
+    launcher.style.display='none';
+    presence.textContent='● Here to help';
 
-    stopSpeech();
+    if(!opened){
+      opened=true;
 
+      const intro=
+        "Hiii! A very warm welcome to Swastik's website! "+
+        "I'm NISHI, his personal AI assistant. "+
+        "It's so lovely to meet you. "+
+        "You can ask me about Swastik, his projects, technology, "+
+        "or anything you're curious about. What can I help you with today?";
+
+      // Browsers may block automatic audio until the visitor interacts.
+      setTimeout(()=>{
+        if(voiceOn) speak(intro);
+      },800);
+    }
+  }
+
+  function stopVoiceMode(){
+    voiceMode=false;
+    clearTimeout(restartTimer);
+
+    if(recognition&&listening){
+      try{recognition.stop()}catch(error){}
+    }
+
+    listening=false;
+    mic.classList.remove('listening');
+    mic.textContent='🎙';
+    status.textContent='Voice conversation stopped';
+    presence.textContent='● Here to help';
+  }
+
+  function closePanel(){
+    stopVoiceMode();
+    stopAudio();
     panel.classList.remove('open');
-    launcher.style.display = 'block';
-    presence.textContent = '● Personal AI Assistant';
+    launcher.style.display='block';
+    presence.textContent='● Personal AI Assistant';
   }
 
-  launcher.onclick = () => open(false);
+  launcher.addEventListener('click',openPanel);
+  el('nishi-close').addEventListener('click',closePanel);
 
-  el('nishi-close').onclick = () => {
-    if (voiceOn && synth) {
-      speak("It was lovely talking to you. Take care, and have a wonderful day!");
-      setTimeout(closePanel,2600);
-    } else {
-      closePanel();
-    }
-  };
-
-  /*
-    Automatically introduce NISHI when the website opens.
-    Some browsers block automatic speech until the visitor interacts.
-    The greeting will still appear as text.
-  */
-
-  window.addEventListener('load',() => {
-    setTimeout(() => open(true),1200);
+  window.addEventListener('load',()=>{
+    setTimeout(openPanel,1200);
   });
 
+  toggle.addEventListener('click',()=>{
+    voiceOn=!voiceOn;
 
-  /* VOICE OUTPUT TOGGLE */
-
-  toggle.onclick = () => {
-    voiceOn = !voiceOn;
-
-    if (!voiceOn) {
-      stopSpeech();
-      toggle.textContent = '🔇 Voice OFF';
-      status.textContent = 'Voice muted';
-    } else {
-      toggle.textContent = '🔊 Voice ON';
-      status.textContent = 'Voice enabled';
-      speak("Voice is back on. I'm listening.");
+    if(!voiceOn){
+      stopAudio();
+      toggle.textContent='🔇 Voice OFF';
+      status.textContent='Voice muted';
+    }else{
+      toggle.textContent='🔊 Voice ON';
+      speak("Yay! My voice is back. I'm happy to talk with you!");
     }
-  };
+  });
 
+  function startListening(){
+    if(!voiceMode||!recognition||busy||speaking||listening) return;
 
-  /* MICROPHONE INPUT */
+    clearTimeout(restartTimer);
 
-  const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
-
-  if (SpeechRecognition) {
-    recognition = new SpeechRecognition();
-
-    recognition.lang = 'en-IN';
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-
-    recognition.onstart = () => {
-      listening = true;
-      mic.classList.add('listening');
-      mic.textContent = '⏹';
-      status.textContent = 'Listening to you…';
-      presence.textContent = '● Listening';
-    };
-
-    recognition.onresult = event => {
-      const transcript =
-        event.results?.[0]?.[0]?.transcript || '';
-
-      if (transcript.trim()) {
-        input.value = transcript;
-        form.requestSubmit();
-      }
-    };
-
-    recognition.onerror = event => {
-      status.textContent =
-        event.error === 'not-allowed'
-          ? 'Allow microphone access in browser settings'
-          : 'Could not hear that. Try again.';
-    };
-
-    recognition.onend = () => {
-      listening = false;
-      mic.classList.remove('listening');
-      mic.textContent = '🎙';
-      presence.textContent = '● Here to help';
-
-      if (status.textContent === 'Listening to you…') {
-        status.textContent = 'Ready to chat';
-      }
-    };
-  } else {
-    mic.disabled = true;
-    status.textContent = 'Voice input not supported in this browser';
+    try{
+      recognition.start();
+    }catch(error){
+      console.warn('Recognition start:',error);
+    }
   }
 
-  mic.onclick = () => {
-    if (!recognition) {
-      status.textContent = 'Try Chrome for microphone support';
+  function startVoiceMode(){
+    if(!recognition){
+      status.textContent='Voice input is not supported. Try Chrome.';
       return;
     }
 
-    if (listening) {
-      recognition.stop();
+    if(!window.isSecureContext){
+      status.textContent='Please open the secure HTTPS website.';
       return;
     }
 
-    stopSpeech();
+    voiceMode=true;
+    stopAudio();
 
-    try {
-      recognition.start();
-    } catch (error) {
-      status.textContent = 'Please try again';
+    mic.textContent='⏹';
+    mic.classList.add('listening');
+
+    status.textContent='Starting voice conversation…';
+    presence.textContent='● Listening';
+
+    add("Voice chat is on! ✨ Go ahead, I'm listening.");
+    startListening();
+  }
+
+  mic.addEventListener('click',()=>{
+    if(voiceMode) stopVoiceMode();
+    else startVoiceMode();
+  });
+
+  if(SR){
+    recognition=new SR();
+    recognition.lang='en-IN';
+    recognition.continuous=false;
+    recognition.interimResults=false;
+    recognition.maxAlternatives=1;
+
+    recognition.onstart=()=>{
+      listening=true;
+      mic.classList.add('listening');
+      mic.textContent='⏹';
+      status.textContent='Listening to you…';
+      presence.textContent='● Listening';
+    };
+
+    recognition.onresult=event=>{
+      const spoken=Array.from(event.results)
+        .slice(event.resultIndex)
+        .filter(result=>result.isFinal)
+        .map(result=>result[0].transcript)
+        .join(' ')
+        .trim();
+
+      if(spoken){
+        input.value=spoken;
+        sendQuestion(spoken);
+      }
+    };
+
+    recognition.onerror=event=>{
+      console.error('Speech recognition:',event.error);
+
+      if(event.error==='not-allowed'||event.error==='service-not-allowed'){
+        status.textContent='Please allow microphone access';
+        stopVoiceMode();
+      }else if(event.error==='no-speech'){
+        status.textContent='I did not hear anything. Listening again…';
+      }else if(event.error!=='aborted'){
+        status.textContent='Microphone issue. Please try again.';
+      }
+    };
+
+    recognition.onend=()=>{
+      listening=false;
+
+      if(voiceMode&&!busy&&!speaking){
+        scheduleListening();
+      }
+
+      if(!voiceMode){
+        mic.classList.remove('listening');
+        mic.textContent='🎙';
+        presence.textContent='● Here to help';
+      }
+    };
+  }else{
+    mic.disabled=true;
+    status.textContent='Voice input requires a supported browser such as Chrome';
+  }
+
+  async function sendQuestion(question){
+    const q=String(question||'').trim();
+
+    if(!q||busy) return;
+
+    stopAudio();
+
+    if(recognition&&listening){
+      try{recognition.stop()}catch(error){}
     }
-  };
 
+    add(q,true);
+    history.push({role:'user',content:q});
+    input.value='';
 
-  /* AI CHAT CONNECTION */
+    busy=true;
+    send.disabled=true;
+    send.textContent='…';
 
-  form.onsubmit = async event => {
-    event.preventDefault();
+    status.textContent='NISHI is thinking…';
+    presence.textContent='● Thinking';
 
-    const question = input.value.trim();
+    const thinking=add('Thinking… ✨');
 
-    if (!question || busy) return;
-
-    stopSpeech();
-
-    if (recognition && listening) {
-      recognition.stop();
-    }
-
-    addMessage(question,true);
-
-    history.push({
-      role:'user',
-      content:question
-    });
-
-    input.value = '';
-
-    busy = true;
-    send.disabled = true;
-    send.textContent = '…';
-
-    const thinking = document.createElement('div');
-
-    thinking.className = 'nMessage nBot';
-    thinking.textContent = 'NISHI is thinking…';
-
-    messages.appendChild(thinking);
-    messages.scrollTop = messages.scrollHeight;
-
-    try {
-      const response = await fetch(API,{
+    try{
+      const response=await fetch(CHAT_URL,{
         method:'POST',
-        headers:{
-          'Content-Type':'application/json'
-        },
+        headers:{'Content-Type':'application/json'},
         body:JSON.stringify({
           messages:history.slice(-10)
         })
       });
 
-      const data = await response.json();
+      const data=await response.json();
 
-      if (!response.ok) {
-        throw new Error(
-          data.details || data.error || 'AI request failed'
-        );
+      if(!response.ok){
+        throw new Error(data.details||data.error||'AI request failed');
       }
 
-      const answer =
-        data.reply || data.response || data.message;
+      const answer=data.reply||data.response||data.message;
 
-      if (typeof answer !== 'string' || !answer.trim()) {
-        throw new Error('Empty AI response');
+      if(typeof answer!=='string'||!answer.trim()){
+        throw new Error('The AI returned an empty response');
       }
 
       thinking.remove();
+      add(answer);
 
-      addMessage(answer,false);
+      history.push({role:'assistant',content:answer});
+      if(history.length>10) history=history.slice(-10);
 
-      history.push({
-        role:'assistant',
-        content:answer
-      });
+      await speak(answer);
 
-      if (history.length > 10) {
-        history.splice(0,history.length-10);
-      }
-
-      speak(answer);
-
-    } catch (error) {
+    }catch(error){
       thinking.remove();
-
-      console.error('NISHI:',error);
+      console.error('NISHI chat:',error);
 
       history.pop();
 
-      const message =
-        'I am having a little technical trouble right now. Please try again in a moment.';
+      const message='Oops! I am having a little technical trouble right now. Please try again in a moment.';
+      add(message);
+      await speak(message);
 
-      addMessage(message,false);
-      speak(message);
+    }finally{
+      busy=false;
+      send.disabled=false;
+      send.textContent='SEND';
 
-    } finally {
-      busy = false;
-      send.disabled = false;
-      send.textContent = 'SEND';
-      input.focus();
+      if(voiceMode&&!speaking) scheduleListening();
     }
-  };
+  }
+
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    sendQuestion(input.value);
+  });
 
 })();
 </script>
-
 </body>
 </html>
