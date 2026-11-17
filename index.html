@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f7f3eb">
 <meta name="description" content="Swastik Nayak — AI, Machine Learning, Technology and Creativity.">
 <title>Swastik Nayak | Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{--bg:#f7f3eb;--paper:#fffdf8;--paper2:#f0e9dc;--ink:#29251f;--muted:#777064;--gold:#a77b36;--gold2:#76521f;--line:rgba(130,99,49,.22);--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -25,6 +26,7 @@ button{cursor:pointer}
 .loader-line{width:120px;height:2px;background:#e6ddcd;margin:20px auto;overflow:hidden}
 .loader-line:after{content:'';display:block;width:40%;height:100%;background:var(--gold);animation:load 1.2s infinite}
 @keyframes load{to{transform:translateX(350%)}}
+
 #welcome{position:fixed;inset:0;z-index:5000;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 75% 25%,#eadcc4,transparent 45%),linear-gradient(135deg,#fbf8f1,#e9dfcf);transition:opacity 1s,visibility 1s}
 #welcome.exit{opacity:0;visibility:hidden;pointer-events:none}
 #welcome-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2}
@@ -39,6 +41,7 @@ button{cursor:pointer}
 .welcome-subtitle{color:#6d6253;font-size:12px;letter-spacing:3px;text-transform:uppercase}
 .enter-btn{margin-top:40px;padding:15px 30px;border:1px solid var(--gold);background:var(--gold);color:white;letter-spacing:2px;font-size:11px}
 .enter-btn:hover{background:var(--gold2)}
+
 header{position:fixed;top:0;width:100%;z-index:1000;padding:18px 7%;background:#faf7f0e8;backdrop-filter:blur(18px);border-bottom:1px solid #5a46200f}
 .navbar{display:flex;align-items:center;justify-content:space-between}
 .logo{font:25px var(--serif);color:var(--gold2);letter-spacing:2px}
@@ -54,6 +57,7 @@ section{padding:110px 9%;position:relative}
 .gold-line{height:1px;width:65px;background:var(--gold);margin:24px 0}
 .reveal{opacity:0;transform:translateY(22px);transition:.8s}
 .reveal.show{opacity:1;transform:none}
+
 #home{min-height:100vh;display:flex;align-items:center;padding-top:130px}
 .home-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:65px;align-items:center}
 .home-title{font:400 clamp(48px,7vw,82px)/1.12 var(--serif);margin:24px 0}
@@ -66,6 +70,7 @@ section{padding:110px 9%;position:relative}
 .profile-frame:before{content:'';position:absolute;inset:-12px 12px 12px -12px;border:1px solid #a77b3655;z-index:-1}
 .profile-frame img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#eee5d7}
 .profile-caption{text-align:center;color:var(--gold2);font:16px var(--serif);letter-spacing:2px;margin-top:14px}
+
 #about,#interests,#contact{background:var(--paper2)}
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:65px;align-items:center}
 .about-mark{min-height:330px;display:grid;place-items:center;border:1px solid var(--line);background:radial-gradient(circle,#eadcc4,#f6f1e8 70%)}
@@ -113,6 +118,7 @@ section{padding:110px 9%;position:relative}
 footer{position:relative;z-index:1;text-align:center;padding:34px 8%;background:#eee7db;border-top:1px solid var(--line)}
 .footer-logo{font:27px var(--serif);color:var(--gold2)}
 footer p{font-size:11px;color:var(--muted);margin-top:10px}
+
 /* NISHI */
 #nishi-launcher{position:fixed;z-index:2000;right:24px;bottom:24px;width:64px;height:64px;border-radius:50%;border:1px solid #a77b3699;background:radial-gradient(circle at 35% 25%,#fff7e7,#dfc18c 75%);color:#62451d;font:28px var(--serif);box-shadow:0 0 0 6px #a77b3614,0 8px 30px #644b352e;display:grid;place-items:center}
 #nishi-launcher:hover{transform:translateY(-3px)}
@@ -172,19 +178,29 @@ footer p{font-size:11px;color:var(--muted);margin-top:10px}
 .command-item{width:100%;display:flex;justify-content:space-between;padding:12px;background:transparent;border:0;text-align:left;color:#625b50;font-size:12px}
 .command-item:hover{background:#f2e9da;color:var(--gold2)}
 .command-footer{padding:12px 18px;border-top:1px solid var(--line);color:#999;font-size:10px}
+
 @media(max-width:900px){
-header{padding:16px 5%}.nav-links{gap:13px}.nav-links a{font-size:10px}
+header{padding:16px 5%}
+.nav-links{gap:13px}
+.nav-links a{font-size:10px}
 section{padding:90px 6%}
 .home-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:42px}
-.home-content{text-align:center}.home-text{margin:auto}.home-actions{justify-content:center}
-.profile-frame{max-width:300px}.skills-grid{grid-template-columns:repeat(2,1fr)}
+.home-content{text-align:center}
+.home-text{margin:auto}
+.home-actions{justify-content:center}
+.profile-frame{max-width:300px}
+.skills-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:650px){
-header{padding:14px 6%}.menu-btn{display:block}
+header{padding:14px 6%}
+.menu-btn{display:block}
 .nav-links{display:none;position:absolute;top:100%;left:0;width:100%;padding:18px;background:#faf7f0f7;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
-.nav-links.open{display:flex}.nav-links a{font-size:12px}
-section{padding:82px 7%}#home{min-height:auto;padding-top:135px}
-.home-title{font-size:47px}.skills-grid,.projects-grid{grid-template-columns:1fr}
+.nav-links.open{display:flex}
+.nav-links a{font-size:12px}
+section{padding:82px 7%}
+#home{min-height:auto;padding-top:135px}
+.home-title{font-size:47px}
+.skills-grid,.projects-grid{grid-template-columns:1fr}
 .interests-grid{grid-template-columns:repeat(2,1fr)}
 #welcome-video{display:none}
 #nishi-panel{right:10px;bottom:86px;width:calc(100vw - 20px);height:calc(100dvh - 110px)}
@@ -192,9 +208,16 @@ section{padding:82px 7%}#home{min-height:auto;padding-top:135px}
 }
 </style>
 </head>
+
 <body>
 <canvas id="particles"></canvas>
-<div id="preloader"><div><div class="loader-logo">SN.</div><div class="loader-line"></div></div></div>
+
+<div id="preloader">
+  <div>
+    <div class="loader-logo">SN.</div>
+    <div class="loader-line"></div>
+  </div>
+</div>
 
 <div id="welcome">
   <video id="welcome-video" autoplay muted loop playsinline>
@@ -206,7 +229,8 @@ section{padding:82px 7%}#home{min-height:auto;padding-top:135px}
     <div class="welcome-small">WELCOME TO MY DIGITAL SPACE</div>
     <h1 class="welcome-title">Swastik <span>Nayak</span></h1>
     <p class="welcome-subtitle">AI · Technology · Creativity</p>
-    <button class="enter-btn" id="enter-btn">ENTER EXPERIENCE&nbsp; →</button>
+    <button class="enter-btn" id="enter-btn">ENTER & ENABLE NISHI →</button>
+    <p style="font-size:10px;color:#786b59;margin-top:12px">Tap to enter and enable microphone access for hands-free mode.</p>
   </div>
 </div>
 
@@ -353,26 +377,52 @@ section{padding:82px 7%}#home{min-height:auto;padding-top:135px}
 </section>
 </main>
 
-<footer><div class="footer-logo">SN.</div><p>© <span id="year"></span> Swastik Nayak. Designed with intention.</p></footer>
+<footer>
+  <div class="footer-logo">SN.</div>
+  <p>© <span id="year"></span> Swastik Nayak. Designed with intention.</p>
+</footer>
 
-<button id="nishi-launcher" aria-label="Open NISHI AI"><span class="launcher-ring"></span>N<span class="launcher-dot"></span></button>
+<button id="nishi-launcher" aria-label="Open NISHI AI">
+  <span class="launcher-ring"></span>N<span class="launcher-dot"></span>
+</button>
+
 <div id="nishi-panel">
   <div class="nishi-top-glow"></div>
   <div class="nishi-header">
-    <div class="nishi-identity"><div class="nishi-avatar">N</div><div><div class="nishi-name">NISHI</div><div class="nishi-status"><span class="status-dot"></span><span id="nishi-status-text">AI assistant · Voice ready</span></div></div></div>
-    <div class="nishi-head-actions"><button id="nishi-new-chat" title="New conversation">↻</button><button id="nishi-close" title="Close">×</button></div>
+    <div class="nishi-identity">
+      <div class="nishi-avatar">N</div>
+      <div>
+        <div class="nishi-name">NISHI</div>
+        <div class="nishi-status"><span class="status-dot"></span><span id="nishi-status-text">AI assistant · Voice ready</span></div>
+      </div>
+    </div>
+    <div class="nishi-head-actions">
+      <button id="nishi-new-chat" title="New conversation">↻</button>
+      <button id="nishi-close" title="Close">×</button>
+    </div>
   </div>
-  <div class="nishi-intro"><strong>Hello, I'm Nishi.</strong> Your friendly AI companion. Ask me anything or tap the microphone and say <strong>“Hey Cutie”</strong>.</div>
-  <div id="nishi-messages"><div class="message-row bot-row"><div class="message-avatar">N</div><div class="message-content"><div class="message">Hey! I'm Nishi. It's lovely to meet you. What would you like to talk about today? ✨</div></div></div></div>
-  <div class="nishi-suggestions" id="nishi-suggestions"><button data-prompt="Tell me something interesting about AI.">Explore AI</button><button data-prompt="Help me brainstorm a creative project.">Brainstorm</button><button data-prompt="Give me a fun fact.">Fun fact</button></div>
+  <div class="nishi-intro"><strong>Hello, I'm Nishi.</strong> Your friendly AI companion. Say <strong>“Hey Cutie”</strong> to wake me when hands-free mode is enabled.</div>
+  <div id="nishi-messages">
+    <div class="message-row bot-row">
+      <div class="message-avatar">N</div>
+      <div class="message-content"><div class="message">Hey! I'm Nishi. It's lovely to meet you. What would you like to talk about today? ✨</div></div>
+    </div>
+  </div>
+  <div class="nishi-suggestions" id="nishi-suggestions">
+    <button data-prompt="Tell me something interesting about AI.">Explore AI</button>
+    <button data-prompt="Help me brainstorm a creative project.">Brainstorm</button>
+    <button data-prompt="Give me a fun fact.">Fun fact</button>
+  </div>
   <div class="nishi-input-area">
     <form class="nishi-input-box" id="nishi-form">
-      <button class="nishi-tool-btn" id="nishi-mic" type="button" title="Start voice mode">🎙</button>
+      <button class="nishi-tool-btn" id="nishi-mic" type="button" title="Turn hands-free mode on or off">🎙</button>
       <input id="nishi-input" type="text" placeholder="Message Nishi..." autocomplete="off">
       <button class="nishi-send-btn" id="nishi-send" type="submit">➤</button>
     </form>
     <div class="nishi-disclaimer">AI can make mistakes. Check important information.</div>
-    <div style="display:flex;justify-content:center;margin-top:7px"><button id="nishi-stop-voice" type="button" style="border:0;background:none;color:#8b6a35;font-size:10px">Stop voice</button></div>
+    <div style="display:flex;justify-content:center;margin-top:7px">
+      <button id="nishi-stop-voice" type="button" style="border:0;background:none;color:#8b6a35;font-size:10px">Stop voice</button>
+    </div>
   </div>
 </div>
 
@@ -404,15 +454,18 @@ window.addEventListener('load',()=>{
 });
 $('#year').textContent=new Date().getFullYear();
 
-$('#enter-btn').addEventListener('click',()=>{
+/* WELCOME SCREEN AND MICROPHONE SETUP */
+$('#enter-btn').addEventListener('click',async()=>{
   $('#welcome').classList.add('exit');
   document.body.style.overflowX='hidden';
+  await startHandsFree();
 });
 
 const menuBtn=$('#menu-btn'),navLinks=$('#nav-links');
 menuBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
 $$('.nav-links a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 
+/* SCROLL REVEAL */
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
@@ -458,7 +511,9 @@ addEventListener('resize',()=>{
   clearTimeout(resizeTimer);
   resizeTimer=setTimeout(resizeCanvas,150);
 });
-document.addEventListener('visibilitychange',()=>document.hidden?stopParticles():startParticles());
+document.addEventListener('visibilitychange',()=>{
+  document.hidden?stopParticles():startParticles();
+});
 
 /* CONTACT FORM */
 $('#contact-form').addEventListener('submit',e=>{
@@ -470,19 +525,43 @@ $('#contact-form').addEventListener('submit',e=>{
   location.href=`mailto:${YOUR_EMAIL}?subject=${encodeURIComponent('Portfolio enquiry from '+name)}&body=${encodeURIComponent('Hello Swastik,\n\n'+message+'\n\nRegards,\n'+name+'\nEmail: '+email)}`;
 });
 
-/* NISHI CHAT + AUTO VOICE */
-const panel=$('#nishi-panel'),launcher=$('#nishi-launcher'),messages=$('#nishi-messages'),input=$('#nishi-input'),send=$('#nishi-send'),status=$('#nishi-status-text'),mic=$('#nishi-mic');
-let history=[],busy=false,audio=null,audioURL=null,voiceRequest=0,recognition=null,listening=false,handsFree=false,commandMode=false,commandText='',silenceTimer=null;
-const SILENCE_MS=3000,WAKE=/hey\s+cutie/i,SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+/* NISHI CHAT AND HANDS-FREE WAKE WORD */
+const panel=$('#nishi-panel');
+const launcher=$('#nishi-launcher');
+const messages=$('#nishi-messages');
+const input=$('#nishi-input');
+const send=$('#nishi-send');
+const status=$('#nishi-status-text');
+const mic=$('#nishi-mic');
 
-function openNishi(){panel.classList.add('open');input.focus();}
+let history=[];
+let busy=false;
+let audio=null;
+let audioURL=null;
+let voiceRequest=0;
+let handsFree=false;
+let currentRecognition=null;
+let restartTimer=null;
+let handoffCommand=null;
+
+const WAKE=/hey[\s,.-]*cutie/i;
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+
+function openNishi(){
+  panel.classList.add('open');
+  input.focus();
+}
 function closeNishi(){panel.classList.remove('open');}
-launcher.addEventListener('click',()=>panel.classList.contains('open')?closeNishi():openNishi());
+
+launcher.addEventListener('click',()=>{
+  panel.classList.contains('open')?closeNishi():openNishi();
+});
 $('#nishi-close').addEventListener('click',closeNishi);
 
 function timeLabel(){
   return new Intl.DateTimeFormat('en-IN',{hour:'2-digit',minute:'2-digit'}).format(new Date());
 }
+
 function addMessage(text,type){
   const row=document.createElement('div');
   row.className='message-row '+(type==='user'?'user-row':'bot-row');
@@ -502,6 +581,7 @@ function addMessage(text,type){
   messages.appendChild(row);
   messages.scrollTop=messages.scrollHeight;
 }
+
 function typing(){
   const row=document.createElement('div');
   row.className='message-row bot-row';
@@ -516,120 +596,372 @@ function typing(){
   messages.appendChild(row);
   messages.scrollTop=messages.scrollHeight;
 }
+
 function removeTyping(){$('#nishi-typing')?.remove();}
+
 function setBusy(v){
   busy=v;
   input.disabled=v;
   send.disabled=v;
-  status.textContent=v?'Thinking...':handsFree?'Waiting for Hey Cutie...':'AI assistant · Voice ready';
+  if(v)status.textContent='Thinking...';
+  else if(handsFree&&!audio)status.textContent='Listening for “Hey Cutie”…';
+  else if(!handsFree)status.textContent='AI assistant · Voice ready';
 }
-function clearSilence(){clearTimeout(silenceTimer);silenceTimer=null;}
+
+function stopRecognition(){
+  if(restartTimer){
+    clearTimeout(restartTimer);
+    restartTimer=null;
+  }
+  if(currentRecognition){
+    const r=currentRecognition;
+    currentRecognition=null;
+    try{r.stop();}catch(e){}
+  }
+}
+
 function stopSpeech(){
   voiceRequest++;
-  if(audio){audio.pause();audio.currentTime=0;audio=null;}
-  if(audioURL){URL.revokeObjectURL(audioURL);audioURL=null;}
+  if(audio){
+    audio.pause();
+    audio.currentTime=0;
+    audio=null;
+  }
+  if(audioURL){
+    URL.revokeObjectURL(audioURL);
+    audioURL=null;
+  }
   if('speechSynthesis'in window)speechSynthesis.cancel();
 }
-function startListening(){
-  if(!handsFree||!recognition||listening||busy)return;
-  commandMode=false;
-  commandText='';
-  clearSilence();
-  try{recognition.start();}catch(e){console.warn('Speech recognition start:',e);}
-}
+
 function stopHandsFree(){
   handsFree=false;
-  clearSilence();
-  if(recognition&&listening)recognition.stop();
+  handoffCommand=null;
+  stopRecognition();
   mic.classList.remove('listening');
   mic.textContent='🎙';
   status.textContent='Hands-free OFF';
 }
-function scheduleSilence(){
-  clearSilence();
-  silenceTimer=setTimeout(()=>{
-    if(listening&&commandMode&&recognition)recognition.stop();
-  },SILENCE_MS);
+
+function scheduleWakeRestart(delay=900){
+  if(!handsFree||busy||audio)return;
+  if(restartTimer)clearTimeout(restartTimer);
+  restartTimer=setTimeout(()=>{
+    restartTimer=null;
+    startWakeListening();
+  },delay);
 }
+
+/*
+  Wake-word recognition:
+  A fresh recognition instance is created each time.
+  This is generally more robust than relying on one continuous
+  SpeechRecognition instance, although browser support varies.
+*/
+function startWakeListening(){
+  if(!handsFree||busy||audio||currentRecognition)return;
+
+  if(!SR){
+    status.textContent='Voice recognition is not supported here. Try Chrome.';
+    handsFree=false;
+    mic.classList.remove('listening');
+    return;
+  }
+
+  const rec=new SR();
+  currentRecognition=rec;
+  rec.lang='en-IN';
+  rec.continuous=true;
+  rec.interimResults=true;
+  rec.maxAlternatives=1;
+
+  rec.onstart=()=>{
+    if(currentRecognition!==rec)return;
+    mic.classList.add('listening');
+    mic.textContent='●';
+    status.textContent='Listening for “Hey Cutie”…';
+  };
+
+  rec.onresult=e=>{
+    if(currentRecognition!==rec||!handsFree||handoffCommand!==null)return;
+
+    const heard=Array.from(e.results)
+      .map(x=>x[0].transcript||'')
+      .join(' ')
+      .trim();
+
+    const match=WAKE.exec(heard);
+    if(!match)return;
+
+    const command=heard.slice(match.index+match[0].length).trim();
+    status.textContent=command?'I heard you.':'Yes? Tell me what you need…';
+    handoffCommand=command;
+
+    try{rec.stop();}catch(err){}
+  };
+
+  rec.onerror=e=>{
+    console.warn('NISHI wake-word recognition:',e.error);
+
+    if(e.error==='not-allowed'||e.error==='service-not-allowed'||e.error==='audio-capture'){
+      handsFree=false;
+      mic.classList.remove('listening');
+      mic.textContent='🎙';
+      status.textContent='Microphone blocked. Allow it in browser site settings.';
+    }else if(e.error!=='aborted'){
+      status.textContent='Voice paused. Trying again…';
+    }
+  };
+
+  rec.onend=()=>{
+    if(currentRecognition===rec)currentRecognition=null;
+    mic.classList.remove('listening');
+    mic.textContent='🎙';
+
+    if(!handsFree||busy||audio)return;
+
+    if(handoffCommand!==null){
+      const command=handoffCommand;
+      handoffCommand=null;
+
+      if(command){
+        input.value='';
+        sendToNishi(command);
+      }else{
+        startCommandListening();
+      }
+      return;
+    }
+
+    scheduleWakeRestart(1100);
+  };
+
+  try{
+    rec.start();
+  }catch(e){
+    currentRecognition=null;
+    console.warn('Could not start wake listening:',e);
+    scheduleWakeRestart(1800);
+  }
+}
+
+/* Listen for the command after the wake phrase */
+function startCommandListening(){
+  if(!handsFree||busy||audio||currentRecognition)return;
+
+  if(!SR){
+    status.textContent='Voice recognition is not supported here.';
+    handsFree=false;
+    return;
+  }
+
+  const rec=new SR();
+  currentRecognition=rec;
+  rec.lang='en-IN';
+  rec.continuous=false;
+  rec.interimResults=true;
+  rec.maxAlternatives=1;
+
+  let spoken='';
+
+  rec.onstart=()=>{
+    if(currentRecognition===rec){
+      status.textContent='I’m listening… speak your command';
+    }
+  };
+
+  rec.onresult=e=>{
+    spoken=Array.from(e.results)
+      .map(x=>x[0].transcript||'')
+      .join(' ')
+      .trim();
+  };
+
+  rec.onerror=e=>{
+    console.warn('NISHI command recognition:',e.error);
+    if(e.error==='not-allowed'||e.error==='service-not-allowed'){
+      handsFree=false;
+      status.textContent='Microphone permission is blocked.';
+    }
+  };
+
+  rec.onend=()=>{
+    if(currentRecognition===rec)currentRecognition=null;
+    if(!handsFree)return;
+
+    if(spoken){
+      sendToNishi(spoken);
+    }else{
+      scheduleWakeRestart(700);
+    }
+  };
+
+  try{
+    rec.start();
+  }catch(e){
+    currentRecognition=null;
+    console.warn('Could not start command listening:',e);
+    scheduleWakeRestart(1200);
+  }
+}
+
+/* Start hands-free mode and request microphone permission */
+async function startHandsFree(){
+  if(handsFree)return;
+
+  if(!SR){
+    openNishi();
+    status.textContent='This browser does not support speech recognition. Try Chrome.';
+    return;
+  }
+
+  handsFree=true;
+  openNishi();
+  mic.classList.add('listening');
+  mic.textContent='●';
+  status.textContent='Requesting microphone permission…';
+
+  try{
+    if(navigator.mediaDevices?.getUserMedia){
+      const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+      stream.getTracks().forEach(t=>t.stop());
+    }
+
+    if(!handsFree)return;
+
+    status.textContent='Microphone ready. Say “Hey Cutie”.';
+    startWakeListening();
+  }catch(err){
+    console.error('NISHI microphone permission:',err);
+    handsFree=false;
+    mic.classList.remove('listening');
+    mic.textContent='🎙';
+    status.textContent='Allow microphone access, then tap the microphone.';
+  }
+}
+
+/* Voice response using your existing ElevenLabs Worker endpoint */
 async function speakNishi(text){
   stopSpeech();
   const id=voiceRequest;
-  status.textContent='Preparing voice...';
+  status.textContent='Preparing voice…';
+
   try{
     const r=await fetch(NISHI_API+'tts',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({text:text.slice(0,2500)})
     });
+
     if(!r.ok)throw Error('Voice service error '+r.status);
+
     const blob=await r.blob();
     if(id!==voiceRequest)return;
     if(!blob.size)throw Error('Empty audio response');
+
     audioURL=URL.createObjectURL(blob);
     audio=new Audio(audioURL);
-    audio.onplay=()=>status.textContent='NISHI is speaking...';
+
+    audio.onplay=()=>{
+      status.textContent='NISHI is speaking…';
+    };
+
     audio.onended=()=>{
       if(id!==voiceRequest)return;
+
       if(audioURL)URL.revokeObjectURL(audioURL);
       audio=null;
       audioURL=null;
-      status.textContent=handsFree?'Waiting for Hey Cutie...':'AI assistant · Voice ready';
-      if(handsFree)setTimeout(startListening,800);
+
+      if(handsFree){
+        scheduleWakeRestart(900);
+      }else{
+        status.textContent='AI assistant · Voice ready';
+      }
     };
+
     await audio.play();
   }catch(err){
     if(id!==voiceRequest)return;
+
     console.error('NISHI TTS:',err);
+
     if('speechSynthesis'in window){
       const u=new SpeechSynthesisUtterance(text);
       u.lang='en-IN';
       u.rate=1;
       u.pitch=1.05;
-      u.onstart=()=>status.textContent='NISHI is speaking...';
+
+      u.onstart=()=>status.textContent='NISHI is speaking…';
       u.onend=()=>{
-        status.textContent=handsFree?'Waiting for Hey Cutie...':'AI assistant · Voice ready';
-        if(handsFree)setTimeout(startListening,800);
+        if(handsFree)scheduleWakeRestart(900);
+        else status.textContent='AI assistant · Voice ready';
       };
+
       speechSynthesis.speak(u);
     }else{
-      status.textContent='Voice unavailable';
-      if(handsFree)setTimeout(startListening,1000);
+      status.textContent='Voice playback unavailable';
+      scheduleWakeRestart(1000);
     }
   }
 }
+
+/* Send messages to the existing Cloudflare Worker */
 async function sendToNishi(text){
   if(busy||!text.trim())return;
+
+  stopRecognition();
+
   const clean=text.trim();
   addMessage(clean,'user');
+
   const payload=[...history,{role:'user',content:clean}];
+
   setBusy(true);
   typing();
+
   try{
     const r=await fetch(NISHI_API,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({messages:payload})
     });
+
     const data=await r.json().catch(()=>({}));
+
     if(!r.ok)throw Error(data.error||'Server error '+r.status);
+
     const reply=data.reply||data.response||data.message;
-    if(typeof reply!=='string'||!reply.trim())throw Error('The AI returned an empty response.');
+
+    if(typeof reply!=='string'||!reply.trim()){
+      throw Error('The AI returned an empty response.');
+    }
+
     removeTyping();
     addMessage(reply,'bot');
-    history.push({role:'user',content:clean},{role:'assistant',content:reply});
+
+    history.push(
+      {role:'user',content:clean},
+      {role:'assistant',content:reply}
+    );
+
     if(history.length>10)history=history.slice(-10);
+
+    setBusy(false);
     speakNishi(reply);
+
   }catch(err){
     removeTyping();
     console.error('NISHI chat:',err);
     addMessage('I am having trouble connecting right now. '+err.message,'bot');
-    status.textContent='Connection issue';
-    if(handsFree)setTimeout(startListening,2500);
-  }finally{
     setBusy(false);
+    scheduleWakeRestart(1800);
+  }finally{
     messages.scrollTop=messages.scrollHeight;
   }
 }
+
+/* Text input */
 $('#nishi-form').addEventListener('submit',e=>{
   e.preventDefault();
   const text=input.value.trim();
@@ -637,129 +969,101 @@ $('#nishi-form').addEventListener('submit',e=>{
   input.value='';
   sendToNishi(text);
 });
-$$('.nishi-suggestions button').forEach(b=>b.addEventListener('click',()=>{
-  if(busy)return;
-  $('#nishi-suggestions').style.display='none';
-  sendToNishi(b.dataset.prompt||'');
-}));
+
+/* Suggested prompts */
+$$('.nishi-suggestions button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    if(busy)return;
+    $('#nishi-suggestions').style.display='none';
+    sendToNishi(b.dataset.prompt||'');
+  });
+});
+
+/* New conversation */
 $('#nishi-new-chat').addEventListener('click',()=>{
   if(busy)return;
+
   stopSpeech();
   history=[];
   messages.innerHTML='';
+
   addMessage('Fresh conversation, fresh ideas. ✨\n\nWhat would you like to explore?','bot');
   $('#nishi-suggestions').style.display='flex';
+
+  if(handsFree)scheduleWakeRestart(300);
 });
+
+/* Stop speaking */
 $('#nishi-stop-voice').addEventListener('click',()=>{
   stopSpeech();
-  status.textContent=handsFree?'Waiting for Hey Cutie...':'AI assistant · Voice ready';
-  if(handsFree)setTimeout(startListening,500);
+  if(handsFree)scheduleWakeRestart(300);
+  else status.textContent='AI assistant · Voice ready';
 });
 
-/* WAKE WORD — ACTIVATE BY TAPPING MIC, THEN SAY HEY CUTIE */
-if(SR){
-  recognition=new SR();
-  recognition.lang='en-IN';
-  recognition.continuous=true;
-  recognition.interimResults=true;
-  recognition.maxAlternatives=1;
-  recognition.onstart=()=>{
-    listening=true;
-    mic.classList.add('listening');
-    mic.textContent='●';
-    status.textContent=commandMode?'Listening to you...':'Waiting for Hey Cutie...';
-  };
-  recognition.onresult=e=>{
-    let finals='',interims='';
-    for(let i=e.resultIndex;i<e.results.length;i++){
-      const t=e.results[i][0].transcript.trim();
-      if(e.results[i].isFinal)finals+=(finals?' ':'')+t;
-      else interims+=(interims?' ':'')+t;
-    }
-    const heard=(finals+' '+interims).trim();
-    if(!commandMode){
-      const m=WAKE.exec(heard);
-      if(!m)return;
-      commandMode=true;
-      commandText=heard.slice(m.index+m[0].length).trim();
-      status.textContent='Yes? I am listening...';
-    }else{
-      const m=WAKE.exec(heard);
-      if(m)commandText=heard.slice(m.index+m[0].length).trim();
-      else if(finals)commandText+=(commandText?' ':'')+finals;
-    }
-    if(commandText){
-      input.value=commandText;
-      scheduleSilence();
-    }
-  };
-  recognition.onerror=e=>{
-    console.warn('NISHI mic:',e.error);
-    if(e.error==='not-allowed'){
-      status.textContent='Please allow microphone access';
-      handsFree=false;
-    }
-  };
-  recognition.onend=()=>{
-    listening=false;
-    mic.classList.remove('listening');
-    mic.textContent='🎙';
-    clearSilence();
-    const msg=commandMode?commandText.trim():'';
-    commandMode=false;
-    commandText='';
-    if(msg&&handsFree&&!busy){
-      input.value='';
-      sendToNishi(msg);
-      return;
-    }
-    if(handsFree&&!busy)setTimeout(startListening,500);
-  };
-  mic.addEventListener('click',()=>{
-    if(handsFree){stopHandsFree();return;}
-    handsFree=true;
-    openNishi();
-    status.textContent='Starting hands-free...';
-    stopSpeech();
-    startListening();
-  });
-}else{
-  mic.addEventListener('click',()=>addMessage('Speech recognition is not supported in this browser. Please try Chrome and allow microphone access.','bot'));
+/* Microphone button toggles hands-free mode */
+mic.addEventListener('click',()=>{
+  handsFree?stopHandsFree():startHandsFree();
+});
+
+if(!SR){
+  status.textContent='Voice recognition unavailable in this browser';
+  mic.title='Speech recognition is not supported in this browser';
 }
-status.textContent='AI assistant · Voice ready';
 
 /* COMMAND CENTRE */
-const commandCentre=$('#command-centre'),commandSearch=$('#command-search');
+const commandCentre=$('#command-centre');
+const commandSearch=$('#command-search');
+
 function openCommand(){
   commandCentre.classList.add('open');
   commandSearch.value='';
   filterCommands('');
   commandSearch.focus();
 }
-function closeCommand(){commandCentre.classList.remove('open');}
-function filterCommands(q){
-  $$('.command-item').forEach(i=>i.style.display=i.textContent.toLowerCase().includes(q.toLowerCase())?'flex':'none');
+
+function closeCommand(){
+  commandCentre.classList.remove('open');
 }
+
+function filterCommands(q){
+  $$('.command-item').forEach(i=>{
+    i.style.display=i.textContent.toLowerCase().includes(q.toLowerCase())?'flex':'none';
+  });
+}
+
 commandSearch.addEventListener('input',e=>filterCommands(e.target.value));
+
 commandCentre.addEventListener('click',e=>{
   if(e.target===commandCentre)closeCommand();
 });
-$$('.command-item').forEach(i=>i.addEventListener('click',()=>{
-  const target=i.dataset.target,action=i.dataset.action;
-  closeCommand();
-  if(target)document.getElementById(target).scrollIntoView({behavior:'smooth'});
-  if(action==='nishi')openNishi();
-}));
+
+$$('.command-item').forEach(i=>{
+  i.addEventListener('click',()=>{
+    const target=i.dataset.target;
+    const action=i.dataset.action;
+
+    closeCommand();
+
+    if(target){
+      document.getElementById(target).scrollIntoView({behavior:'smooth'});
+    }
+
+    if(action==='nishi')openNishi();
+  });
+});
+
 document.addEventListener('keydown',e=>{
   if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){
     e.preventDefault();
     commandCentre.classList.contains('open')?closeCommand():openCommand();
   }
+
   if(e.key==='Escape'){
     closeCommand();
     closeNishi();
   }
 });
+
 console.log('Swastik portfolio and NISHI initialized');
 </script>
 </body>
